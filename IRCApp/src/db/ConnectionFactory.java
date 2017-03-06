@@ -15,8 +15,14 @@ import java.sql.SQLException;
  */
 public class ConnectionFactory {
     
+    private static Connection conn;
+    
     public static Connection createConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "");
+        if (conn == null) {
+            conn = DriverManager.getConnection("", "", "");
+        }
+        
+        return conn;
     }
     
 }

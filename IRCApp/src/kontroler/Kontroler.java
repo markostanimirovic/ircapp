@@ -5,6 +5,7 @@
  */
 package kontroler;
 
+import gui.AdminLog;
 import gui.GlavnaForma;
 import java.awt.EventQueue;
 import javax.swing.JOptionPane;
@@ -17,7 +18,7 @@ import javax.swing.UIManager;
 public class Kontroler {
     
     private static GlavnaForma glavnaForma;
-    
+    private static AdminLog adminLog;
     
     public static void main(String[] args) {
         
@@ -39,6 +40,29 @@ public class Kontroler {
         if (izbor == JOptionPane.YES_OPTION) {
             glavnaForma.dispose();
             System.exit(0);
+        }
+    }
+    
+    public static void otvoriAdminLog() {
+        if(adminLog == null) {
+            adminLog = new AdminLog(glavnaForma, true);
+            adminLog.setLocationRelativeTo(glavnaForma);
+            adminLog.setVisible(true);
+        }
+    }
+    
+    public static void zatvoriAdminLog() {
+        adminLog.dispose();
+        adminLog = null;
+    }
+
+    public static void autentifikacija(String text, String password) {
+        if(text.equals("vagrant") && password.equals("vagrant")) {
+            glavnaForma.prikaziAdministraciju(true);
+            zatvoriAdminLog();
+        } else {
+            JOptionPane.showMessageDialog(adminLog, "Uneli ste pogresne vrednosti! Pokusajte ponovo.", "Greska", JOptionPane.ERROR_MESSAGE);
+            adminLog.praznaPolja();
         }
     }
     

@@ -16,6 +16,7 @@ public class VirtuelnaMasina {
     private String opis;
 
     public VirtuelnaMasina(long id, String ime, String opis) {
+        this();
         this.id = id;
         this.ime = ime;
         this.opis = opis;
@@ -52,5 +53,7 @@ public class VirtuelnaMasina {
     public String getIme() {
         return ime;
     }
+    
+    
 
 }

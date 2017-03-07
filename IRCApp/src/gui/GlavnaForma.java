@@ -74,7 +74,6 @@ public class GlavnaForma extends javax.swing.JFrame {
         jcbEclipse = new javax.swing.JCheckBox();
         jcbGit = new javax.swing.JCheckBox();
         jcbNekiProgram = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jbtnCard1PokreniVM = new javax.swing.JButton();
         jbtnCard1nazad = new javax.swing.JButton();
@@ -266,13 +265,6 @@ public class GlavnaForma extends javax.swing.JFrame {
         jcbNekiProgram.setName("neki_program"); // NOI18N
         Kontroler.nizCheckBokseva[4] = jcbNekiProgram;
 
-        jButton1.setText("Proveri izbor");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jpnlCheckBokseviLayout = new javax.swing.GroupLayout(jpnlCheckBoksevi);
         jpnlCheckBoksevi.setLayout(jpnlCheckBokseviLayout);
         jpnlCheckBokseviLayout.setHorizontalGroup(
@@ -280,46 +272,34 @@ public class GlavnaForma extends javax.swing.JFrame {
             .addGroup(jpnlCheckBokseviLayout.createSequentialGroup()
                 .addGroup(jpnlCheckBokseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpnlCheckBokseviLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel5))
                     .addGroup(jpnlCheckBokseviLayout.createSequentialGroup()
-                        .addGroup(jpnlCheckBokseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpnlCheckBokseviLayout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(jLabel5))
-                            .addGroup(jpnlCheckBokseviLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jpnlCheckBokseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jcbNekiProgram, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jcbGit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jcbNetbeans, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jcbVisualStudio2015, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jcbEclipse, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 61, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap()
+                        .addGroup(jpnlCheckBokseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jcbNekiProgram, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcbGit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcbNetbeans, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcbVisualStudio2015, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcbEclipse, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         jpnlCheckBokseviLayout.setVerticalGroup(
             jpnlCheckBokseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnlCheckBokseviLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addGroup(jpnlCheckBokseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpnlCheckBokseviLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jcbNetbeans)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcbEclipse)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcbGit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcbVisualStudio2015)
-                        .addGap(4, 4, 4)
-                        .addComponent(jcbNekiProgram)
-                        .addContainerGap(137, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnlCheckBokseviLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addContainerGap())))
+                .addGap(18, 18, 18)
+                .addComponent(jcbNetbeans)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jcbEclipse)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jcbGit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jcbVisualStudio2015)
+                .addGap(4, 4, 4)
+                .addComponent(jcbNekiProgram)
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         jbtnCard1PokreniVM.setText("Pokreni VM");
@@ -439,10 +419,6 @@ public class GlavnaForma extends javax.swing.JFrame {
         Kontroler.pokreniVM();
     }//GEN-LAST:event_jbtnCard1PokreniVMActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Kontroler.proveriIzborProgramaZaVM();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jbtnCard1nazadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCard1nazadActionPerformed
         prikaziCard0();
     }//GEN-LAST:event_jbtnCard1nazadActionPerformed
@@ -451,7 +427,6 @@ public class GlavnaForma extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card0;
     private javax.swing.JPanel card1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

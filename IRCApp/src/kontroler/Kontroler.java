@@ -94,31 +94,29 @@ public class Kontroler {
         
         List<JCheckBox> izabraniProgrami = new ArrayList<>();
         
-        boolean selektovanBarJedanProgram = false;
         for (JCheckBox jcb : nizCheckBokseva) {
             if (jcb.isSelected()) {
                 izabraniProgrami.add(jcb);
             }
         }
 
-        if (!selektovanBarJedanProgram) {
-            JOptionPane.showMessageDialog(glavnaForma, "Izaberite bar jedan program!", "Greska", JOptionPane.ERROR_MESSAGE);
-            return null;
-        } else {
-            return izabraniProgrami;
-        }
-        
+        return izabraniProgrami;
     }
 
     public static void pokreniVM() {
         List<JCheckBox> izabraniProgrami = proveriIzborProgramaZaVM();
+        String spisakIzabranihPrograma = "";
         
-        if (izabraniProgrami == null) {
-            JOptionPane.showMessageDialog(glavnaForma, "Izabrali ste sledece programe: " +izabranaVM.getIme() + '\n' + izabraniProgrami);
-            return;
+        for (JCheckBox jcb : izabraniProgrami) {
+            spisakIzabranihPrograma = spisakIzabranihPrograma + jcb.getText() + "\n";
         }
         
-        //
+        JOptionPane.showMessageDialog(glavnaForma, "Izabrali ste sledece programe: " + '\n' + "Ime OS: " +izabranaVM.getIme() + '\n' + spisakIzabranihPrograma);
+        int izbor = JOptionPane.showConfirmDialog(glavnaForma, "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
+        
+        if (izbor == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
+        } 
         
         
     }

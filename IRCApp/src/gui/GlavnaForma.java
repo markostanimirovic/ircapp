@@ -51,10 +51,10 @@ public class GlavnaForma extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblIzaberiVM = new javax.swing.JTable();
-        jbtnPronadji = new javax.swing.JButton();
         jtxtPronadji = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jbtnCard0Dalje = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jpnlAdministracija = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jbtnDodajVM = new javax.swing.JButton();
@@ -88,10 +88,9 @@ public class GlavnaForma extends javax.swing.JFrame {
         jtblIzaberiVM.setModel(new IzaberiVMTableModel());
         jScrollPane1.setViewportView(jtblIzaberiVM);
 
-        jbtnPronadji.setText("pronadji");
-        jbtnPronadji.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnPronadjiActionPerformed(evt);
+        jtxtPronadji.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtxtPronadjiKeyTyped(evt);
             }
         });
 
@@ -106,6 +105,8 @@ public class GlavnaForma extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Pronadji VM");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -114,14 +115,14 @@ public class GlavnaForma extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jtxtPronadji)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnPronadji, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbtnCard0Dalje, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtxtPronadji)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -131,8 +132,8 @@ public class GlavnaForma extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtxtPronadji)
-                    .addComponent(jbtnPronadji, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtPronadji, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -411,10 +412,6 @@ public class GlavnaForma extends javax.swing.JFrame {
         Kontroler.otvoriAdminLog();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jbtnPronadjiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPronadjiActionPerformed
-        Kontroler.search(getTxtPronadji().getText());
-    }//GEN-LAST:event_jbtnPronadjiActionPerformed
-
     private void jbtnCard1PokreniVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCard1PokreniVMActionPerformed
         Kontroler.pokreniVM();
     }//GEN-LAST:event_jbtnCard1PokreniVMActionPerformed
@@ -422,6 +419,10 @@ public class GlavnaForma extends javax.swing.JFrame {
     private void jbtnCard1nazadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCard1nazadActionPerformed
         prikaziCard0();
     }//GEN-LAST:event_jbtnCard1nazadActionPerformed
+
+    private void jtxtPronadjiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtPronadjiKeyTyped
+        Kontroler.search(jtxtPronadji.getText());
+    }//GEN-LAST:event_jtxtPronadjiKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -432,6 +433,7 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -447,7 +449,6 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JButton jbtnDodajVM;
     private javax.swing.JButton jbtnIzmeniVM;
     private javax.swing.JButton jbtnObrisiVM;
-    private javax.swing.JButton jbtnPronadji;
     private javax.swing.JCheckBox jcbEclipse;
     private javax.swing.JCheckBox jcbGit;
     private javax.swing.JCheckBox jcbNekiProgram;

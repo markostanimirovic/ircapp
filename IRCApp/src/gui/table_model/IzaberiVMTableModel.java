@@ -25,7 +25,7 @@ public class IzaberiVMTableModel extends AbstractTableModel {
         listaVirtuelnihMasina.add(new VirtuelnaMasina(1, "Windows 10", "asdasdasdasdaqqwdqdqwdq"));
         listaVirtuelnihMasina.add(new VirtuelnaMasina(2, "Windows 7", "qefefwefewewfwef"));
         listaVirtuelnihMasina.add(new VirtuelnaMasina(3, "linux mint", "regregergergergerge"));
-        listaVirtuelnihMasina.add(new VirtuelnaMasina(4, "ubuntu", "hrhrthrthrt"));
+        listaVirtuelnihMasina.add(new VirtuelnaMasina(4, "linux ubuntu", "hrhrthrthrt"));
     }
 
     @Override

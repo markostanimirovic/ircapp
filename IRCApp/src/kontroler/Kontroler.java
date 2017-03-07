@@ -10,13 +10,8 @@ import gui.AdminLog;
 import gui.GlavnaForma;
 import gui.table_model.IzaberiVMTableModel;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
@@ -27,8 +22,13 @@ public class Kontroler {
     private static GlavnaForma glavnaForma;
     private static AdminLog adminLog;
     private static IzaberiVMTableModel izaberiVMTableModel;
-    public static JCheckBox[] nizCheckBokseva = new JCheckBox[5];
     
+    /**
+     * Virtuelna masina koju je korisnik izabrao na pocetnom prozoru
+     */
+    private static VirtuelnaMasina izabranaVM;
+    public static JCheckBox[] nizCheckBokseva = new JCheckBox[5];
+
     public static void main(String[] args) {
 
         EventQueue.invokeLater(new Runnable() {
@@ -85,22 +85,32 @@ public class Kontroler {
         glavnaForma.getJtxtImeIzabraneVirtuelneMasine().setText(vm.getIme());
         glavnaForma.getJTxtOpisVM().setText(vm.getOpis());
         glavnaForma.prikaziCard1();
-        
-
+        izabranaVM = vm;
     }
 
-    public static void proveriCheckBokseve() {
+    public static void proveriIzborProgramaZaVM() {
         boolean selektovanBarJedanProgram = false;
-        for (JCheckBox jc : nizCheckBokseva) {
-            if (jc.isSelected()) {
-                JOptionPane.showMessageDialog(glavnaForma, jc.getName());
+        for (JCheckBox jcb : nizCheckBokseva) {
+            if (jcb.isSelected()) {
+                JOptionPane.showMessageDialog(glavnaForma, jcb.getName());
                 selektovanBarJedanProgram = true;
             }
         }
-        
+
         if (!selektovanBarJedanProgram) {
             JOptionPane.showMessageDialog(glavnaForma, "Izaberite bar jedan program!", "Greska", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    public static void pokreniVM() {
+        String izabraniProgrami = "";
+        
+        for (JCheckBox jcb : nizCheckBokseva) {
+                if (jcb.isSelected()) {
+                    izabraniProgrami += jcb.getText();
+                }
+        }
+        JOptionPane.showMessageDialog(glavnaForma, "Izabrali ste sledece programe: " +izabranaVM.getIme() + '\n' + izabraniProgrami);
     }
 
 }

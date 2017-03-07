@@ -10,6 +10,8 @@ import gui.AdminLog;
 import gui.GlavnaForma;
 import gui.table_model.IzaberiVMTableModel;
 import java.awt.EventQueue;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 
@@ -88,29 +90,37 @@ public class Kontroler {
         izabranaVM = vm;
     }
 
-    public static void proveriIzborProgramaZaVM() {
+    public static List<JCheckBox> proveriIzborProgramaZaVM() {
+        
+        List<JCheckBox> izabraniProgrami = new ArrayList<>();
+        
         boolean selektovanBarJedanProgram = false;
         for (JCheckBox jcb : nizCheckBokseva) {
             if (jcb.isSelected()) {
-                JOptionPane.showMessageDialog(glavnaForma, jcb.getName());
-                selektovanBarJedanProgram = true;
+                izabraniProgrami.add(jcb);
             }
         }
 
         if (!selektovanBarJedanProgram) {
             JOptionPane.showMessageDialog(glavnaForma, "Izaberite bar jedan program!", "Greska", JOptionPane.ERROR_MESSAGE);
+            return null;
+        } else {
+            return izabraniProgrami;
         }
+        
     }
 
     public static void pokreniVM() {
-        String izabraniProgrami = "";
+        List<JCheckBox> izabraniProgrami = proveriIzborProgramaZaVM();
         
-        for (JCheckBox jcb : nizCheckBokseva) {
-                if (jcb.isSelected()) {
-                    izabraniProgrami += jcb.getText();
-                }
+        if (izabraniProgrami == null) {
+            JOptionPane.showMessageDialog(glavnaForma, "Izabrali ste sledece programe: " +izabranaVM.getIme() + '\n' + izabraniProgrami);
+            return;
         }
-        JOptionPane.showMessageDialog(glavnaForma, "Izabrali ste sledece programe: " +izabranaVM.getIme() + '\n' + izabraniProgrami);
+        
+        
+        
+        
     }
 
 }

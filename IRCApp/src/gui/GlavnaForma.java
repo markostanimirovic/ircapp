@@ -23,15 +23,15 @@ public class GlavnaForma extends javax.swing.JFrame {
      */
     public GlavnaForma() {
         initComponents();
-        
+
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 Kontroler.zatvoriAplikaciju();
             }
-            
+
         });
-        
+
         prikaziAdministraciju(false);
     }
 
@@ -48,7 +48,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblIzaberiVM = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        jbtnPronadji = new javax.swing.JButton();
         jtxtPronadji = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jbtnDalje = new javax.swing.JButton();
@@ -68,7 +68,12 @@ public class GlavnaForma extends javax.swing.JFrame {
         jtblIzaberiVM.setModel(new IzaberiVMTableModel());
         jScrollPane1.setViewportView(jtblIzaberiVM);
 
-        jButton2.setText("pronadji");
+        jbtnPronadji.setText("pronadji");
+        jbtnPronadji.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnPronadjiActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -92,7 +97,7 @@ public class GlavnaForma extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jtxtPronadji)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbtnPronadji, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbtnDalje, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -107,7 +112,7 @@ public class GlavnaForma extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jtxtPronadji)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbtnPronadji, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -208,10 +213,13 @@ public class GlavnaForma extends javax.swing.JFrame {
         Kontroler.otvoriAdminLog();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jbtnPronadjiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPronadjiActionPerformed
+        Kontroler.search(getTxtPronadji().getText());
+    }//GEN-LAST:event_jbtnPronadjiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card0;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -224,6 +232,7 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JButton jbtnDodajVM;
     private javax.swing.JButton jbtnIzmeniVM;
     private javax.swing.JButton jbtnObrisiVM;
+    private javax.swing.JButton jbtnPronadji;
     private javax.swing.JPanel jpnlAdministracija;
     private javax.swing.JTable jtblIzaberiVM;
     private javax.swing.JTextField jtxtPronadji;
@@ -231,6 +240,14 @@ public class GlavnaForma extends javax.swing.JFrame {
 
     public void prikaziAdministraciju(boolean b) {
         jpnlAdministracija.setVisible(b);
+    }
+
+    public javax.swing.JTextField getTxtPronadji() {
+        return jtxtPronadji;
+    }
+
+    public IzaberiVMTableModel getIzaberiVMTableModel() {
+        return (IzaberiVMTableModel) jtblIzaberiVM.getModel();
     }
 
 }

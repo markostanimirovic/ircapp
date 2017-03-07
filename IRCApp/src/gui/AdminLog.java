@@ -21,13 +21,13 @@ public class AdminLog extends javax.swing.JDialog {
     public AdminLog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 kontroler.Kontroler.zatvoriAdminLog();
             }
-            
+
         });
     }
 
@@ -112,11 +112,11 @@ public class AdminLog extends javax.swing.JDialog {
     }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLogInActionPerformed
-        if(jtxtUser.getText().equals("") || jpassPass.getPassword().equals("")) {
+        if (jtxtUser.getText().equals("") || jpassPass.getPassword().equals("")) {
             JOptionPane.showMessageDialog(this, "Unesite username i password!", "Upozorenje", JOptionPane.ERROR_MESSAGE);
         } else {
             String pass = "";
-            for(int i = 0; i < jpassPass.getPassword().length; i++) {
+            for (int i = 0; i < jpassPass.getPassword().length; i++) {
                 pass += jpassPass.getPassword()[i];
             }
             kontroler.Kontroler.autentifikacija(jtxtUser.getText(), pass);

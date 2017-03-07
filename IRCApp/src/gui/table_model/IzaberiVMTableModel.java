@@ -30,7 +30,7 @@ public class IzaberiVMTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return (listaVirtuelnihMasina != null) ? listaVirtuelnihMasina.size() : 0;
+        return listaVirtuelnihMasina.size();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class IzaberiVMTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         VirtuelnaMasina vm = listaVirtuelnihMasina.get(rowIndex);
-
+        
         switch (columnIndex) {
             case 0:
                 return vm.getId();
@@ -77,5 +77,27 @@ public class IzaberiVMTableModel extends AbstractTableModel {
     public VirtuelnaMasina vratiVM(int index) {
         return listaVirtuelnihMasina.get(index);
     }
+    
+    private void preuzmiSveVMIzBaze() {
+        
+    }
+
+    public void search(String text) {
+        text = text.toLowerCase();
+        
+        for (int i = 0; i < listaVirtuelnihMasina.size(); i++) {
+            VirtuelnaMasina vm = listaVirtuelnihMasina.get(i);
+            
+            if (!vm.getIme().toLowerCase().contains(text)) {
+                listaVirtuelnihMasina.remove(i);
+                i--;
+            }
+        }
+        
+        fireTableDataChanged();
+    }
+    
+    
+    
 
 }

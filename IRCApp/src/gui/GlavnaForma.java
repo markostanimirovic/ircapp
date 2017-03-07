@@ -89,8 +89,8 @@ public class GlavnaForma extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtblIzaberiVM);
 
         jtxtPronadji.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtxtPronadjiKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtxtPronadjiKeyReleased(evt);
             }
         });
 
@@ -420,9 +420,9 @@ public class GlavnaForma extends javax.swing.JFrame {
         prikaziCard0();
     }//GEN-LAST:event_jbtnCard1nazadActionPerformed
 
-    private void jtxtPronadjiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtPronadjiKeyTyped
+    private void jtxtPronadjiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtPronadjiKeyReleased
         Kontroler.search(jtxtPronadji.getText());
-    }//GEN-LAST:event_jtxtPronadjiKeyTyped
+    }//GEN-LAST:event_jtxtPronadjiKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

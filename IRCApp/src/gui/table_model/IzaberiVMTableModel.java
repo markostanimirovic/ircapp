@@ -89,10 +89,12 @@ public class IzaberiVMTableModel extends AbstractTableModel {
 
     public void search(String text) {
         text = text.toLowerCase();
-
+        
+        listaVirtuelnihMasina.removeAll(listaVirtuelnihMasina);
+        listaVirtuelnihMasina.addAll(listaSvihVM);
+        
         if (text.equals("")) {
-            listaVirtuelnihMasina.removeAll(listaVirtuelnihMasina);
-            listaVirtuelnihMasina.addAll(listaSvihVM);
+            // pa nista
         } else {
             for (int i = 0; i < listaVirtuelnihMasina.size(); i++) {
                 VirtuelnaMasina vm = listaVirtuelnihMasina.get(i);

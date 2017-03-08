@@ -8,7 +8,7 @@ package util;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import kontroler.*;
 /**
  *
  * @author ircclient
@@ -57,15 +57,19 @@ public class Konzola {
     public static void pokreniKonzoluZaWindowsBox() {
         String komande = CMD_START
                 + " cd " + PUTANJA_DO_FOLDERA
-                + " && " + VAGRANT_INIT + imeBoxa
-                + " && " + VAGRANT_UP
+                + " && " + VAGRANT_INIT + imeBoxa 
+//                + " && " + VAGRANT_UP +
+                + " && taskkill /f /im cmd.exe"
                 + CMD_END;
-
+                
         try {
             Process p = Runtime.getRuntime().exec(komande);
+            FileIO.vagrantConfig(PUTANJA_DO_FOLDERA);
         } catch (IOException ex) {
             Logger.getLogger(Konzola.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
 
     private static void pokreniKonzoluZaLinuxBox() {

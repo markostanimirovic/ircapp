@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import util.Konzola;
 
 /**
@@ -34,6 +35,11 @@ public class Kontroler {
     public static JCheckBox[] nizCheckBokseva = new JCheckBox[5];
 
     public static void main(String[] args) {
+
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (Exception e) {
+        }
 
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -113,7 +119,11 @@ public class Kontroler {
             spisakIzabranihPrograma = spisakIzabranihPrograma + jcb.getText() + "\n";
         }
 
-        JOptionPane.showMessageDialog(glavnaForma, "Izabrali ste sledece programe: " + '\n' + "Ime OS: " + izabranaVM.getIme() + '\n' + spisakIzabranihPrograma);
+        if (glavnaForma.getPutanjaDoFoldera().getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(glavnaForma, "Izberite putanju do foldera u kome ce se nalaziti Vagrantfile!", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         int izbor = JOptionPane.showConfirmDialog(glavnaForma, "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
 
         if (izbor == JOptionPane.YES_OPTION) {

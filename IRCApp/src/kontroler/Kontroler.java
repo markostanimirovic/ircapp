@@ -13,7 +13,6 @@ import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import util.Konzola;
 
@@ -27,7 +26,7 @@ public class Kontroler {
     private static AdminLog adminLog;
     private static IzaberiVMTableModel izaberiVMTableModel;
     public static String putanjaDoFoldera;
-    
+
     /**
      * Virtuelna masina koju je korisnik izabrao na pocetnom prozoru
      */
@@ -39,7 +38,7 @@ public class Kontroler {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                
+
                 glavnaForma = new GlavnaForma();
                 glavnaForma.setVisible(true);
 
@@ -94,9 +93,9 @@ public class Kontroler {
     }
 
     public static List<JCheckBox> proveriIzborProgramaZaVM() {
-        
+
         List<JCheckBox> izabraniProgrami = new ArrayList<>();
-        
+
         for (JCheckBox jcb : nizCheckBokseva) {
             if (jcb.isSelected()) {
                 izabraniProgrami.add(jcb);
@@ -109,20 +108,20 @@ public class Kontroler {
     public static void pokreniVM() {
         List<JCheckBox> izabraniProgrami = proveriIzborProgramaZaVM();
         String spisakIzabranihPrograma = "";
-        
+
         for (JCheckBox jcb : izabraniProgrami) {
             spisakIzabranihPrograma = spisakIzabranihPrograma + jcb.getText() + "\n";
         }
-        
-        JOptionPane.showMessageDialog(glavnaForma, "Izabrali ste sledece programe: " + '\n' + "Ime OS: " +izabranaVM.getIme() + '\n' + spisakIzabranihPrograma);
+
+        JOptionPane.showMessageDialog(glavnaForma, "Izabrali ste sledece programe: " + '\n' + "Ime OS: " + izabranaVM.getIme() + '\n' + spisakIzabranihPrograma);
         int izbor = JOptionPane.showConfirmDialog(glavnaForma, "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
-        
+
         if (izbor == JOptionPane.YES_OPTION) {
             Konzola.setKonzola(putanjaDoFoldera, Kontroler.getIzabranaVM().getIme());
             Konzola.pokreniKonzolu(Kontroler.getIzabranaVM().getOperativniSistem());
-            JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);         
+            JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
         }
-           
+
     }
 
     public static String NamestiPutanjuDoFoldera(String putanja) {
@@ -137,7 +136,5 @@ public class Kontroler {
     public static void setIzabranaVM(VirtuelnaMasina izabranaVM) {
         Kontroler.izabranaVM = izabranaVM;
     }
-
-    
 
 }

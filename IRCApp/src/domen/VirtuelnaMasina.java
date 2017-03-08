@@ -16,14 +16,6 @@ public class VirtuelnaMasina {
     private String opis;
     private String operativniSistem;
 
-    public String getOperativniSistem() {
-        return operativniSistem;
-    }
-
-    public void setOperativniSistem(String operativniSistem) {
-        this.operativniSistem = operativniSistem;
-    }
-    
     public VirtuelnaMasina(long id, String ime, String opis, String operativniSistem) {
         this();
         this.id = id;
@@ -64,6 +56,13 @@ public class VirtuelnaMasina {
         return ime;
     }
     
+    public String getOperativniSistem() {
+        return operativniSistem;
+    }
+
+    public void setOperativniSistem(String operativniSistem) {
+        this.operativniSistem = operativniSistem;
+    }
     
 
 }

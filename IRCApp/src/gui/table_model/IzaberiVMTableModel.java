@@ -24,7 +24,7 @@ public class IzaberiVMTableModel extends AbstractTableModel {
     public IzaberiVMTableModel() {
         listaVirtuelnihMasina = new ArrayList<>();
         listaSvihVM = new ArrayList<>();
-        
+
         listaVirtuelnihMasina.add(new VirtuelnaMasina(1, "Windows_10", "asdasdasdasdaqqwdqdqwdq", "windows"));
         listaVirtuelnihMasina.add(new VirtuelnaMasina(2, "VisualStudio", "qefefwefewewfwef", "windows"));
         listaVirtuelnihMasina.add(new VirtuelnaMasina(3, "JavaDevelopmet", "regregergergergerge", "windows"));
@@ -89,10 +89,10 @@ public class IzaberiVMTableModel extends AbstractTableModel {
 
     public void search(String text) {
         text = text.toLowerCase();
-        
+
         listaVirtuelnihMasina.removeAll(listaVirtuelnihMasina);
         listaVirtuelnihMasina.addAll(listaSvihVM);
-        
+
         if (text.equals("")) {
             // pa nista
         } else {

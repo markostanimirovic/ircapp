@@ -9,12 +9,6 @@ import domen.VirtuelnaMasina;
 import gui.table_model.IzaberiVMTableModel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -442,7 +436,7 @@ public class GlavnaForma extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jbtnCard1PokreniVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCard1PokreniVMActionPerformed
-        Kontroler.pokreniVM();    
+        Kontroler.pokreniVM();
     }//GEN-LAST:event_jbtnCard1PokreniVMActionPerformed
 
     private void jbtnCard1nazadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCard1nazadActionPerformed
@@ -461,10 +455,11 @@ public class GlavnaForma extends javax.swing.JFrame {
         if (opcija == JFileChooser.APPROVE_OPTION) {
             putanja = fc.getSelectedFile().getAbsolutePath();
             getPutanjaDoFoldera().setText(putanja);
-        } else
+        } else {
             putanja = "";
+        }
         Kontroler.NamestiPutanjuDoFoldera(putanja);
-        
+
     }//GEN-LAST:event_jbtnBrowseActionPerformed
 
 
@@ -546,7 +541,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         sakrijSvePanele();
         card0.setVisible(true);
     }
-    
+
     public JTextField getPutanjaDoFoldera() {
         return jtxtPutanjaDoFoldera;
     }

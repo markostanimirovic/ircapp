@@ -87,6 +87,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Postavljanje VM");
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jtblIzaberiVM.setModel(new IzaberiVMTableModel());

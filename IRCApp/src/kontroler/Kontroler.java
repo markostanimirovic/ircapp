@@ -39,7 +39,7 @@ public class Kontroler {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-
+                
                 glavnaForma = new GlavnaForma();
                 glavnaForma.setVisible(true);
 
@@ -118,7 +118,8 @@ public class Kontroler {
         int izbor = JOptionPane.showConfirmDialog(glavnaForma, "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
         
         if (izbor == JOptionPane.YES_OPTION) {
-            Konzola.pokreniKonzolu();
+            Konzola.setKonzola(putanjaDoFoldera, Kontroler.getIzabranaVM().getIme());
+            Konzola.pokreniKonzolu(Kontroler.getIzabranaVM().getOperativniSistem());
             JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);         
         }
            

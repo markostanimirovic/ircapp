@@ -25,10 +25,10 @@ public class IzaberiVMTableModel extends AbstractTableModel {
         listaVirtuelnihMasina = new ArrayList<>();
         listaSvihVM = new ArrayList<>();
         
-        listaVirtuelnihMasina.add(new VirtuelnaMasina(1, "Windows_10", "asdasdasdasdaqqwdqdqwdq"));
-        listaVirtuelnihMasina.add(new VirtuelnaMasina(2, "VisualStudio", "qefefwefewewfwef"));
-        listaVirtuelnihMasina.add(new VirtuelnaMasina(3, "JavaDevelopmet", "regregergergergerge"));
-        listaVirtuelnihMasina.add(new VirtuelnaMasina(4, "hashicorp-VAGRANTSLASH-precise64", "hrhrthrthrt"));
+        listaVirtuelnihMasina.add(new VirtuelnaMasina(1, "Windows_10", "asdasdasdasdaqqwdqdqwdq", "windows"));
+        listaVirtuelnihMasina.add(new VirtuelnaMasina(2, "VisualStudio", "qefefwefewewfwef", "windows"));
+        listaVirtuelnihMasina.add(new VirtuelnaMasina(3, "JavaDevelopmet", "regregergergergerge", "windows"));
+        listaVirtuelnihMasina.add(new VirtuelnaMasina(4, "hashicorp-VAGRANTSLASH-precise64", "hrhrthrthrt", "linux"));
 
         listaSvihVM.addAll(listaVirtuelnihMasina);
     }

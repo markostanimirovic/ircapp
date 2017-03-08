@@ -8,12 +8,9 @@ package util;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.PrintWriter;
 
 /**
  *
@@ -21,46 +18,60 @@ import java.util.logging.Logger;
  */
 public class FileIO {
 
-    // nova grana
-    
     public static void vagrantConfig(String putanja) {
 
         File file = new File(putanja + "\\Vagrantfile");
 
-        System.out.println(file.toString());
-
         while (!file.exists());
 
         if (file.exists()) {
-            try {
-                BufferedReader IN = new BufferedReader(new FileReader(file));
-                String rezultatIzFajla = "";
-                String pom;
-                while ((pom = IN.readLine()) != null) {
-                    rezultatIzFajla = rezultatIzFajla + pom + System.lineSeparator();
-                }
+            String tekstIzVagrantFajla = vratiTekstIzVagrantFajla(file);
+            String tekstZaNoviVagrantFile = generisiTekstZaNoviVagrantFile(tekstIzVagrantFajla);
 
-                System.out.println(rezultatIzFajla);
-                IN.close();
-                String upisUFajl = "";
-
-                upisUFajl = rezultatIzFajla.substring(0, rezultatIzFajla.length() - 5);
-                upisUFajl = upisUFajl + "  config.vm.provision \"shell\", path: \"script.sh\"\nend\n";
-                System.out.println(upisUFajl);
-
-                BufferedWriter out = new BufferedWriter(new FileWriter(file));
-
-                out.flush();
-                out.write(upisUFajl);
-
-                out.close();
-
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(FileIO.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(FileIO.class.getName()).log(Level.SEVERE, null, ex);
+            if (tekstZaNoviVagrantFile != null) {
+                izmeniVagrantFile(file, tekstZaNoviVagrantFile);
+            } else {
+                // doslo je do greske u citanju fajla
             }
         }
+    }
+
+    private static String vratiTekstIzVagrantFajla(File file) {
+        String tekstUFajlu = "";
+        String redUFajlu = "";
+
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(file));
+
+            while ((redUFajlu = in.readLine()) != null) {
+                tekstUFajlu = tekstUFajlu + redUFajlu + System.lineSeparator();
+            }
+
+            return tekstUFajlu;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private static boolean izmeniVagrantFile(File file, String tekstZaNoviVagrantFile) {
+        try {
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+
+            out.print(tekstZaNoviVagrantFile);
+
+            out.flush();
+            out.close();
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private static String generisiTekstZaNoviVagrantFile(String tekstIzVagrantFajla) {
+        String tekstZaNoviVagrantFile = tekstIzVagrantFajla.substring(0, tekstIzVagrantFajla.length() - 5);
+        tekstZaNoviVagrantFile += "  config.vm.provision \"shell\", path: \"script.sh\""+System.lineSeparator()+"end\n";
+        return tekstZaNoviVagrantFile;
     }
 
 }

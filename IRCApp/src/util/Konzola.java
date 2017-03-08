@@ -66,7 +66,7 @@ public class Konzola {
             Process p = Runtime.getRuntime().exec(komande);
 //           FileIO.vagrantConfig(PUTANJA_DO_FOLDERA);
         } catch (IOException ex) {
-            Logger.getLogger(Konzola.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         FileIO.vagrantConfig(PUTANJA_DO_FOLDERA);
     }

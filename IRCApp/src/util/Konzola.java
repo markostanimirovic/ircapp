@@ -59,17 +59,16 @@ public class Konzola {
                 + " cd " + PUTANJA_DO_FOLDERA
                 + " && " + VAGRANT_INIT + imeBoxa 
 //                + " && " + VAGRANT_UP +
-                + " && taskkill /f /im cmd.exe"
+//               + " && taskkill /f /im cmd.exe"
                 + CMD_END;
                 
         try {
             Process p = Runtime.getRuntime().exec(komande);
-            FileIO.vagrantConfig(PUTANJA_DO_FOLDERA);
+//           FileIO.vagrantConfig(PUTANJA_DO_FOLDERA);
         } catch (IOException ex) {
             Logger.getLogger(Konzola.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+        FileIO.vagrantConfig(PUTANJA_DO_FOLDERA);
     }
 
     private static void pokreniKonzoluZaLinuxBox() {

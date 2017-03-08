@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,10 +22,12 @@ import java.util.logging.Logger;
  * @author ircclient
  */
 public class FileIO {
-    
+
     public static void vagrantConfig(String putanja) {
+
         File file = new File(putanja + "\\Vagrantfile");
-        System.out.println(file.toString());
+        
+       System.out.println(file.toString());
         
         while (!file.exists())
                 ;
@@ -41,16 +44,13 @@ public class FileIO {
                 IN.close();
                 String upisUFajl = "";
                 
-                upisUFajl = rezultatIzFajla.substring(0, rezultatIzFajla.length() - 4);
-                upisUFajl += "  config.vm.provision \"shell\", path: \"script.sh\""
-                        + "\nend\n";
-                
+                upisUFajl = rezultatIzFajla.substring(0, rezultatIzFajla.length() - 5);
+                upisUFajl = upisUFajl + "  config.vm.provision \"shell\", path: \"script.sh\"\nend\n";
                 System.out.println(upisUFajl);
                 
                 BufferedWriter out = new BufferedWriter(new FileWriter(file));
                 
-//                out.flush();
-                
+                out.flush();
                 out.write(upisUFajl);
                 
                 out.close();

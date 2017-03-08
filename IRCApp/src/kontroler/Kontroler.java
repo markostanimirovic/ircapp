@@ -13,7 +13,9 @@ import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import util.Konzola;
 
 /**
  *
@@ -24,6 +26,7 @@ public class Kontroler {
     private static GlavnaForma glavnaForma;
     private static AdminLog adminLog;
     private static IzaberiVMTableModel izaberiVMTableModel;
+    public static String putanjaDoFoldera;
     
     /**
      * Virtuelna masina koju je korisnik izabrao na pocetnom prozoru
@@ -115,10 +118,25 @@ public class Kontroler {
         int izbor = JOptionPane.showConfirmDialog(glavnaForma, "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
         
         if (izbor == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
-        } 
-        
-        
+            Konzola.pokreniKonzolu();
+            JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);         
+        }
+           
     }
+
+    public static String NamestiPutanjuDoFoldera(String putanja) {
+        putanjaDoFoldera = putanja;
+        return putanjaDoFoldera;
+    }
+
+    public static VirtuelnaMasina getIzabranaVM() {
+        return izabranaVM;
+    }
+
+    public static void setIzabranaVM(VirtuelnaMasina izabranaVM) {
+        Kontroler.izabranaVM = izabranaVM;
+    }
+
+    
 
 }

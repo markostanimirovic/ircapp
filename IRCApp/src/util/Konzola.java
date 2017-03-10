@@ -77,12 +77,10 @@ public class Konzola {
         }
 
         FileIO.promeniVagrantFajl(PUTANJA_DO_FOLDERA, isWindows);
-        File file;
+        File file = new File(PUTANJA_DO_FOLDERA + "\\script.ps1");
         if (isWindows) {
-            file = new File(PUTANJA_DO_FOLDERA + "\\script.ps1");
             FileIO.napraviScriptFajlWindows(file);
         } else {
-            file = new File(PUTANJA_DO_FOLDERA + "\\script.sh");
             FileIO.napraviScriptFajlLinux(file);
         }
 

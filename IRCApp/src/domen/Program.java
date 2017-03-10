@@ -15,12 +15,13 @@ public class Program {
     private String ime;
     private String komanda_widnows;
     private String komanda_linux;
+    private String komanda_mac;
 
-    public Program(long id, String ime, String komanda_widnows, String komanda_linux) {
-        this.id = id;
+    public Program(String ime, String komanda_widnows, String komanda_linux, String komanda_mac) {
         this.ime = ime;
         this.komanda_widnows = komanda_widnows;
         this.komanda_linux = komanda_linux;
+        this.komanda_mac = komanda_mac;
     }
 
     public Program() {
@@ -51,6 +52,14 @@ public class Program {
             return false;
         }
         return true;
+    }
+
+    public String getKomanda_mac() {
+        return komanda_mac;
+    }
+
+    public void setKomanda_mac(String komanda_mac) {
+        this.komanda_mac = komanda_mac;
     }
     
     
@@ -86,6 +95,10 @@ public class Program {
     public void setKomanda_linux(String komanda_linux) {
         this.komanda_linux = komanda_linux;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Naziv: "+getIme() + " Komanda windows: "+getKomanda_widnows() + " Komanda_linux: "+getKomanda_linux()+" Komanda_mac: "+getKomanda_mac();
+    }
     
 }

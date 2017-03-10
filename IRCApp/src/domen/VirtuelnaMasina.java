@@ -16,9 +16,8 @@ public class VirtuelnaMasina {
     private String opis;
     private String operativniSistem;
 
-    public VirtuelnaMasina(long id, String ime, String opis, String operativniSistem) {
+    public VirtuelnaMasina(String ime, String opis, String operativniSistem) {
         this();
-        this.id = id;
         this.ime = ime;
         this.opis = opis;
         this.operativniSistem = operativniSistem;

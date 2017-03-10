@@ -56,37 +56,29 @@ public class Konzola {
     }
 
     public static void pokreniKonzoluZaWindowsBox() {
-        try {
-            String komande = CMD_START
-                    + " cd " + PUTANJA_DO_FOLDERA 
-                    + " && " + VAGRANT_INIT + imeBoxa
+        String komande = CMD_START
+                + " cd " + PUTANJA_DO_FOLDERA
+                + " && " + VAGRANT_INIT + imeBoxa
 //                + " && " + VAGRANT_UP +
 //               + " && taskkill /f /im cmd.exe"
-                    + CMD_END;
-            
-            try {
-                Process p = Runtime.getRuntime().exec(komande);
-            } catch (IOException ex) {
-                Logger.getLogger(Konzola.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            FileIO.vagrantConfig(PUTANJA_DO_FOLDERA);
-            
-            File file = new File(PUTANJA_DO_FOLDERA + "\\script.sh");
-            file.createNewFile();
-            
-            komande = CMD_START
-                    + " cd " + PUTANJA_DO_FOLDERA
-                    + " && " + VAGRANT_UP
-                    + " && taskkill /f /im cmd.exe"
-                    + CMD_END;
-            
-            try {
-                while (!file.exists())
-                        ;
-                Process p = Runtime.getRuntime().exec(komande);
-            } catch (IOException ex) {
-                Logger.getLogger(Konzola.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                + CMD_END;
+        try {
+            Process p = Runtime.getRuntime().exec(komande);
+        } catch (IOException ex) {
+            Logger.getLogger(Konzola.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        FileIO.promeniVagrantFajl(PUTANJA_DO_FOLDERA);
+        File file = new File(PUTANJA_DO_FOLDERA + "\\script.ps1");
+        FileIO.napraviScriptSH(file);
+        komande = CMD_START
+                + " cd " + PUTANJA_DO_FOLDERA
+                + " && " + VAGRANT_UP
+//                + " && taskkill /f /im cmd.exe"
+                + CMD_END;
+        try {
+            while (!file.exists())
+                ;
+            Process p = Runtime.getRuntime().exec(komande);
         } catch (IOException ex) {
             Logger.getLogger(Konzola.class.getName()).log(Level.SEVERE, null, ex);
         }

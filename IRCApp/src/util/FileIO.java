@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class FileIO {
 
-    public static void vagrantConfig(String putanja) {
+    public static void promeniVagrantFajl(String putanja) {
 
         File file = new File(putanja + "\\Vagrantfile");
 
@@ -31,7 +31,7 @@ public class FileIO {
                 RandomAccessFile raf = new RandomAccessFile(file, "rwd");
                 String pomeraj = "end" + System.lineSeparator();
                 raf.seek(raf.length() - pomeraj.length());
-                raf.writeBytes("  config.vm.provision \"shell\", path: \"script.sh\""
+                raf.writeBytes("  config.vm.provision \"shell\", path: \"script.ps1\""
                         + System.lineSeparator() + "end");
                 raf.close();
             } catch (Exception e) {

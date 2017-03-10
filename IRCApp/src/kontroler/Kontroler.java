@@ -5,6 +5,8 @@
  */
 package kontroler;
 
+import domen.ListaPrograma;
+import domen.Program;
 import domen.VirtuelnaMasina;
 import gui.AdminLog;
 import gui.GlavnaForma;
@@ -32,8 +34,13 @@ public class Kontroler {
      * Virtuelna masina koju je korisnik izabrao na pocetnom prozoru
      */
     private static VirtuelnaMasina izabranaVM;
-    public static JCheckBox[] nizCheckBokseva = new JCheckBox[5];
+    public static List<JCheckBox> listaCheckBokseva;
 
+    
+    static {
+        listaCheckBokseva = new ArrayList<>();
+    }
+    
     public static void main(String[] args) {
 
         try {
@@ -46,11 +53,15 @@ public class Kontroler {
             public void run() {
 
                 glavnaForma = new GlavnaForma();
+                
+                generisiCheckBokseve();
+                
                 glavnaForma.setVisible(true);
 
                 izaberiVMTableModel = glavnaForma.getIzaberiVMTableModel();
-
+                
             }
+
         });
 
     }
@@ -62,6 +73,10 @@ public class Kontroler {
             glavnaForma.dispose();
             System.exit(0);
         }
+    }
+
+    private static void generisiCheckBokseve() {
+        glavnaForma.generisiCheckBokseve(ListaPrograma.getInstance().getListaPrograma());
     }
 
     public static void otvoriAdminLog() {
@@ -98,13 +113,14 @@ public class Kontroler {
         izabranaVM = vm;
     }
 
-    public static List<JCheckBox> proveriIzborProgramaZaVM() {
+    public static List<Program> vratiListuIzabranihPrograma() {
 
-        List<JCheckBox> izabraniProgrami = new ArrayList<>();
+        List<Program> izabraniProgrami = new ArrayList<>();
 
-        for (JCheckBox jcb : nizCheckBokseva) {
+        for (JCheckBox jcb : listaCheckBokseva) {
             if (jcb.isSelected()) {
-                izabraniProgrami.add(jcb);
+                Program p = ListaPrograma.getInstance().pronadjiProgramPoImenu(jcb.getText());
+                izabraniProgrami.add(p);
             }
         }
 
@@ -112,18 +128,12 @@ public class Kontroler {
     }
 
     public static void pokreniVM() {
-        List<JCheckBox> izabraniProgrami = proveriIzborProgramaZaVM();
-        String spisakIzabranihPrograma = "";
+        List<Program> izabraniProgrami = vratiListuIzabranihPrograma();
 
-        for (JCheckBox jcb : izabraniProgrami) {
-            spisakIzabranihPrograma = spisakIzabranihPrograma + jcb.getText() + "\n";
-        }
-
-        JOptionPane.showMessageDialog(glavnaForma, "Izabrali ste sledece programe: " + '\n' + "Ime OS: " + izabranaVM.getIme() + '\n' + spisakIzabranihPrograma);
         int izbor = JOptionPane.showConfirmDialog(glavnaForma, "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
 
         if (izbor == JOptionPane.YES_OPTION) {
-            Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme());
+            Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme(), izabraniProgrami);
             Konzola.pokreniKonzolu(izabranaVM.getOperativniSistem());
             JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -142,4 +152,8 @@ public class Kontroler {
 //    public static void setIzabranaVM(VirtuelnaMasina izabranaVM) {
 //        Kontroler.izabranaVM = izabranaVM;
 //    }
+
+    public static void dodajCheckBoksUListu(JCheckBox jcb) {
+        listaCheckBokseva.add(jcb);
+    }
 }

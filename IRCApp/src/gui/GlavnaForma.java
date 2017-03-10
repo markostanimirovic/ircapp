@@ -5,10 +5,13 @@
  */
 package gui;
 
+import domen.Program;
 import domen.VirtuelnaMasina;
 import gui.table_model.IzaberiVMTableModel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -74,13 +77,9 @@ public class GlavnaForma extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jbtnCard1PokreniVM = new javax.swing.JButton();
         jbtnCard1nazad = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jpnlCheckBoksevi = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jcbNetbeans = new javax.swing.JCheckBox();
-        jcbVisualStudio2015 = new javax.swing.JCheckBox();
-        jcbEclipse = new javax.swing.JCheckBox();
-        jcbGit = new javax.swing.JCheckBox();
-        jcbNekiProgram = new javax.swing.JCheckBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -285,67 +284,14 @@ public class GlavnaForma extends javax.swing.JFrame {
             }
         });
 
+        jpnlCheckBoksevi.setLayout(new javax.swing.BoxLayout(jpnlCheckBoksevi, javax.swing.BoxLayout.Y_AXIS));
+
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Izaberite programe");
+        jpnlCheckBoksevi.add(jLabel5);
 
-        jcbNetbeans.setText("Netbeans 8.1");
-        jcbNetbeans.setToolTipText("");
-        jcbNetbeans.setName("netbeans"); // NOI18N
-        Kontroler.nizCheckBokseva[0] = jcbNetbeans;
-
-        jcbVisualStudio2015.setText("Visual Studio 2015");
-        jcbVisualStudio2015.setName("visual_studio_2015"); // NOI18N
-        Kontroler.nizCheckBokseva[1] = jcbVisualStudio2015;
-
-        jcbEclipse.setText("Eclipse");
-        jcbEclipse.setName("eclipse"); // NOI18N
-        Kontroler.nizCheckBokseva[2] = jcbEclipse;
-
-        jcbGit.setText("Git");
-        jcbGit.setName("git"); // NOI18N
-        Kontroler.nizCheckBokseva[3] = jcbGit;
-
-        jcbNekiProgram.setText("Neki program");
-        jcbNekiProgram.setName("neki_program"); // NOI18N
-        Kontroler.nizCheckBokseva[4] = jcbNekiProgram;
-
-        javax.swing.GroupLayout jpnlCheckBokseviLayout = new javax.swing.GroupLayout(jpnlCheckBoksevi);
-        jpnlCheckBoksevi.setLayout(jpnlCheckBokseviLayout);
-        jpnlCheckBokseviLayout.setHorizontalGroup(
-            jpnlCheckBokseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnlCheckBokseviLayout.createSequentialGroup()
-                .addGroup(jpnlCheckBokseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpnlCheckBokseviLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel5))
-                    .addGroup(jpnlCheckBokseviLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jpnlCheckBokseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jcbNekiProgram, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcbGit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcbNetbeans, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcbVisualStudio2015, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcbEclipse, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(73, Short.MAX_VALUE))
-        );
-        jpnlCheckBokseviLayout.setVerticalGroup(
-            jpnlCheckBokseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnlCheckBokseviLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jcbNetbeans)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jcbEclipse)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jcbGit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jcbVisualStudio2015)
-                .addGap(4, 4, 4)
-                .addComponent(jcbNekiProgram)
-                .addContainerGap(155, Short.MAX_VALUE))
-        );
+        jScrollPane3.setViewportView(jpnlCheckBoksevi);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -353,7 +299,7 @@ public class GlavnaForma extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpnlCheckBoksevi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtnCard1nazad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -362,14 +308,15 @@ public class GlavnaForma extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(313, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnCard1PokreniVM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnCard1nazad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpnlCheckBoksevi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout card1Layout = new javax.swing.GroupLayout(card1);
@@ -482,6 +429,7 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jbtnBrowse;
     private javax.swing.JButton jbtnCard0Dalje;
     private javax.swing.JButton jbtnCard1PokreniVM;
@@ -489,11 +437,6 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JButton jbtnDodajVM;
     private javax.swing.JButton jbtnIzmeniVM;
     private javax.swing.JButton jbtnObrisiVM;
-    private javax.swing.JCheckBox jcbEclipse;
-    private javax.swing.JCheckBox jcbGit;
-    private javax.swing.JCheckBox jcbNekiProgram;
-    private javax.swing.JCheckBox jcbNetbeans;
-    private javax.swing.JCheckBox jcbVisualStudio2015;
     private javax.swing.JPanel jpnlAdministracija;
     private javax.swing.JPanel jpnlCheckBoksevi;
     private javax.swing.JTable jtblIzaberiVM;
@@ -544,5 +487,13 @@ public class GlavnaForma extends javax.swing.JFrame {
 
     public JTextField getPutanjaDoFoldera() {
         return jtxtPutanjaDoFoldera;
+    }
+
+    public void generisiCheckBokseve(List<Program> listaPrograma) {
+        for (Program p : listaPrograma) {
+            JCheckBox jcb = new JCheckBox(p.getIme());
+            jpnlCheckBoksevi.add(jcb);
+            Kontroler.dodajCheckBoksUListu(jcb);
+        }
     }
 }

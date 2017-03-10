@@ -5,12 +5,14 @@
  */
 package util;
 
+import domen.Program;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
+import java.util.List;
 
 /**
  *
@@ -18,7 +20,7 @@ import java.io.RandomAccessFile;
  */
 public class FileIO {
 
-    public static void promeniVagrantFajl(String putanja, boolean isWindows) {
+    public static void promeniVagrantFajl(String putanja) {
 
         File file = new File(putanja + "\\Vagrantfile");
 
@@ -27,20 +29,13 @@ public class FileIO {
 
         System.out.println(file.toString());
 
-        String ekstenzijaScriptFajla = "";
-        if (isWindows) {
-            ekstenzijaScriptFajla = "ps1";
-        } else {
-            ekstenzijaScriptFajla = "sh";
-        }
-
         if (file.exists()) {
             try {
                 RandomAccessFile raf = new RandomAccessFile(file, "rwd");
                 String pomeraj = "end" + System.lineSeparator();
                 raf.seek(raf.length() - pomeraj.length());
 
-                raf.writeBytes("  config.vm.provision \"shell\", path: \"script." + ekstenzijaScriptFajla + "\""
+                raf.writeBytes("  config.vm.provision \"shell\", path: \"script.ps1\""
                         + System.lineSeparator() + "end");
 
                 raf.close();
@@ -51,24 +46,34 @@ public class FileIO {
         }
     }
 
-    static void napraviScriptFajlWindows(File file) {
+    static void napraviScriptFajlWindows(File file, List<Program> listaIzabranihPrograma) {
         try {
-            if (!file.exists()) {
-                file.createNewFile();
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+
+            out.println("iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))");
+            out.println("chocolatey feature enable -n allowGlobalConfirmation");
+            
+            for (Program p : listaIzabranihPrograma) {
+                out.println(p.getKomanda_widnows());
             }
-        } catch (IOException e) {
+            
+            out.flush();
+            out.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    static void napraviScriptFajlLinux(File file) {
+    static void napraviScriptFajlLinux(File file, List<Program> listaIzabranihPrograma) {
         try {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file)));
 
-            String komande = "";
-
-            out.print("apt-get install git");
-
+            out.println("sudo apt-get update");
+            
+            for (Program p : listaIzabranihPrograma) {
+                out.println(p.getKomanda_linux());
+            }
+            
             out.flush();
             out.close();
         } catch (Exception e) {

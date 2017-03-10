@@ -5,8 +5,10 @@
  */
 package util;
 
+import domen.Program;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -15,8 +17,12 @@ import java.io.IOException;
 public class Konzola {
 
     private static Konzola konzola;
+    
+    private static List<Program> listaIzabranihPrograma;
+    
     private static final String OS_LINUX = "linux";
     private static final String OS_WINDOWS = "windows";
+    
     private static final String VMREPO = "";
     private static String PUTANJA_DO_FOLDERA;
     private static final String VAGRANT_UP = "vagrant up";
@@ -25,16 +31,16 @@ public class Konzola {
     private static final String CMD_END = "\" ";
 
     private static boolean isWindows;
-
     private static String imeBoxa;
 
     static {
         konzola = new Konzola();
     }
 
-    public static void setKonzola(String putanjaDoFoldera, String ime) {
+    public static void setKonzola(String putanjaDoFoldera, String ime, List<Program> izabraniProgrami) {
         PUTANJA_DO_FOLDERA = putanjaDoFoldera;
         imeBoxa = ime;
+        listaIzabranihPrograma = izabraniProgrami;
     }
 
     private Konzola() {
@@ -46,14 +52,6 @@ public class Konzola {
     }
 
     public static void pokreniKonzolu(String operativniSistem) {
-//        if (operativniSistem.equals(OS_WINDOWS)) {
-//            isWindows = true;
-//            pokreniKonzoluZaWindowsBox();
-//        } else {
-//            isWindows = false;
-//            pokreniKonzoluZaLinuxBox();
-//        }
-
         if (operativniSistem.equalsIgnoreCase(OS_WINDOWS)) {
             isWindows = true;
         } else {
@@ -76,12 +74,12 @@ public class Konzola {
             e.printStackTrace();
         }
 
-        FileIO.promeniVagrantFajl(PUTANJA_DO_FOLDERA, isWindows);
+        FileIO.promeniVagrantFajl(PUTANJA_DO_FOLDERA);
         File file = new File(PUTANJA_DO_FOLDERA + "\\script.ps1");
         if (isWindows) {
-            FileIO.napraviScriptFajlWindows(file);
+            FileIO.napraviScriptFajlWindows(file, listaIzabranihPrograma);
         } else {
-            FileIO.napraviScriptFajlLinux(file);
+            FileIO.napraviScriptFajlLinux(file, listaIzabranihPrograma);
         }
 
         komande = CMD_START

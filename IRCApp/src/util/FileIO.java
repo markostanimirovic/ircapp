@@ -67,7 +67,7 @@ public class FileIO {
 
             String komande = "";
 
-            out.print("apt-get install git");
+            out.print("apt-get install git-all");
 
             out.flush();
             out.close();

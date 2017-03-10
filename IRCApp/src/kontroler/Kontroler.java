@@ -36,17 +36,15 @@ public class Kontroler {
 
     public static void main(String[] args) {
 
-        
-        
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (Exception e) {
+        }
+
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
 
-                try {
-                    UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-                } catch (Exception e) {
-                }
-                
                 glavnaForma = new GlavnaForma();
                 glavnaForma.setVisible(true);
 
@@ -144,5 +142,4 @@ public class Kontroler {
 //    public static void setIzabranaVM(VirtuelnaMasina izabranaVM) {
 //        Kontroler.izabranaVM = izabranaVM;
 //    }
-
 }

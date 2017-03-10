@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import util.Konzola;
 
 /**
@@ -35,10 +36,17 @@ public class Kontroler {
 
     public static void main(String[] args) {
 
+        
+        
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
 
+                try {
+                    UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+                } catch (Exception e) {
+                }
+                
                 glavnaForma = new GlavnaForma();
                 glavnaForma.setVisible(true);
 
@@ -117,8 +125,8 @@ public class Kontroler {
         int izbor = JOptionPane.showConfirmDialog(glavnaForma, "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
 
         if (izbor == JOptionPane.YES_OPTION) {
-            Konzola.setKonzola(putanjaDoFoldera, Kontroler.getIzabranaVM().getIme());
-            Konzola.pokreniKonzolu(Kontroler.getIzabranaVM().getOperativniSistem());
+            Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme());
+            Konzola.pokreniKonzolu(izabranaVM.getOperativniSistem());
             JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
         }
 
@@ -133,8 +141,8 @@ public class Kontroler {
         return izabranaVM;
     }
 
-    public static void setIzabranaVM(VirtuelnaMasina izabranaVM) {
-        Kontroler.izabranaVM = izabranaVM;
-    }
+//    public static void setIzabranaVM(VirtuelnaMasina izabranaVM) {
+//        Kontroler.izabranaVM = izabranaVM;
+//    }
 
 }

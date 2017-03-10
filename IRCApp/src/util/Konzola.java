@@ -7,9 +7,7 @@ package util;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import kontroler.*;
+
 /**
  *
  * @author ircclient
@@ -26,9 +24,9 @@ public class Konzola {
     private static final String CMD_START = "cmd /c start cmd.exe /k \"";
     private static final String CMD_END = "\" ";
 
-    private static String imeBoxa;
+    private static boolean isWindows;
 
-    private static boolean linux = false;
+    private static String imeBoxa;
 
     static {
         konzola = new Konzola();
@@ -48,44 +46,74 @@ public class Konzola {
     }
 
     public static void pokreniKonzolu(String operativniSistem) {
-        if (operativniSistem.equals(OS_WINDOWS)) {
-            pokreniKonzoluZaWindowsBox();
+//        if (operativniSistem.equals(OS_WINDOWS)) {
+//            isWindows = true;
+//            pokreniKonzoluZaWindowsBox();
+//        } else {
+//            isWindows = false;
+//            pokreniKonzoluZaLinuxBox();
+//        }
+
+        if (operativniSistem.equalsIgnoreCase(OS_WINDOWS)) {
+            isWindows = true;
         } else {
-            pokreniKonzoluZaLinuxBox();
+            isWindows = false;
         }
+
+        pokreniKonzolu();
     }
 
-    public static void pokreniKonzoluZaWindowsBox() {
+    private static void pokreniKonzolu() {
         String komande = CMD_START
                 + " cd " + PUTANJA_DO_FOLDERA
                 + " && " + VAGRANT_INIT + imeBoxa
-//                + " && " + VAGRANT_UP +
-//               + " && taskkill /f /im cmd.exe"
+                //                + " && " + VAGRANT_UP +
+                //               + " && taskkill /f /im cmd.exe"
                 + CMD_END;
         try {
             Process p = Runtime.getRuntime().exec(komande);
-        } catch (IOException ex) {
-            Logger.getLogger(Konzola.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        FileIO.promeniVagrantFajl(PUTANJA_DO_FOLDERA);
-        File file = new File(PUTANJA_DO_FOLDERA + "\\script.ps1");
-        FileIO.napraviScriptSH(file);
+
+        FileIO.promeniVagrantFajl(PUTANJA_DO_FOLDERA, isWindows);
+        File file;
+        if (isWindows) {
+            file = new File(PUTANJA_DO_FOLDERA + "\\script.ps1");
+            FileIO.napraviScriptFajlWindows(file);
+        } else {
+            file = new File(PUTANJA_DO_FOLDERA + "\\script.sh");
+            FileIO.napraviScriptFajlLinux(file);
+        }
+
         komande = CMD_START
                 + " cd " + PUTANJA_DO_FOLDERA
                 + " && " + VAGRANT_UP
-//                + " && taskkill /f /im cmd.exe"
+                //                + " && taskkill /f /im cmd.exe"
                 + CMD_END;
+
         try {
             while (!file.exists())
                 ;
             Process p = Runtime.getRuntime().exec(komande);
-        } catch (IOException ex) {
-            Logger.getLogger(Konzola.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     private static void pokreniKonzoluZaLinuxBox() {
+        String komande = CMD_START
+                + " cd " + PUTANJA_DO_FOLDERA
+                + " && " + VAGRANT_INIT + imeBoxa
+                //                + " && " + VAGRANT_UP +
+                //               + " && taskkill /f /im cmd.exe"
+                + CMD_END;
 
+        try {
+            Process p = Runtime.getRuntime().exec(komande);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

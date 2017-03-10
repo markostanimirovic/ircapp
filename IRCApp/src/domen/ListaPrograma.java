@@ -22,7 +22,7 @@ public class ListaPrograma {
         listaPrograma = new ArrayList<>();
         
         listaPrograma.add(new Program(1, "NetBeans", "choco install netbeans-jee", "sudo apt-get install netbeans"));
-        listaPrograma.add(new Program(2, "Eclipse", "choco install eclipse", "sudo apt-get install eclipse"));
+        listaPrograma.add(new Program(2, "Eclipse", "choco install eclipse", "sudo apt-get install -y eclipse"));
         listaPrograma.add(new Program(3, "Git", "choco install git", "sudo apt-get install git"));
         
         for (int i = 0; i < 100; i++) {

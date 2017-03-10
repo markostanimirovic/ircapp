@@ -67,7 +67,7 @@ public class Kontroler {
     }
 
     public static void zatvoriAplikaciju() {
-        int izbor = JOptionPane.showConfirmDialog(glavnaForma, "Da li ste sigurni da zelite da zatvorite aplikaicju?", "", JOptionPane.YES_OPTION);
+        int izbor = JOptionPane.showConfirmDialog(glavnaForma, "Da li ste sigurni da zelite da zatvorite aplikaciju?", "", JOptionPane.YES_OPTION);
 
         if (izbor == JOptionPane.YES_OPTION) {
             glavnaForma.dispose();

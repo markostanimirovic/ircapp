@@ -82,7 +82,7 @@ public class Konzola {
             file = new File(PUTANJA_DO_FOLDERA + "\\script.ps1");
             FileIO.napraviScriptFajlWindows(file);
         } else {
-            file = new File(PUTANJA_DO_FOLDERA + "\\script.sh");
+            file = new File(PUTANJA_DO_FOLDERA + "\\script.ps1");
             FileIO.napraviScriptFajlLinux(file);
         }
 

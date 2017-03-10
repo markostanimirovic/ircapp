@@ -31,7 +31,7 @@ public class FileIO {
         if (isWindows) {
             ekstenzijaScriptFajla = "ps1";
         } else {
-            ekstenzijaScriptFajla = "sh";
+            ekstenzijaScriptFajla = "ps1";
         }
 
         if (file.exists()) {
@@ -67,7 +67,7 @@ public class FileIO {
 
             String komande = "";
 
-            out.print("apt-get install git-all");
+            out.print("apt-get install git");
 
             out.flush();
             out.close();

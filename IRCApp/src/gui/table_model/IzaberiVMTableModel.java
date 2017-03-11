@@ -5,9 +5,15 @@
  */
 package gui.table_model;
 
+import dao.DaoVM;
+import dao.impl.DaoVMImpl;
 import domen.VirtuelnaMasina;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -22,15 +28,14 @@ public class IzaberiVMTableModel extends AbstractTableModel {
     private String[] columnNames = {"Redni broj", "Ime VM", "Opis"};
 
     public IzaberiVMTableModel() {
-        listaVirtuelnihMasina = new ArrayList<>();
-        listaSvihVM = new ArrayList<>();
-
-        listaVirtuelnihMasina.add(new VirtuelnaMasina("windows_10", "asdasdasdasdaqqwdqdqwdq", "windows"));
-        listaVirtuelnihMasina.add(new VirtuelnaMasina("VisualStudio", "qefefwefewewfwef", "windows"));
-        listaVirtuelnihMasina.add(new VirtuelnaMasina("JavaDevelopment", "regregergergergerge", "linux"));
-        listaVirtuelnihMasina.add(new VirtuelnaMasina("hashicorp-VAGRANTSLASH-precise64", "hrhrthrthrt", "linux"));
-
-        listaSvihVM.addAll(listaVirtuelnihMasina);
+        try {
+            DaoVM dao = new DaoVMImpl();
+            listaVirtuelnihMasina = dao.getAllVM();
+        } catch (IOException ex) {
+            Logger.getLogger(IzaberiVMTableModel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(IzaberiVMTableModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

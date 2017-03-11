@@ -10,6 +10,7 @@ import db.ConnectionFactory;
 import domen.Program;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,17 +50,50 @@ public class DaoProgramImpl extends DaoProgram{
 
     @Override
     public void saveProgram(Program program) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "INSERT INTO programs(naziv, komanda_windows, komanda_linux, komanda_mac)" + "values(?, ?, ?, ?)";
+        PreparedStatement prepared_stat;
+        try {
+            prepared_stat = connection.prepareStatement(query);
+            prepared_stat.setString(1, program.getIme());
+            prepared_stat.setString(2, program.getKomanda_widnows());
+            prepared_stat.setString(3, program.getKomanda_linux());
+            prepared_stat.setString(4, program.getKomanda_mac());
+            prepared_stat.execute();
+            prepared_stat.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override
     public void deleteProgram(Program program) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "DELETE FROM programs WHERE naziv = ?";
+        PreparedStatement prepared_stat;
+        try {
+            prepared_stat = connection.prepareStatement(query);
+            prepared_stat.setString(1, program.getIme());
+            prepared_stat.execute();
+            prepared_stat.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override
     public void updateProgram(Program program) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "UPDATE programs SET komanda_windows = ?, komanda_linux = ?, komanda_mac = ? WHERE naziv = ?";
+        PreparedStatement prepared_stat;
+        try {
+            prepared_stat = connection.prepareStatement(query);
+            prepared_stat.setString(1, program.getKomanda_widnows());
+            prepared_stat.setString(2, program.getKomanda_linux());
+            prepared_stat.setString(3, program.getKomanda_mac());
+            prepared_stat.setString(4, program.getIme());
+            prepared_stat.execute();
+            prepared_stat.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     private Program getCurrentRow(ResultSet rs) throws SQLException {

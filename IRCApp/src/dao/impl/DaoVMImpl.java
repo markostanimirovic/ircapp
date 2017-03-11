@@ -10,6 +10,7 @@ import db.ConnectionFactory;
 import domen.VirtuelnaMasina;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,17 +50,49 @@ public class DaoVMImpl extends DaoVM{
 
     @Override
     public void saveVM(VirtuelnaMasina vm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "INSERT INTO virtual_machines(naziv, opis, tip_os)" + "values(?, ?, ?)";
+        PreparedStatement prepared_stat;
+        try {
+            prepared_stat = connection.prepareStatement(query);
+            prepared_stat.setString(1, vm.getIme());
+            prepared_stat.setString(2, vm.getOpis());
+            prepared_stat.setString(3, vm.getOperativniSistem());
+            prepared_stat.execute();
+            prepared_stat.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override
     public void deleteVM(VirtuelnaMasina vm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "DELETE FROM virtual_machines WHERE naziv = ?";
+        PreparedStatement prepared_stat;
+        try {
+           prepared_stat = connection.prepareStatement(query);
+           prepared_stat.setString(1, vm.getIme());
+           prepared_stat.execute();
+           prepared_stat.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
     }
 
     @Override
     public void updateVM(VirtuelnaMasina vm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "UPDATE virtual_machines SET opis = ?, tip_os = ? WHERE naziv = ?";
+        PreparedStatement prepared_stat;
+        try {
+            prepared_stat = connection.prepareStatement(query);
+            prepared_stat.setString(1, vm.getOpis());
+            prepared_stat.setString(2, vm.getOperativniSistem());
+            prepared_stat.setString(3, vm.getIme());
+            prepared_stat.execute();
+            prepared_stat.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     private VirtuelnaMasina getCurrentRow(ResultSet rs) throws SQLException {

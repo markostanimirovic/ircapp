@@ -48,9 +48,6 @@ public class IzaberiVMTableModel extends AbstractTableModel {
         VirtuelnaMasina vm = listaVirtuelnihMasina.get(rowIndex);
 
         switch (columnIndex) {
-            case 0:
-                return vm.getId();
-
             case 1:
                 return vm.getIme();
 

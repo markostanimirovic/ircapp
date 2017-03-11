@@ -11,7 +11,6 @@ package domen;
  */
 public class Program {
     
-    private long id;
     private String ime;
     private String komanda_widnows;
     private String komanda_linux;
@@ -48,9 +47,6 @@ public class Program {
             return false;
         }
         final Program other = (Program) obj;
-        if (this.id != other.id) {
-            return false;
-        }
         return true;
     }
 
@@ -60,16 +56,6 @@ public class Program {
 
     public void setKomanda_mac(String komanda_mac) {
         this.komanda_mac = komanda_mac;
-    }
-    
-    
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getIme() {

@@ -11,7 +11,6 @@ package domen;
  */
 public class VirtuelnaMasina {
 
-    private long id;
     private String ime;
     private String opis;
     private String operativniSistem;
@@ -28,15 +27,7 @@ public class VirtuelnaMasina {
 
     @Override
     public String toString() {
-        return "VirtuelnaMasina{" + "id=" + id + ", ime=" + ime + ", opis=" + opis + '}';
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+        return "VirtuelnaMasina{"+"ime=" + ime + ", opis=" + opis + " tip_os: " +operativniSistem +'}';
     }
 
     public String getOpis() {
@@ -62,6 +53,5 @@ public class VirtuelnaMasina {
     public void setOperativniSistem(String operativniSistem) {
         this.operativniSistem = operativniSistem;
     }
-    
 
 }

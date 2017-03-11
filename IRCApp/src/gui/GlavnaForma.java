@@ -497,4 +497,13 @@ public class GlavnaForma extends javax.swing.JFrame {
             Kontroler.dodajCheckBoksUListu(jcb);
         }
     }
+
+    public JPanel getJpnlCheckBoksevi() {
+        return jpnlCheckBoksevi;
+    }
+
+    public void setJpnlCheckBoksevi(JPanel jpnlCheckBoksevi) {
+        this.jpnlCheckBoksevi = jpnlCheckBoksevi;
+    }
+    
 }

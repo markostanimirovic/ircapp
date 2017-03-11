@@ -5,8 +5,14 @@
  */
 package domen;
 
+import dao.DaoProgram;
+import dao.impl.DaoProgramImpl;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,14 +25,11 @@ public class ListaPrograma {
     private List<Program> listaPrograma;
 
     private ListaPrograma() {
-        listaPrograma = new ArrayList<>();
-        
-        listaPrograma.add(new Program("NetBeans", "choco install netbeans-jee", "sudo apt-get install netbeans", null));
-        listaPrograma.add(new Program("Eclipse", "choco install eclipse", "sudo apt-get install -y eclipse", null));
-        listaPrograma.add(new Program("Git", "choco install git", "sudo apt-get install git",null));
-        
-        for (int i = 0; i < 100; i++) {
-            listaPrograma.add(new Program("Git", "choco install git", "sudo apt-get install git",null));
+        try {
+            DaoProgram dp = new DaoProgramImpl();
+            listaPrograma = dp.getAllPrograms();
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(ListaPrograma.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -34,7 +37,6 @@ public class ListaPrograma {
         if (objekat == null) {
             objekat = new ListaPrograma();
         }
-        
         return objekat;
     }
     

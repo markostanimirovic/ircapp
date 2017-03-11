@@ -22,7 +22,8 @@ public class Konzola {
     
     private static final String OS_LINUX = "linux";
     private static final String OS_WINDOWS = "windows";
-    
+    private static final String OS_MAC = "mac";
+    private static final String TASK_KILL = " && taskkill /f /im cmd.exe";
     private static final String VMREPO = "";
     private static String PUTANJA_DO_FOLDERA;
     private static final String VAGRANT_UP = "vagrant up";
@@ -66,13 +67,10 @@ public class Konzola {
                 + " cd " + PUTANJA_DO_FOLDERA
                 + " && " + VAGRANT_INIT + imeBoxa
                 //                + " && " + VAGRANT_UP +
-                //               + " && taskkill /f /im cmd.exe"
+//                + TASK_KILL
                 + CMD_END;
-        try {
-            Process p = Runtime.getRuntime().exec(komande);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        
+        pokreniProcesCMD(komande);
 
         FileIO.promeniVagrantFajl(PUTANJA_DO_FOLDERA);
         File file = new File(PUTANJA_DO_FOLDERA + "\\script.ps1");
@@ -85,24 +83,28 @@ public class Konzola {
         komande = CMD_START
                 + " cd " + PUTANJA_DO_FOLDERA
                 + " && " + VAGRANT_UP
-                //                + " && taskkill /f /im cmd.exe"
+//                + TASK_KILL
                 + CMD_END;
-
-        try {
-            while (!file.exists())
+        
+        while (!file.exists())
                 ;
+        pokreniProcesCMD(komande);
+    }
+
+    private static void pokreniProcesCMD(String komande) {
+        try {
             Process p = Runtime.getRuntime().exec(komande);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
+    
     private static void pokreniKonzoluZaLinuxBox() {
         String komande = CMD_START
                 + " cd " + PUTANJA_DO_FOLDERA
                 + " && " + VAGRANT_INIT + imeBoxa
                 //                + " && " + VAGRANT_UP +
-                //               + " && taskkill /f /im cmd.exe"
+//                + TASK_KILL
                 + CMD_END;
 
         try {

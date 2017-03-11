@@ -5,6 +5,7 @@
  */
 package kontroler;
 
+import db.ConnectionFactory;
 import domen.ListaPrograma;
 import domen.Program;
 import domen.VirtuelnaMasina;
@@ -12,11 +13,16 @@ import gui.AdminLog;
 import gui.GlavnaForma;
 import gui.table_model.IzaberiVMTableModel;
 import java.awt.EventQueue;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import util.EnumConnectionType;
 import util.Konzola;
 
 /**
@@ -29,16 +35,12 @@ public class Kontroler {
     private static AdminLog adminLog;
     private static IzaberiVMTableModel izaberiVMTableModel;
     public static String putanjaDoFoldera;
-
-    /**
-     * Virtuelna masina koju je korisnik izabrao na pocetnom prozoru
-     */
     private static VirtuelnaMasina izabranaVM;
-    public static List<JCheckBox> listaCheckBokseva;
+    public static List<JCheckBox> listaCheckBoksevaProgrami;
 
     
     static {
-        listaCheckBokseva = new ArrayList<>();
+        listaCheckBoksevaProgrami = new ArrayList<>();
     }
     
     public static void main(String[] args) {
@@ -67,11 +69,18 @@ public class Kontroler {
     }
 
     public static void zatvoriAplikaciju() {
-        int izbor = JOptionPane.showConfirmDialog(glavnaForma, "Da li ste sigurni da zelite da zatvorite aplikaciju?", "", JOptionPane.YES_OPTION);
+        int izbor = JOptionPane.showConfirmDialog(glavnaForma,
+                "Da li ste sigurni da zelite da zatvorite aplikaciju?", "",
+                    JOptionPane.YES_OPTION);
 
         if (izbor == JOptionPane.YES_OPTION) {
-            glavnaForma.dispose();
-            System.exit(0);
+            try {
+                ConnectionFactory.makeConnection(EnumConnectionType.DRIVER_MANAGER).close();
+                glavnaForma.dispose();
+                System.exit(0);
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -113,11 +122,25 @@ public class Kontroler {
         izabranaVM = vm;
     }
 
+    public static void pokreniVM() {
+        
+        int izbor = JOptionPane.showConfirmDialog(glavnaForma,
+                "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
+
+        if (izbor == JOptionPane.YES_OPTION) {
+            List<Program> izabraniProgrami = vratiListuIzabranihPrograma();
+            Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme(), izabraniProgrami);
+            Konzola.pokreniKonzolu(izabranaVM.getOperativniSistem());
+            JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }
+
     public static List<Program> vratiListuIzabranihPrograma() {
 
         List<Program> izabraniProgrami = new ArrayList<>();
 
-        for (JCheckBox jcb : listaCheckBokseva) {
+        for (JCheckBox jcb : listaCheckBoksevaProgrami) {
             if (jcb.isSelected()) {
                 Program p = ListaPrograma.getInstance().pronadjiProgramPoImenu(jcb.getText());
                 izabraniProgrami.add(p);
@@ -126,20 +149,7 @@ public class Kontroler {
 
         return izabraniProgrami;
     }
-
-    public static void pokreniVM() {
-        List<Program> izabraniProgrami = vratiListuIzabranihPrograma();
-
-        int izbor = JOptionPane.showConfirmDialog(glavnaForma, "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
-
-        if (izbor == JOptionPane.YES_OPTION) {
-            Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme(), izabraniProgrami);
-            Konzola.pokreniKonzolu(izabranaVM.getOperativniSistem());
-            JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
-        }
-
-    }
-
+    
     public static String NamestiPutanjuDoFoldera(String putanja) {
         putanjaDoFoldera = putanja;
         return putanjaDoFoldera;
@@ -154,6 +164,6 @@ public class Kontroler {
 //    }
 
     public static void dodajCheckBoksUListu(JCheckBox jcb) {
-        listaCheckBokseva.add(jcb);
+        listaCheckBoksevaProgrami.add(jcb);
     }
 }

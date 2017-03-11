@@ -37,7 +37,7 @@ public class DaoProgramImpl extends DaoProgram{
         try {
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            while(rs.next()){
+            while(rs.next()) {
                 Program program = getCurrentRow(rs);
                 programs_list.add(program);
             }
@@ -50,7 +50,8 @@ public class DaoProgramImpl extends DaoProgram{
 
     @Override
     public void saveProgram(Program program) {
-        String query = "INSERT INTO programs(naziv, komanda_windows, komanda_linux, komanda_mac)" + "values(?, ?, ?, ?)";
+        String query = "INSERT INTO programs(naziv, komanda_windows, komanda_linux, komanda_mac)" 
+                + "values(?, ?, ?, ?)";
         PreparedStatement prepared_stat;
         try {
             prepared_stat = connection.prepareStatement(query);
@@ -81,7 +82,8 @@ public class DaoProgramImpl extends DaoProgram{
 
     @Override
     public void updateProgram(Program program) {
-        String query = "UPDATE programs SET komanda_windows = ?, komanda_linux = ?, komanda_mac = ? WHERE naziv = ?";
+        String query = 
+        "UPDATE programs SET komanda_windows = ?, komanda_linux = ?, komanda_mac = ? WHERE naziv = ?";
         PreparedStatement prepared_stat;
         try {
             prepared_stat = connection.prepareStatement(query);

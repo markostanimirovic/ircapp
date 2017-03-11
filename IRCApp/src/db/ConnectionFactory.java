@@ -40,7 +40,11 @@ public class ConnectionFactory {
         switch(type) {
             
             case DRIVER_MANAGER:
-                return DriverManager.getConnection(properties.getProperty(Constantes.DB_CONFIG_URL), properties.getProperty(Constantes.DB_CONFIG_USERNAME), properties.getProperty(Constantes.DB_CONFIG_PASSWORD));
+                return DriverManager.getConnection(
+                        properties.getProperty(Constantes.DB_CONFIG_URL),
+                        properties.getProperty(Constantes.DB_CONFIG_USERNAME), 
+                        properties.getProperty(Constantes.DB_CONFIG_PASSWORD)
+                );
             case DATASOURCE:
                 MysqlDataSource mysql_data_source = new MysqlDataSource();
                 mysql_data_source.setURL(properties.getProperty(Constantes.DB_CONFIG_URL));

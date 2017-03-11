@@ -50,7 +50,8 @@ public class DaoVMImpl extends DaoVM{
 
     @Override
     public void saveVM(VirtuelnaMasina vm) {
-        String query = "INSERT INTO virtual_machines(naziv, opis, tip_os)" + "values(?, ?, ?)";
+        String query = 
+        "INSERT INTO virtual_machines(naziv, opis, tip_os)" + "values(?, ?, ?)";
         PreparedStatement prepared_stat;
         try {
             prepared_stat = connection.prepareStatement(query);

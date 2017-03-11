@@ -68,7 +68,7 @@ public class FileIO {
         try {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file)));
 
-            out.println("sudo apt-get update");
+            out.println("sudo apt-get update -y");
             
             for (Program p : listaIzabranihPrograma) {
                 out.println(p.getKomanda_linux());

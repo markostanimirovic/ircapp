@@ -209,6 +209,7 @@ public class Kontroler {
         for (VirtuelnaMasina vm : listaVM) {
             if(vm.getIme().equals(selectedItem)) {
                 izabranaVM = vm;
+                break;
             }
         }
         int izbor = JOptionPane.showConfirmDialog(glavnaForma,

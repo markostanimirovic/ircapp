@@ -498,7 +498,14 @@ public class GlavnaForma extends javax.swing.JFrame {
 
     private void jbtnCard1PokreniVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCard1PokreniVMActionPerformed
 //        Kontroler.pokreniVM();
-        Kontroler.instalacija(listVM.getSelectedItem());
+        String vm = listVM.getSelectedItem();
+        if (vm == null || Kontroler.putanjaDoFoldera == null) {
+            JOptionPane.showMessageDialog(
+                    this, "Morate da odabere Virtuelnu masinu i putanju do foldera u koji ce da se smesti", 
+                    "Greska", JOptionPane.ERROR_MESSAGE
+            );
+        } else
+            Kontroler.instalacija(vm);
     }//GEN-LAST:event_jbtnCard1PokreniVMActionPerformed
 
     private void jbtnCard1nazadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCard1nazadActionPerformed

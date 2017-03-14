@@ -44,6 +44,7 @@ public class Kontroler {
     private static VirtuelnaMasina izabranaVM;
     public static List<JCheckBox> listaCheckBoksevaProgrami;
     public static List<VirtuelnaMasina> listaVM;
+    public static String ACTIVE_USER;
 
     static {
         listaCheckBoksevaProgrami = new ArrayList<>();
@@ -66,6 +67,9 @@ public class Kontroler {
 
                 glavnaForma.setVisible(true);
 
+                ACTIVE_USER = System.getProperty("user.name");
+                System.out.println(ACTIVE_USER);
+                
                 izaberiVMTableModel = glavnaForma.getIzaberiVMTableModel();
 
             }

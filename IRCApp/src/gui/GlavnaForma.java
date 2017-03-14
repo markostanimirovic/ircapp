@@ -529,6 +529,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         for (VirtuelnaMasina virtuelnaMasina : vm) {
             if(virtuelnaMasina.getIme().equals(listVM.getSelectedItem())) {
                 jtxtOpis.setText(virtuelnaMasina.getOpis());
+                break;
             }
         }
     }//GEN-LAST:event_listVMMouseClicked

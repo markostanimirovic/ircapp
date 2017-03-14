@@ -8,11 +8,13 @@ package kontroler;
 import db.ConnectionFactory;
 import domen.ListaPrograma;
 import domen.Program;
+import domen.SingleRootFileSystemView;
 import domen.VirtuelnaMasina;
 import gui.AdminLog;
 import gui.GlavnaForma;
 import gui.table_model.IzaberiVMTableModel;
 import java.awt.EventQueue;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -157,6 +159,10 @@ public class Kontroler {
 
     public static VirtuelnaMasina getIzabranaVM() {
         return izabranaVM;
+    }
+    
+    public static SingleRootFileSystemView getRootDirectory(File root){
+        return new SingleRootFileSystemView(root);
     }
 
 //    public static void setIzabranaVM(VirtuelnaMasina izabranaVM) {

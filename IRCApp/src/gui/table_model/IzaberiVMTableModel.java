@@ -28,13 +28,15 @@ public class IzaberiVMTableModel extends AbstractTableModel {
     private String[] columnNames = {"Redni broj", "Ime VM", "Opis"};
 
     public IzaberiVMTableModel() {
+        listaVirtuelnihMasina = new ArrayList<>();
+        listaSvihVM = new ArrayList<>();
+        
         try {
             DaoVM dao = new DaoVMImpl();
-            listaVirtuelnihMasina = dao.getAllVM();
-        } catch (IOException ex) {
-            Logger.getLogger(IzaberiVMTableModel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(IzaberiVMTableModel.class.getName()).log(Level.SEVERE, null, ex);
+            listaSvihVM = dao.getAllVM();
+            listaVirtuelnihMasina.addAll(listaSvihVM);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

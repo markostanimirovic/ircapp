@@ -8,7 +8,7 @@ package kontroler;
 import db.ConnectionFactory;
 import domen.ListaPrograma;
 import domen.Program;
-import domen.SingleRootFileSystemView;
+import util.SingleRootFileSystemView;
 import domen.VirtuelnaMasina;
 import gui.AdminLog;
 import gui.GlavnaForma;
@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import util.EnumConnectionType;
@@ -40,11 +41,10 @@ public class Kontroler {
     private static VirtuelnaMasina izabranaVM;
     public static List<JCheckBox> listaCheckBoksevaProgrami;
 
-    
     static {
         listaCheckBoksevaProgrami = new ArrayList<>();
     }
-    
+
     public static void main(String[] args) {
 
         try {
@@ -57,13 +57,13 @@ public class Kontroler {
             public void run() {
 
                 glavnaForma = new GlavnaForma();
-                
+
                 generisiCheckBokseve();
-                
+
                 glavnaForma.setVisible(true);
 
                 izaberiVMTableModel = glavnaForma.getIzaberiVMTableModel();
-                
+
             }
 
         });
@@ -73,7 +73,7 @@ public class Kontroler {
     public static void zatvoriAplikaciju() {
         int izbor = JOptionPane.showConfirmDialog(glavnaForma,
                 "Da li ste sigurni da zelite da zatvorite aplikaciju?", "",
-                    JOptionPane.YES_OPTION);
+                JOptionPane.YES_OPTION);
 
         if (izbor == JOptionPane.YES_OPTION) {
             try {
@@ -125,7 +125,7 @@ public class Kontroler {
     }
 
     public static void pokreniVM() {
-        
+
         int izbor = JOptionPane.showConfirmDialog(glavnaForma,
                 "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
 
@@ -151,8 +151,8 @@ public class Kontroler {
 
         return izabraniProgrami;
     }
-    
-    public static String NamestiPutanjuDoFoldera(String putanja) {
+
+    public static String namestiPutanjuDoFoldera(String putanja) {
         putanjaDoFoldera = putanja;
         return putanjaDoFoldera;
     }
@@ -160,16 +160,29 @@ public class Kontroler {
     public static VirtuelnaMasina getIzabranaVM() {
         return izabranaVM;
     }
-    
-    public static SingleRootFileSystemView getRootDirectory(File root){
+
+    public static SingleRootFileSystemView getRootDirectory(File root) {
         return new SingleRootFileSystemView(root);
     }
 
-//    public static void setIzabranaVM(VirtuelnaMasina izabranaVM) {
-//        Kontroler.izabranaVM = izabranaVM;
-//    }
-
     public static void dodajCheckBoksUListu(JCheckBox jcb) {
         listaCheckBoksevaProgrami.add(jcb);
+    }
+
+    public static String otvoriProzorZaIzborPutanje() {
+        JFileChooser fc = new JFileChooser(new SingleRootFileSystemView(new File("C:\\")));
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        int opcija = fc.showOpenDialog(glavnaForma);
+
+        String putanja = "";
+
+        if (opcija == JFileChooser.APPROVE_OPTION) {
+            putanja = fc.getSelectedFile().getAbsolutePath();
+        } else {
+            putanja = "";
+        }
+
+        return putanja;
     }
 }

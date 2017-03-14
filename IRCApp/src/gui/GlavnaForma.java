@@ -10,15 +10,12 @@ import domen.VirtuelnaMasina;
 import gui.table_model.IzaberiVMTableModel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 import java.util.List;
 import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.filechooser.FileSystemView;
 import kontroler.Kontroler;
 
 /**
@@ -377,7 +374,6 @@ public class GlavnaForma extends javax.swing.JFrame {
             if (vm != null) {
                 Kontroler.card0Dalje(vm);
             }
-//            JOptionPane.showMessageDialog(this, vm);
         }
     }//GEN-LAST:event_jbtnCard0DaljeActionPerformed
 
@@ -398,20 +394,10 @@ public class GlavnaForma extends javax.swing.JFrame {
     }//GEN-LAST:event_jtxtPronadjiKeyReleased
 
     private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBrowseActionPerformed
-        File root = new File("C:\\");
-        FileSystemView fsv = Kontroler.getRootDirectory(root);
-        JFileChooser fc = new JFileChooser(fsv);
-        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int opcija = fc.showOpenDialog(this);
-        String putanja;
-        if (opcija == JFileChooser.APPROVE_OPTION) {
-            putanja = fc.getSelectedFile().getAbsolutePath();
-            getPutanjaDoFoldera().setText(putanja);
-        } else {
-            putanja = "";
-        }
-        Kontroler.NamestiPutanjuDoFoldera(putanja);
+        String putanjaDoFoldera = Kontroler.otvoriProzorZaIzborPutanje();
 
+        Kontroler.namestiPutanjuDoFoldera(putanjaDoFoldera);
+        jtxtPutanjaDoFoldera.setText(putanjaDoFoldera);
     }//GEN-LAST:event_jbtnBrowseActionPerformed
 
 
@@ -490,7 +476,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         card0.setVisible(true);
     }
 
-    public JTextField getPutanjaDoFoldera() {
+    public JTextField getTxtPutanjaDoFoldera() {
         return jtxtPutanjaDoFoldera;
     }
 
@@ -509,5 +495,5 @@ public class GlavnaForma extends javax.swing.JFrame {
     public void setJpnlCheckBoksevi(JPanel jpnlCheckBoksevi) {
         this.jpnlCheckBoksevi = jpnlCheckBoksevi;
     }
-    
+
 }

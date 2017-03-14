@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domen;
+package util;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,18 +13,17 @@ import javax.swing.filechooser.FileSystemView;
  *
  * @author furtula.filip
  */
-public class SingleRootFileSystemView extends FileSystemView{
+public class SingleRootFileSystemView extends FileSystemView {
 
-    File root;
-    
-    File[] roots = new File[1];
-    
-    public SingleRootFileSystemView(File root){
+    private File root;
+    private File[] roots = new File[1];
+
+    public SingleRootFileSystemView(File root) {
         super();
         this.root = root;
         roots[0] = root;
     }
-    
+
     @Override
     public File createNewFolder(File containingDir) throws IOException {
         File folder = new File(containingDir, "New Folder");
@@ -46,11 +45,5 @@ public class SingleRootFileSystemView extends FileSystemView{
     public File[] getRoots() {
         return roots;
     }
-    
-    
-    
-    
-    
-    
-    
+
 }

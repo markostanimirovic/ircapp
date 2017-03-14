@@ -5,6 +5,8 @@
  */
 package kontroler;
 
+import dao.DaoVM;
+import dao.impl.DaoVMImpl;
 import db.ConnectionFactory;
 import domen.ListaPrograma;
 import domen.Program;
@@ -18,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +43,7 @@ public class Kontroler {
     public static String putanjaDoFoldera;
     private static VirtuelnaMasina izabranaVM;
     public static List<JCheckBox> listaCheckBoksevaProgrami;
+    public static List<VirtuelnaMasina> listaVM;
 
     static {
         listaCheckBoksevaProgrami = new ArrayList<>();
@@ -184,5 +188,33 @@ public class Kontroler {
         }
 
         return putanja;
+    }
+    
+    public static List<VirtuelnaMasina> vratiListuVM() {       
+        listaVM = new LinkedList<>();
+        try {
+            DaoVM dao = new DaoVMImpl();
+            listaVM = dao.getAllVM();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listaVM;        
+    }
+
+    public static void instalacija(String selectedItem) {
+        for (VirtuelnaMasina vm : listaVM) {
+            if(vm.getIme().equals(selectedItem)) {
+                izabranaVM = vm;
+            }
+        }
+        int izbor = JOptionPane.showConfirmDialog(glavnaForma,
+                "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
+
+        if (izbor == JOptionPane.YES_OPTION) {
+            List<Program> izabraniProgrami = vratiListuIzabranihPrograma();
+            Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme(), izabraniProgrami);
+            Konzola.pokreniKonzolu(izabranaVM.getOperativniSistem());
+            JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }

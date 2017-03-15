@@ -98,10 +98,5 @@ public class Konzola {
             e.printStackTrace();
         }
     }
-<<<<<<< HEAD
-    
-    
-=======
 
->>>>>>> a7a2f33d662295e2789118a4874855897d421d23
 }

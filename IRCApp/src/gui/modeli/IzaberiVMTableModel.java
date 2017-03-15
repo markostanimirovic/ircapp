@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.table_model;
+package gui.modeli;
 
 import dao.DaoVM;
 import dao.impl.DaoVMImpl;

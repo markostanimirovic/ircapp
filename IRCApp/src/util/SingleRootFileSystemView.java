@@ -6,7 +6,12 @@
 package util;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.filechooser.FileSystemView;
 
 /**
@@ -15,13 +20,27 @@ import javax.swing.filechooser.FileSystemView;
  */
 public class SingleRootFileSystemView extends FileSystemView {
 
+    private static Properties properties;
+    private File root_user;
     private File root;
-    private File[] roots = new File[1];
+    private File[] roots = new File[2];
 
-    public SingleRootFileSystemView(File root) {
+    static {
+        try {
+            properties = new Properties();
+            properties.load(new FileInputStream("system.config"));
+        } catch (Exception ex) {
+            Logger.getLogger(SingleRootFileSystemView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public SingleRootFileSystemView(File root_user) {
         super();
-        this.root = root;
-        roots[0] = root;
+        this.root_user = root_user;
+        this.root = new File(properties.getProperty("local_path"));
+        roots[0] = this.root;
+        roots[1] = this.root_user;
+        
     }
 
     @Override
@@ -33,7 +52,7 @@ public class SingleRootFileSystemView extends FileSystemView {
 
     @Override
     public File getDefaultDirectory() {
-        return root;
+        return root_user;
     }
 
     @Override

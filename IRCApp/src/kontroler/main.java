@@ -39,6 +39,10 @@ public class main {
     public static void main(String[] args) {
         DaoUserVMs user_vm = new DaoUserVMsImpl();
         prikazi2(user_vm.getAllUsersVMs());
+        user_vm.saveUserVMs(new UserVMs("win-php-box", "C:\\Users\\sarda.edis\\NetbeansProject", new User("filip")));
+        System.out.println("Novi prikqaz:");
+        prikazi2(user_vm.getAllUsersVMs());
+        
     }
 
     private static void prikazi(List<User> allUsers) {

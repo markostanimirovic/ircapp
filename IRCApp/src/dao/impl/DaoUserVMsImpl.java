@@ -61,7 +61,19 @@ public class DaoUserVMsImpl extends DaoUserVMs{
 
     @Override
     public void saveUserVMs(UserVMs user_vms) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "INSERT INTO user_vm(user_username, naziv, path)" 
+                + "values(?, ?, ?)";
+        PreparedStatement prepared_stat;
+        try {
+            prepared_stat = connection.prepareStatement(query);
+            prepared_stat.setString(1, user_vms.getUser().getUsername());
+            prepared_stat.setString(2, user_vms.getNaziv());
+            prepared_stat.setString(3, user_vms.getPath());
+            prepared_stat.execute();
+            prepared_stat.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override

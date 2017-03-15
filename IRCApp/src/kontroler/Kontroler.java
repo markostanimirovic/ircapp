@@ -14,7 +14,7 @@ import util.SingleRootFileSystemView;
 import domen.VirtuelnaMasina;
 import gui.AdminLog;
 import gui.GlavnaForma;
-import gui.table_model.IzaberiVMTableModel;
+import gui.modeli.IzaberiVMTableModel;
 import java.awt.EventQueue;
 import java.io.File;
 import java.io.IOException;
@@ -44,10 +44,11 @@ public class Kontroler {
     private static VirtuelnaMasina izabranaVM;
     public static List<JCheckBox> listaCheckBoksevaProgrami;
     public static List<VirtuelnaMasina> listaVM;
-    public static String ACTIVE_USER;
+    public static final String ACTIVE_USER;
 
     static {
         listaCheckBoksevaProgrami = new ArrayList<>();
+        ACTIVE_USER = System.getProperty("user.name");
     }
 
     public static void main(String[] args) {
@@ -66,9 +67,6 @@ public class Kontroler {
                 generisiCheckBokseve();
 
                 glavnaForma.setVisible(true);
-
-                ACTIVE_USER = System.getProperty("user.name");
-                System.out.println(ACTIVE_USER);
                 
                 izaberiVMTableModel = glavnaForma.getIzaberiVMTableModel();
 
@@ -178,7 +176,7 @@ public class Kontroler {
     }
 
     public static String otvoriProzorZaIzborPutanje() {
-        JFileChooser fc = new JFileChooser(new SingleRootFileSystemView(new File("C:\\")));
+        JFileChooser fc = new JFileChooser(new SingleRootFileSystemView(new File("C:\\Users\\"+ACTIVE_USER+"\\Documents")));
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
         int opcija = fc.showOpenDialog(glavnaForma);

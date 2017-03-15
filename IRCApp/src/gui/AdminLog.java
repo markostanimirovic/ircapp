@@ -5,8 +5,11 @@
  */
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javafx.scene.input.KeyCode;
 import javax.swing.JOptionPane;
 
 /**
@@ -58,6 +61,11 @@ public class AdminLog extends javax.swing.JDialog {
         jLabel2.setText("Lozinka:");
 
         jtxtUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtxtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtxtUserKeyPressed(evt);
+            }
+        });
 
         jbtnLogIn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnLogIn.setText("Uloguj se");
@@ -76,6 +84,11 @@ public class AdminLog extends javax.swing.JDialog {
         });
 
         jpassPass.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jpassPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jpassPassKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,16 +137,20 @@ public class AdminLog extends javax.swing.JDialog {
     }//GEN-LAST:event_jbtnCancelActionPerformed
 
     private void jbtnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLogInActionPerformed
-        if (jtxtUser.getText().equals("") || jpassPass.getPassword().equals("")) {
-            JOptionPane.showMessageDialog(this, "Unesite username i password!", "Upozorenje", JOptionPane.ERROR_MESSAGE);
-        } else {
-            String pass = "";
-            for (int i = 0; i < jpassPass.getPassword().length; i++) {
-                pass += jpassPass.getPassword()[i];
-            }
-            kontroler.Kontroler.autentifikacija(jtxtUser.getText(), pass);
-        }
+        logIn();
     }//GEN-LAST:event_jbtnLogInActionPerformed
+
+    private void jtxtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtUserKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            logIn();
+        }
+    }//GEN-LAST:event_jtxtUserKeyPressed
+
+    private void jpassPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpassPassKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            logIn();
+        }
+    }//GEN-LAST:event_jpassPassKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -147,5 +164,17 @@ public class AdminLog extends javax.swing.JDialog {
     public void praznaPolja() {
         jtxtUser.setText("");
         jpassPass.setText("");
+    }
+    
+    private void logIn() {
+        if (jtxtUser.getText().equals("") || jpassPass.getPassword().equals("")) {
+            JOptionPane.showMessageDialog(this, "Unesite username i password!", "Upozorenje", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String pass = "";
+            for (int i = 0; i < jpassPass.getPassword().length; i++) {
+                pass += jpassPass.getPassword()[i];
+            }
+            kontroler.Kontroler.autentifikacija(jtxtUser.getText(), pass);
+        }
     }
 }

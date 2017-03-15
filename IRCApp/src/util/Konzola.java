@@ -38,9 +38,9 @@ public class Konzola {
         konzola = new Konzola();
     }
 
-    public static void setKonzola(String putanjaDoFoldera, String ime, List<Program> izabraniProgrami) {
+    public static void setKonzola(String putanjaDoFoldera, String imeBoksa, List<Program> izabraniProgrami) {
         PUTANJA_DO_FOLDERA = putanjaDoFoldera;
-        imeBoxa = ime;
+        imeBoxa = imeBoksa;
         listaIzabranihPrograma = izabraniProgrami;
     }
 
@@ -67,7 +67,7 @@ public class Konzola {
                 + " cd " + PUTANJA_DO_FOLDERA
                 + " && " + VAGRANT_INIT + imeBoxa
                 //                + " && " + VAGRANT_UP +
-//                + TASK_KILL
+                + TASK_KILL
                 + CMD_END;
         
         pokreniProcesCMD(komande);
@@ -95,21 +95,6 @@ public class Konzola {
         try {
             Process p = Runtime.getRuntime().exec(komande);
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    private static void pokreniKonzoluZaLinuxBox() {
-        String komande = CMD_START
-                + " cd " + PUTANJA_DO_FOLDERA
-                + " && " + VAGRANT_INIT + imeBoxa
-                //                + " && " + VAGRANT_UP +
-//                + TASK_KILL
-                + CMD_END;
-
-        try {
-            Process p = Runtime.getRuntime().exec(komande);
-        } catch (Exception e) {
             e.printStackTrace();
         }
     }

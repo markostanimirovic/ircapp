@@ -203,21 +203,28 @@ public class Kontroler {
         return listaVM;        
     }
 
-    public static void instalacija(String selectedItem) {
-        for (VirtuelnaMasina vm : listaVM) {
-            if(vm.getIme().equals(selectedItem)) {
-                izabranaVM = vm;
-                break;
-            }
-        }
+    public static void instalacija(String imeVirtuelneMasime) {
+        izabranaVM = pronadjiVMNaOsnovuImena(imeVirtuelneMasime);
+        
         int izbor = JOptionPane.showConfirmDialog(glavnaForma,
                 "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
 
         if (izbor == JOptionPane.YES_OPTION) {
             List<Program> izabraniProgrami = vratiListuIzabranihPrograma();
+            
             Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme(), izabraniProgrami);
             Konzola.pokreniKonzolu(izabranaVM.getOperativniSistem());
-            JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
+            
         }
     }
-}
+    
+    private static VirtuelnaMasina pronadjiVMNaOsnovuImena(String imeVM) {
+        for (VirtuelnaMasina vm : listaVM) {
+            if(vm.getIme().equals(imeVM)) {
+                return vm;
+            }
+        }
+        
+        return null;
+    }
+} 

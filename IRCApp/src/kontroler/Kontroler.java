@@ -79,7 +79,7 @@ public class Kontroler {
 
     public static void zatvoriAplikaciju() {
         int izbor = JOptionPane.showConfirmDialog(glavnaForma,
-                "Da li ste sigurni da zelite da zatvorite aplikaciju?", "",
+                "Da li ste sigurni da želite da zatvorite aplikaciju?", "Izlaz",
                 JOptionPane.YES_OPTION);
 
         if (izbor == JOptionPane.YES_OPTION) {
@@ -115,7 +115,7 @@ public class Kontroler {
             glavnaForma.prikaziAdministraciju(true);
             zatvoriAdminLog();
         } else {
-            JOptionPane.showMessageDialog(adminLog, "Uneli ste pogresne vrednosti! Pokusajte ponovo.", "Greska", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(adminLog, "Uneli ste pogrešne vrednosti! Pokušajte ponovo.", "Greška", JOptionPane.ERROR_MESSAGE);
             adminLog.praznaPolja();
         }
     }
@@ -131,19 +131,19 @@ public class Kontroler {
         izabranaVM = vm;
     }
 
-    public static void pokreniVM() {
-
-        int izbor = JOptionPane.showConfirmDialog(glavnaForma,
-                "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
-
-        if (izbor == JOptionPane.YES_OPTION) {
-            List<Program> izabraniProgrami = vratiListuIzabranihPrograma();
-            Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme(), izabraniProgrami);
-            Konzola.pokreniKonzolu(izabranaVM.getOperativniSistem());
-            JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
-        }
-
-    }
+//    public static void pokreniVM() {
+//
+//        int izbor = JOptionPane.showConfirmDialog(glavnaForma,
+//                "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
+//
+//        if (izbor == JOptionPane.YES_OPTION) {
+//            List<Program> izabraniProgrami = vratiListuIzabranihPrograma();
+//            Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme(), izabraniProgrami);
+//            Konzola.pokreniKonzolu(izabranaVM.getOperativniSistem());
+//            JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
+//        }
+//
+//    }
 
     public static List<Program> vratiListuIzabranihPrograma() {
 
@@ -208,7 +208,7 @@ public class Kontroler {
         izabranaVM = pronadjiVMNaOsnovuImena(imeVirtuelneMasime);
 
         int izbor = JOptionPane.showConfirmDialog(glavnaForma,
-                "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
+                "Potvrdite pokretanje virtuelne mašine.", "Potvrda", JOptionPane.YES_NO_OPTION);
 
         if (izbor == JOptionPane.YES_OPTION) {
             List<Program> izabraniProgrami = vratiListuIzabranihPrograma();
@@ -236,9 +236,9 @@ public class Kontroler {
     private static void proveriUsera() {
         if (AKTIVNI_KLIJENT.equals("ircclient")) {
             JOptionPane.showMessageDialog(
-                    null, "Sa ovog naloga ne moze da se pristupi aplikaciji!"
+                    null, "Sa ovog naloga ne možete pristupiti aplikaciji!"
                     + " Molimo ulogujte se kao domenski korisnik.",
-                    "GRESKA!", JOptionPane.ERROR_MESSAGE
+                    "Grešk", JOptionPane.ERROR_MESSAGE
             );
             System.exit(0);
         }

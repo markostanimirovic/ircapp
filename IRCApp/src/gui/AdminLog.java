@@ -168,7 +168,7 @@ public class AdminLog extends javax.swing.JDialog {
     
     private void logIn() {
         if (jtxtUser.getText().equals("") || jpassPass.getPassword().equals("")) {
-            JOptionPane.showMessageDialog(this, "Unesite username i password!", "Upozorenje", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Unesite korisničko ime i lozinku!", "Upozorenje", JOptionPane.ERROR_MESSAGE);
         } else {
             String pass = "";
             for (int i = 0; i < jpassPass.getPassword().length; i++) {

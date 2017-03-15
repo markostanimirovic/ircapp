@@ -94,11 +94,12 @@ public class GlavnaForma extends javax.swing.JFrame {
         jbtnInstalacija = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        jmnAdmin = new javax.swing.JMenuItem();
+        jmnMasine = new javax.swing.JMenuItem();
+        jmnIzlaz = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jmnOAplikaciji = new javax.swing.JMenuItem();
+        jmnONama = new javax.swing.JMenuItem();
 
         jtblIzaberiVM.setModel(new IzaberiVMTableModel());
         jScrollPane1.setViewportView(jtblIzaberiVM);
@@ -460,26 +461,30 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jMenu3.setText("File");
 
-        jMenuItem2.setText("Administrator");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jmnAdmin.setText("Administrator");
+        jmnAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jmnAdminActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem2);
+        jMenu3.add(jmnAdmin);
 
-        jMenuItem3.setText("Moje mašine");
-        jMenu3.add(jMenuItem3);
+        jmnMasine.setText("Moje mašine");
+        jMenu3.add(jmnMasine);
 
-        jMenuItem4.setText("Exit");
-        jMenu3.add(jMenuItem4);
+        jmnIzlaz.setText("Izlaz");
+        jMenu3.add(jmnIzlaz);
 
         jMenuBar2.add(jMenu3);
 
-        jMenu5.setText("O nama");
-        jMenuBar2.add(jMenu5);
+        jMenu4.setText("Help");
 
-        jMenu4.setText("Edit");
+        jmnOAplikaciji.setText("O aplikaciji");
+        jMenu4.add(jmnOAplikaciji);
+
+        jmnONama.setText("O nama");
+        jMenu4.add(jmnONama);
+
         jMenuBar2.add(jMenu4);
 
         setJMenuBar(jMenuBar2);
@@ -494,7 +499,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         IzaberiVMTableModel iVM = (IzaberiVMTableModel) jtblIzaberiVM.getModel();
 
         if (selektovaniRed == -1) {
-            JOptionPane.showMessageDialog(this, "Izaberite VM", "Greska", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Izaberite virtuelnu mašinu!", "Greška", JOptionPane.ERROR_MESSAGE);
         } else {
             VirtuelnaMasina vm = iVM.vratiVM(selektovaniRed);
 
@@ -513,7 +518,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         String vm = listVM.getSelectedItem();
         if (vm == null || Kontroler.putanjaDoFoldera == null) {
             JOptionPane.showMessageDialog(
-                    this, "Morate da odabere Virtuelnu masinu i putanju do foldera u koji ce da se smesti", 
+                    this, "Odaberite virtuelnu mašinu i putanju do foldera u kome želite da je sačuvate!", 
                     "Greska", JOptionPane.ERROR_MESSAGE
             );
         } else {
@@ -548,9 +553,9 @@ public class GlavnaForma extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_listVMMouseClicked
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jmnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnAdminActionPerformed
         Kontroler.otvoriAdminLog();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jmnAdminActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -569,13 +574,9 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -590,6 +591,11 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JButton jbtnIzaberiPutanjuDoFoldera;
     private javax.swing.JButton jbtnIzmeniVM;
     private javax.swing.JButton jbtnObrisiVM;
+    private javax.swing.JMenuItem jmnAdmin;
+    private javax.swing.JMenuItem jmnIzlaz;
+    private javax.swing.JMenuItem jmnMasine;
+    private javax.swing.JMenuItem jmnOAplikaciji;
+    private javax.swing.JMenuItem jmnONama;
     private javax.swing.JPanel jpnlAdministracija;
     private javax.swing.JPanel jpnlCheckBoksevi;
     private javax.swing.JPanel jpnlInstalacija;

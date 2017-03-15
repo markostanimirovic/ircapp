@@ -29,6 +29,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import util.EnumConnectionType;
+import util.FileIO;
 import util.Konzola;
 
 /**
@@ -44,11 +45,11 @@ public class Kontroler {
     private static VirtuelnaMasina izabranaVM;
     public static List<JCheckBox> listaCheckBoksevaProgrami;
     public static List<VirtuelnaMasina> listaVM;
-    public static final String ACTIVE_USER;
+    public static final String AKTIVNI_KLIJENT;
 
     static {
         listaCheckBoksevaProgrami = new ArrayList<>();
-        ACTIVE_USER = System.getProperty("user.name");
+        AKTIVNI_KLIJENT = System.getProperty("user.name");
     }
 
     public static void main(String[] args) {
@@ -61,14 +62,14 @@ public class Kontroler {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-
+                 
+                proveriUsera();
                 glavnaForma = new GlavnaForma();
-
+                
                 generisiCheckBokseve();
 
                 glavnaForma.setVisible(true);
-                
-                izaberiVMTableModel = glavnaForma.getIzaberiVMTableModel();
+                napraviCIRCFoler();
 
             }
 
@@ -176,7 +177,7 @@ public class Kontroler {
     }
 
     public static String otvoriProzorZaIzborPutanje() {
-        JFileChooser fc = new JFileChooser(new SingleRootFileSystemView(new File("C:\\Users\\"+ACTIVE_USER+"\\Documents")));
+        JFileChooser fc = new JFileChooser(new SingleRootFileSystemView(new File("C:\\Users\\"+AKTIVNI_KLIJENT+"\\Documents")));
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
         int opcija = fc.showOpenDialog(glavnaForma);
@@ -220,4 +221,21 @@ public class Kontroler {
             JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
         }
     }
+    
+    private static void napraviCIRCFoler() {
+        FileIO.napraviIRCFolder(); 
+    }
+    
+    private static void proveriUsera() {
+        if (AKTIVNI_KLIJENT.equals("ircclient")) {
+            JOptionPane.showMessageDialog(
+                    null, "Sa ovog naloga ne moze da se pristupi aplikaciji!"
+                    + " Molimo ulogujte se kao domenski korisnik.", 
+                    "GRESKA!",JOptionPane.ERROR_MESSAGE
+            );
+            System.exit(0);
+        }
+    }
+    
 }
+ 

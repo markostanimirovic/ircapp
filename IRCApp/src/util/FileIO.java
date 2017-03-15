@@ -81,4 +81,9 @@ public class FileIO {
         }
     }
 
+    public static boolean napraviIRCFolder() {
+        File file = new File("C:\\IRC");
+        return file.mkdir();
+    }
+
 }

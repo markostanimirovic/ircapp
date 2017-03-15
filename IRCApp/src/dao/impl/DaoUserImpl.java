@@ -70,7 +70,7 @@ public class DaoUserImpl extends DaoUser{
         PreparedStatement prepared_stat;
         try{
             prepared_stat = connection.prepareStatement(query);
-            prepared_stat.setString(1, kontroler.Kontroler.ACTIVE_USER);
+            prepared_stat.setString(1, kontroler.Kontroler.AKTIVNI_KLIJENT);
             ResultSet rs = prepared_stat.executeQuery();
             boolean find = rs.next();
             if(find) {

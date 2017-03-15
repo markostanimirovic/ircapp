@@ -92,6 +92,13 @@ public class GlavnaForma extends javax.swing.JFrame {
         listVM = new java.awt.List();
         jpnlInstalacija = new javax.swing.JPanel();
         jbtnInstalacija = new javax.swing.JButton();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
 
         jtblIzaberiVM.setModel(new IzaberiVMTableModel());
         jScrollPane1.setViewportView(jtblIzaberiVM);
@@ -296,8 +303,6 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         card0.setPreferredSize(new java.awt.Dimension(604, 974));
 
-        jpnlPutanja.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Izaberite putanju:");
 
@@ -353,8 +358,6 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jScrollPane3.setViewportView(jpnlCheckBoksevi);
 
-        jpnlVM.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Izaberite virtuelnu mašinu:");
 
@@ -393,7 +396,7 @@ public class GlavnaForma extends javax.swing.JFrame {
                 .addGroup(jpnlVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpnlVMLayout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 27, Short.MAX_VALUE))
+                        .addGap(0, 185, Short.MAX_VALUE))
                     .addComponent(jScrollPane5))
                 .addContainerGap())
         );
@@ -405,12 +408,9 @@ public class GlavnaForma extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpnlVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
-                    .addComponent(listVM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                    .addComponent(listVM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-
-        jpnlInstalacija.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jbtnInstalacija.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnInstalacija.setText("Instalacija");
@@ -458,7 +458,33 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         getContentPane().add(card0, "card2");
 
-        setSize(new java.awt.Dimension(861, 699));
+        jMenu3.setText("File");
+
+        jMenuItem2.setText("Administrator");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuItem3.setText("Moje mašine");
+        jMenu3.add(jMenuItem3);
+
+        jMenuItem4.setText("Exit");
+        jMenu3.add(jMenuItem4);
+
+        jMenuBar2.add(jMenu3);
+
+        jMenu5.setText("O nama");
+        jMenuBar2.add(jMenu5);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
+
+        setJMenuBar(jMenuBar2);
+
+        setSize(new java.awt.Dimension(1015, 699));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -522,6 +548,10 @@ public class GlavnaForma extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_listVMMouseClicked
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Kontroler.otvoriAdminLog();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card0;
@@ -537,8 +567,15 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

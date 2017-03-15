@@ -62,10 +62,10 @@ public class Kontroler {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                 
+
                 proveriUsera();
                 glavnaForma = new GlavnaForma();
-                
+
                 generisiCheckBokseve();
 
                 glavnaForma.setVisible(true);
@@ -177,7 +177,7 @@ public class Kontroler {
     }
 
     public static String otvoriProzorZaIzborPutanje() {
-        JFileChooser fc = new JFileChooser(new SingleRootFileSystemView(new File("C:\\Users\\"+AKTIVNI_KLIJENT+"\\Documents")));
+        JFileChooser fc = new JFileChooser(new SingleRootFileSystemView(new File("C:\\Users\\" + AKTIVNI_KLIJENT + "\\Documents")));
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
         int opcija = fc.showOpenDialog(glavnaForma);
@@ -192,8 +192,8 @@ public class Kontroler {
 
         return putanja;
     }
-    
-    public static List<VirtuelnaMasina> vratiListuVM() {       
+
+    public static List<VirtuelnaMasina> vratiListuVM() {
         listaVM = new LinkedList<>();
         try {
             DaoVM dao = new DaoVMImpl();
@@ -201,41 +201,47 @@ public class Kontroler {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listaVM;        
+        return listaVM;
     }
 
-    public static void instalacija(String selectedItem) {
-        for (VirtuelnaMasina vm : listaVM) {
-            if(vm.getIme().equals(selectedItem)) {
-                izabranaVM = vm;
-                break;
-            }
-        }
+    public static void instalacija(String imeVirtuelneMasime) {
+        izabranaVM = pronadjiVMNaOsnovuImena(imeVirtuelneMasime);
+
         int izbor = JOptionPane.showConfirmDialog(glavnaForma,
                 "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
 
         if (izbor == JOptionPane.YES_OPTION) {
             List<Program> izabraniProgrami = vratiListuIzabranihPrograma();
+
             Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme(), izabraniProgrami);
             Konzola.pokreniKonzolu(izabranaVM.getOperativniSistem());
-            JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
+
         }
     }
-    
-    private static void napraviCIRCFoler() {
-        FileIO.napraviIRCFolder(); 
+
+    private static VirtuelnaMasina pronadjiVMNaOsnovuImena(String imeVM) {
+        for (VirtuelnaMasina vm : listaVM) {
+            if (vm.getIme().equals(imeVM)) {
+                return vm;
+            }
+        }
+
+        return null;
     }
-    
+
+    private static void napraviCIRCFoler() {
+        FileIO.napraviIRCFolder();
+    }
+
     private static void proveriUsera() {
         if (AKTIVNI_KLIJENT.equals("ircclient")) {
             JOptionPane.showMessageDialog(
                     null, "Sa ovog naloga ne moze da se pristupi aplikaciji!"
-                    + " Molimo ulogujte se kao domenski korisnik.", 
-                    "GRESKA!",JOptionPane.ERROR_MESSAGE
+                    + " Molimo ulogujte se kao domenski korisnik.",
+                    "GRESKA!", JOptionPane.ERROR_MESSAGE
             );
             System.exit(0);
         }
     }
-    
+
 }
- 

@@ -38,9 +38,9 @@ public class Konzola {
         konzola = new Konzola();
     }
 
-    public static void setKonzola(String putanjaDoFoldera, String ime, List<Program> izabraniProgrami) {
+    public static void setKonzola(String putanjaDoFoldera, String imeBoksa, List<Program> izabraniProgrami) {
         PUTANJA_DO_FOLDERA = putanjaDoFoldera;
-        imeBoxa = ime;
+        imeBoxa = imeBoksa;
         listaIzabranihPrograma = izabraniProgrami;
     }
     
@@ -98,6 +98,10 @@ public class Konzola {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
     
     
+=======
+
+>>>>>>> a7a2f33d662295e2789118a4874855897d421d23
 }

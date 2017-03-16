@@ -34,9 +34,6 @@ public class Konzola {
     private static final String VAGRANT_INIT = "vagrant init ";
     private static final String CMD_START = "cmd /c \"";
     private static final String CMD_END = "\" ";
-    
-    private static ProgresInstalacije progresInstalacije;
-
     /**
      * programi koje je korisnik izabrao za instalaciju
      */
@@ -75,7 +72,7 @@ public class Konzola {
                 + TASK_KILL
                 + CMD_END;
 
-        pokreniProcesCMD(komande, 1);
+        pokreniProcesCMD(komande);
 
         FileIO.promeniVagrantFajl(PUTANJA_DO_FOLDERA);
         File file = new File(PUTANJA_DO_FOLDERA + "\\script.ps1");
@@ -92,32 +89,18 @@ public class Konzola {
 
         while (!file.exists())
                 ;
-        
-        pokreniProgresInstalacije();
 
-        pokreniProcesCMD(komande, 2);
+        Runnable runnable = new InstallationThread(komande);
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
-    private static void pokreniProcesCMD(String komande, int redni_broj) {
+    private static void pokreniProcesCMD(String komande) {
         try {
             Process p = Runtime.getRuntime().exec(komande);
-            if (redni_broj > 1) {
-                String red;
-                BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                while ((red = reader.readLine()) != null) {
-                    progresInstalacije.setTextJTxtAreaKonzola(red);
-                }
-                p.waitFor();
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    
-    private static void pokreniProgresInstalacije() {
-        progresInstalacije = new ProgresInstalacije(kontroler.Kontroler.glavnaForma, true);
-        progresInstalacije.setVisible(true);
-        progresInstalacije.setTextJTxtAreaKonzola("CQAO!");
     }
 
 }

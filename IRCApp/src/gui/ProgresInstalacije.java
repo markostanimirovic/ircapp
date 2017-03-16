@@ -34,6 +34,7 @@ public class ProgresInstalacije extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtxtAreaKonzola = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        jbtnPrekini = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Instalacija");
@@ -52,6 +53,15 @@ public class ProgresInstalacije extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Instalacija je u toku.");
 
+        jbtnPrekini.setBackground(java.awt.Color.red);
+        jbtnPrekini.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        jbtnPrekini.setText("Prekini");
+        jbtnPrekini.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnPrekiniActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -59,11 +69,15 @@ public class ProgresInstalacije extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 386, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addComponent(jbtnPrekini, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,24 +85,37 @@ public class ProgresInstalacije extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbtnPrekini)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbtnPrekiniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPrekiniActionPerformed
+        if(jbtnPrekini.getText().equalsIgnoreCase("Prekini")) {
+            // PREKINI INSTALACIJU
+            // IZBRISI SVE IZ FOLDERA
+        } else if (jbtnPrekini.getText().equalsIgnoreCase("Ok")) {
+            // UGASI DIJALOG
+        }
+    }//GEN-LAST:event_jbtnPrekiniActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public void setTextJTxtAreaKonzola(String tekst) {
-        jtxtAreaKonzola.setText(jtxtAreaKonzola.getText() + tekst);
+        jtxtAreaKonzola.append(tekst);
+        jtxtAreaKonzola.setCaretPosition(jtxtAreaKonzola.getText().length());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbtnPrekini;
     private javax.swing.JTextArea jtxtAreaKonzola;
     // End of variables declaration//GEN-END:variables
 }

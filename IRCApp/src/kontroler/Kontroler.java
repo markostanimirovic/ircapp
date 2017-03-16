@@ -14,9 +14,12 @@ import gui.modeli.SingleRootFileSystemView;
 import domen.VirtuelnaMasina;
 import gui.AdminLog;
 import gui.GlavnaForma;
+import gui.ProgresInstalacije;
 import java.awt.EventQueue;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -44,6 +47,7 @@ public class Kontroler {
     public static List<JCheckBox> listaCheckBoksevaProgrami;
     public static List<VirtuelnaMasina> listaVM;
     public static final String AKTIVNI_KLIJENT;
+    public static ProgresInstalacije progresInstalacije;
 
     static {
         listaCheckBoksevaProgrami = new ArrayList<>();
@@ -66,7 +70,7 @@ public class Kontroler {
                 generisiCheckBokseve();
 
                 glavnaForma.setVisible(true);
-                
+
                 napraviIRCFoler();
 
             }
@@ -207,9 +211,27 @@ public class Kontroler {
             JOptionPane.showMessageDialog(
                     null, "Sa ovog naloga ne možete pristupiti aplikaciji!"
                     + " Molimo ulogujte se kao domenski korisnik.",
-                    "Grešk", JOptionPane.ERROR_MESSAGE
+                    "Greška", JOptionPane.ERROR_MESSAGE
             );
             System.exit(0);
+        }
+    }
+
+    public static void pokreniInstalaciju(String komande) {
+        progresInstalacije = new ProgresInstalacije(glavnaForma, true);
+        progresInstalacije.setLocationRelativeTo(glavnaForma);
+        progresInstalacije.setVisible(true);
+        try {
+            Process p = Runtime.getRuntime().exec(komande);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String red = reader.readLine();
+            while (red != null) {
+                progresInstalacije.setTextJTxtAreaKonzola(red);
+                red = reader.readLine();
+            }
+            p.waitFor();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

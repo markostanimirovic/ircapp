@@ -37,7 +37,7 @@ import util.Konzola;
  */
 public class Kontroler {
 
-    private static GlavnaForma glavnaForma;
+    public static GlavnaForma glavnaForma;
     private static AdminLog adminLog;
     public static String putanjaDoFoldera;
     private static VirtuelnaMasina izabranaVM;

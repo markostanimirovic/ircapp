@@ -14,7 +14,6 @@ import gui.modeli.SingleRootFileSystemView;
 import domen.VirtuelnaMasina;
 import gui.AdminLog;
 import gui.GlavnaForma;
-import gui.modeli.IzaberiVMTableModel;
 import java.awt.EventQueue;
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +39,6 @@ public class Kontroler {
 
     private static GlavnaForma glavnaForma;
     private static AdminLog adminLog;
-    private static IzaberiVMTableModel izaberiVMTableModel;
     public static String putanjaDoFoldera;
     private static VirtuelnaMasina izabranaVM;
     public static List<JCheckBox> listaCheckBoksevaProgrami;
@@ -62,7 +60,6 @@ public class Kontroler {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-
                 proveriUsera();
                 glavnaForma = new GlavnaForma();
 
@@ -70,7 +67,6 @@ public class Kontroler {
 
                 glavnaForma.setVisible(true);
                 napraviCIRCFoler();
-
             }
 
         });
@@ -120,10 +116,6 @@ public class Kontroler {
         }
     }
 
-    public static void search(String text) {
-        izaberiVMTableModel.search(text);
-    }
-
     public static List<Program> vratiListuIzabranihPrograma() {
 
         List<Program> izabraniProgrami = new ArrayList<>();
@@ -141,10 +133,6 @@ public class Kontroler {
     public static String namestiPutanjuDoFoldera(String putanja) {
         putanjaDoFoldera = putanja;
         return putanjaDoFoldera;
-    }
-
-    public static VirtuelnaMasina getIzabranaVM() {
-        return izabranaVM;
     }
 
     public static SingleRootFileSystemView getRootDirectory(File root) {
@@ -172,7 +160,7 @@ public class Kontroler {
         return putanja;
     }
 
-    public static List<VirtuelnaMasina> vratiListuVM() {
+    public static List<VirtuelnaMasina> vratiListuVMIzBaze() {
         listaVM = new LinkedList<>();
         try {
             DaoVM dao = new DaoVMImpl();

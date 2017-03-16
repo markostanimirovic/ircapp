@@ -7,7 +7,6 @@ package gui;
 
 import domen.Program;
 import domen.VirtuelnaMasina;
-import gui.modeli.IzaberiVMTableModel;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -302,7 +301,7 @@ public class GlavnaForma extends javax.swing.JFrame {
 
     private void listVMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listVMMouseClicked
         List<VirtuelnaMasina> vmL = new LinkedList<>();
-        vmL = Kontroler.vratiListuVM();
+        vmL = Kontroler.vratiListuVMIzBaze();
         for (VirtuelnaMasina vm : vmL) {
             if(listVM.getSelectedValue().equals(vm.getIme())) {
                 jtxtOpis.setText(vm.getOpis());
@@ -377,7 +376,7 @@ public class GlavnaForma extends javax.swing.JFrame {
     public void napuniListuVirtuelnimMasinama() {
         
         List<VirtuelnaMasina> listaSvihVM = new LinkedList<>();
-        listaSvihVM = Kontroler.vratiListuVM();
+        listaSvihVM = Kontroler.vratiListuVMIzBaze();
         for (VirtuelnaMasina virtuelnaMasina : listaSvihVM) {
             dlm.addElement(virtuelnaMasina.getIme());
         }

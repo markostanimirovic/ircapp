@@ -112,7 +112,7 @@ public class Kontroler {
 
     public static void autentifikacija(String text, String password) {
         if (text.equals("vagrant") && password.equals("vagrant")) {
-            glavnaForma.prikaziAdministraciju(true);
+            //dodaj kod
             zatvoriAdminLog();
         } else {
             JOptionPane.showMessageDialog(adminLog, "Uneli ste pogrešne vrednosti! Pokušajte ponovo.", "Greška", JOptionPane.ERROR_MESSAGE);
@@ -123,27 +123,6 @@ public class Kontroler {
     public static void search(String text) {
         izaberiVMTableModel.search(text);
     }
-
-    public static void card0Dalje(VirtuelnaMasina vm) {
-        glavnaForma.getJtxtImeIzabraneVirtuelneMasine().setText(vm.getIme());
-        glavnaForma.getJTxtOpisVM().setText(vm.getOpis());
-        glavnaForma.prikaziCard1();
-        izabranaVM = vm;
-    }
-
-//    public static void pokreniVM() {
-//
-//        int izbor = JOptionPane.showConfirmDialog(glavnaForma,
-//                "Potvrdite pokretanje VM", "Potvrda", JOptionPane.YES_NO_OPTION);
-//
-//        if (izbor == JOptionPane.YES_OPTION) {
-//            List<Program> izabraniProgrami = vratiListuIzabranihPrograma();
-//            Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme(), izabraniProgrami);
-//            Konzola.pokreniKonzolu(izabranaVM.getOperativniSistem());
-//            JOptionPane.showMessageDialog(glavnaForma, "Instalacija je u toku...", "Instalacija", JOptionPane.INFORMATION_MESSAGE);
-//        }
-//
-//    }
 
     public static List<Program> vratiListuIzabranihPrograma() {
 

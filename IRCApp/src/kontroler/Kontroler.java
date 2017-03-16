@@ -10,7 +10,7 @@ import dao.impl.DaoVMImpl;
 import db.ConnectionFactory;
 import domen.ListaPrograma;
 import domen.Program;
-import util.SingleRootFileSystemView;
+import gui.modeli.SingleRootFileSystemView;
 import domen.VirtuelnaMasina;
 import gui.AdminLog;
 import gui.GlavnaForma;

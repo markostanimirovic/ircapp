@@ -7,7 +7,6 @@ package gui;
 
 import domen.Program;
 import domen.VirtuelnaMasina;
-import gui.modeli.IzaberiVMTableModel;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -17,7 +16,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import kontroler.Kontroler;
 
@@ -41,7 +39,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         });
         napuniListuVirtuelnimMasinama();
     }
-    
+
     DefaultListModel dlm = new DefaultListModel();
 
     /**
@@ -280,13 +278,13 @@ public class GlavnaForma extends javax.swing.JFrame {
         String vm = listVM.getSelectedValue();
         if (vm == null || jtxtPutanjaDoFoldera.getText().equals("")) {
             JOptionPane.showMessageDialog(
-                    this, "Odaberite virtuelnu mašinu i putanju do foldera u kome želite da je sačuvate!", 
+                    this, "Odaberite virtuelnu mašinu i putanju do foldera u kome želite da je sačuvate!",
                     "Greška", JOptionPane.ERROR_MESSAGE
             );
         } else {
             Kontroler.instalacija(vm);
         }
-        
+
     }//GEN-LAST:event_jbtnInstalacijaActionPerformed
 
     private void jbtnIzaberiPutanjuDoFolderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIzaberiPutanjuDoFolderaActionPerformed
@@ -304,10 +302,10 @@ public class GlavnaForma extends javax.swing.JFrame {
         List<VirtuelnaMasina> vmL = new LinkedList<>();
         vmL = Kontroler.vratiListuVM();
         for (VirtuelnaMasina vm : vmL) {
-            if(listVM.getSelectedValue().equals(vm.getIme())) {
+            if (listVM.getSelectedValue().equals(vm.getIme())) {
                 jtxtOpis.setText(vm.getOpis());
             }
-        }        
+        }
     }//GEN-LAST:event_listVMMouseClicked
 
 
@@ -373,9 +371,9 @@ public class GlavnaForma extends javax.swing.JFrame {
     public void setJpnlCheckBoksevi(JPanel jpnlCheckBoksevi) {
         this.jpnlCheckBoksevi = jpnlCheckBoksevi;
     }
-    
+
     public void napuniListuVirtuelnimMasinama() {
-        
+
         List<VirtuelnaMasina> listaSvihVM = new LinkedList<>();
         listaSvihVM = Kontroler.vratiListuVM();
         for (VirtuelnaMasina virtuelnaMasina : listaSvihVM) {

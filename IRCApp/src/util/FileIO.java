@@ -9,7 +9,6 @@ import domen.Program;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.util.List;
@@ -52,11 +51,11 @@ public class FileIO {
 
             out.println("iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))");
             out.println("chocolatey feature enable -n allowGlobalConfirmation");
-            
+
             for (Program p : listaIzabranihPrograma) {
                 out.println(p.getKomanda_widnows());
             }
-            
+
             out.flush();
             out.close();
         } catch (Exception e) {
@@ -69,11 +68,11 @@ public class FileIO {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file)));
 
             out.println("sudo apt-get update -y");
-            
+
             for (Program p : listaIzabranihPrograma) {
                 out.println(p.getKomanda_linux());
             }
-            
+
             out.flush();
             out.close();
         } catch (Exception e) {

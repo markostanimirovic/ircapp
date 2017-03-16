@@ -5,11 +5,9 @@
  */
 package gui;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javafx.scene.input.KeyCode;
 import javax.swing.JOptionPane;
 
 /**
@@ -165,7 +163,7 @@ public class AdminLog extends javax.swing.JDialog {
         jtxtUser.setText("");
         jpassPass.setText("");
     }
-    
+
     private void logIn() {
         if (jtxtUser.getText().equals("") || jpassPass.getPassword().equals("")) {
             JOptionPane.showMessageDialog(this, "Unesite korisničko ime i lozinku!", "Upozorenje", JOptionPane.ERROR_MESSAGE);

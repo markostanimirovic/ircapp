@@ -7,7 +7,6 @@ package gui.modeli;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -33,14 +32,14 @@ public class SingleRootFileSystemView extends FileSystemView {
             Logger.getLogger(SingleRootFileSystemView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public SingleRootFileSystemView(File root_user) {
         super();
         this.root_user = root_user;
         this.root = new File(properties.getProperty("local_path"));
         roots[0] = this.root;
         roots[1] = this.root_user;
-        
+
     }
 
     @Override

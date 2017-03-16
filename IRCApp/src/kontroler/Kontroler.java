@@ -69,7 +69,8 @@ public class Kontroler {
                 generisiCheckBokseve();
 
                 glavnaForma.setVisible(true);
-                napraviCIRCFoler();
+                
+                napraviIRCFoler();
 
             }
 
@@ -208,7 +209,7 @@ public class Kontroler {
         return null;
     }
 
-    private static void napraviCIRCFoler() {
+    private static void napraviIRCFoler() {
         FileIO.napraviIRCFolder();
     }
 

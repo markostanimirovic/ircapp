@@ -16,13 +16,10 @@ import java.util.List;
  */
 public class Konzola {
 
-    private static Konzola konzola;
-    
-    private static List<Program> listaIzabranihPrograma;
-    
     private static final String OS_LINUX = "linux";
     private static final String OS_WINDOWS = "windows";
     private static final String OS_MAC = "mac";
+
     private static final String TASK_KILL = " && taskkill /f /im cmd.exe";
     private static final String VMREPO = "";
     private static String PUTANJA_DO_FOLDERA;
@@ -31,25 +28,24 @@ public class Konzola {
     private static final String CMD_START = "cmd /c start cmd.exe /k \"";
     private static final String CMD_END = "\" ";
 
+    /**
+     * programi koje je korisnik izabrao za instalaciju
+     */
+    private static List<Program> listaIzabranihPrograma;
+
+    /**
+     * true - ako je izabrani OS windows, false - ako je izabrani OS linux
+     */
     private static boolean isWindows;
     private static String imeBoxa;
-
-    static {
-        konzola = new Konzola();
-    }
 
     public static void setKonzola(String putanjaDoFoldera, String imeBoksa, List<Program> izabraniProgrami) {
         PUTANJA_DO_FOLDERA = putanjaDoFoldera;
         imeBoxa = imeBoksa;
         listaIzabranihPrograma = izabraniProgrami;
     }
-    
+
     private Konzola() {
-
-    }
-
-    public static Konzola getKonzola() {
-        return konzola;
     }
 
     public static void pokreniKonzolu(String operativniSistem) {
@@ -69,7 +65,7 @@ public class Konzola {
                 //                + " && " + VAGRANT_UP +
                 + TASK_KILL
                 + CMD_END;
-        
+
         pokreniProcesCMD(komande);
 
         FileIO.promeniVagrantFajl(PUTANJA_DO_FOLDERA);
@@ -85,7 +81,7 @@ public class Konzola {
                 + " && " + VAGRANT_UP
                 + TASK_KILL
                 + CMD_END;
-        
+
         while (!file.exists())
                 ;
         pokreniProcesCMD(komande);

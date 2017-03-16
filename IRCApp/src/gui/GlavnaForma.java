@@ -40,7 +40,6 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         });
         napuniListuVirtuelnimMasinama();
-        prikaziAdministraciju(false);
     }
     
     DefaultListModel dlm = new DefaultListModel();
@@ -54,31 +53,6 @@ public class GlavnaForma extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtblIzaberiVM = new javax.swing.JTable();
-        jtxtPronadji = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jbtnCard0Dalje = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jpnlAdministracija = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jbtnDodajVM = new javax.swing.JButton();
-        jbtnIzmeniVM = new javax.swing.JButton();
-        jbtnObrisiVM = new javax.swing.JButton();
-        card1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jtxtImeIzabraneVM = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtxtAreaOpisVM = new javax.swing.JTextArea();
-        jPanel3 = new javax.swing.JPanel();
-        jbtnCard1nazad = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
         card0 = new javax.swing.JPanel();
         jpnlPutanja = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -104,203 +78,6 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jmnOAplikaciji = new javax.swing.JMenuItem();
         jmnONama = new javax.swing.JMenuItem();
-
-        jtblIzaberiVM.setModel(new IzaberiVMTableModel());
-        jScrollPane1.setViewportView(jtblIzaberiVM);
-
-        jtxtPronadji.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtxtPronadjiKeyReleased(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Izaberite virtuelnu masinu");
-
-        jbtnCard0Dalje.setText("Dalje...");
-        jbtnCard0Dalje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnCard0DaljeActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("Pronadji VM");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbtnCard0Dalje, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtxtPronadji)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtxtPronadji, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtnCard0Dalje)
-                .addContainerGap())
-        );
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Administracija");
-
-        jbtnDodajVM.setText("Dodaj virtuelnu masinu");
-
-        jbtnIzmeniVM.setText("Izmeni");
-
-        jbtnObrisiVM.setText("Obrisi VM");
-
-        javax.swing.GroupLayout jpnlAdministracijaLayout = new javax.swing.GroupLayout(jpnlAdministracija);
-        jpnlAdministracija.setLayout(jpnlAdministracijaLayout);
-        jpnlAdministracijaLayout.setHorizontalGroup(
-            jpnlAdministracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jpnlAdministracijaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpnlAdministracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnDodajVM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtnIzmeniVM, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                    .addComponent(jbtnObrisiVM, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jpnlAdministracijaLayout.setVerticalGroup(
-            jpnlAdministracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnlAdministracijaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jbtnDodajVM, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtnIzmeniVM, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbtnObrisiVM, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jLabel3.setText("Izabrali ste VM:");
-
-        jtxtImeIzabraneVM.setEditable(false);
-
-        jLabel4.setText("Opis VM:");
-
-        jScrollPane2.setEnabled(false);
-
-        jtxtAreaOpisVM.setEditable(false);
-        jtxtAreaOpisVM.setColumns(20);
-        jtxtAreaOpisVM.setLineWrap(true);
-        jtxtAreaOpisVM.setRows(5);
-        jScrollPane2.setViewportView(jtxtAreaOpisVM);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jtxtImeIzabraneVM))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtxtImeIzabraneVM, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(78, Short.MAX_VALUE))
-        );
-
-        jbtnCard1nazad.setText("Nazad");
-        jbtnCard1nazad.setMaximumSize(new java.awt.Dimension(120, 25));
-        jbtnCard1nazad.setMinimumSize(new java.awt.Dimension(120, 25));
-        jbtnCard1nazad.setPreferredSize(new java.awt.Dimension(120, 25));
-        jbtnCard1nazad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnCard1nazadActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
-                .addComponent(jbtnCard1nazad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtnCard1nazad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout card1Layout = new javax.swing.GroupLayout(card1);
-        card1.setLayout(card1Layout);
-        card1Layout.setHorizontalGroup(
-            card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(card1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        card1Layout.setVerticalGroup(
-            card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(card1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jMenu1.setText("File");
-
-        jMenuItem1.setText("Admin test");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("VirtualIRC");
@@ -377,6 +154,11 @@ public class GlavnaForma extends javax.swing.JFrame {
         listVM.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         listVM.setModel(dlm);
         listVM.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listVM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listVMMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(listVM);
 
         jScrollPane3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -494,26 +276,6 @@ public class GlavnaForma extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnCard0DaljeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCard0DaljeActionPerformed
-//        int selektovaniRed = jtblIzaberiVM.getSelectedRow();
-//
-//        IzaberiVMTableModel iVM = (IzaberiVMTableModel) jtblIzaberiVM.getModel();
-//
-//        if (selektovaniRed == -1) {
-//            JOptionPane.showMessageDialog(this, "Izaberite virtuelnu mašinu!", "Greška", JOptionPane.ERROR_MESSAGE);
-//        } else {
-//            VirtuelnaMasina vm = iVM.vratiVM(selektovaniRed);
-//
-//            if (vm != null) {
-//                Kontroler.card0Dalje(vm);
-//            }
-//        }
-    }//GEN-LAST:event_jbtnCard0DaljeActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        Kontroler.otvoriAdminLog();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void jbtnInstalacijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnInstalacijaActionPerformed
         String vm = listVM.getSelectedValue();
         if (vm == null || jtxtPutanjaDoFoldera.getText().equals("")) {
@@ -527,14 +289,6 @@ public class GlavnaForma extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbtnInstalacijaActionPerformed
 
-    private void jbtnCard1nazadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCard1nazadActionPerformed
-        prikaziCard0();
-    }//GEN-LAST:event_jbtnCard1nazadActionPerformed
-
-    private void jtxtPronadjiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtPronadjiKeyReleased
-        Kontroler.search(jtxtPronadji.getText());
-    }//GEN-LAST:event_jtxtPronadjiKeyReleased
-
     private void jbtnIzaberiPutanjuDoFolderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIzaberiPutanjuDoFolderaActionPerformed
         String putanjaDoFoldera = Kontroler.otvoriProzorZaIzborPutanje();
 
@@ -546,88 +300,47 @@ public class GlavnaForma extends javax.swing.JFrame {
         Kontroler.otvoriAdminLog();
     }//GEN-LAST:event_jmnAdminActionPerformed
 
+    private void listVMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listVMMouseClicked
+        List<VirtuelnaMasina> vmL = new LinkedList<>();
+        vmL = Kontroler.vratiListuVM();
+        for (VirtuelnaMasina vm : vmL) {
+            if(listVM.getSelectedValue().equals(vm.getIme())) {
+                jtxtOpis.setText(vm.getOpis());
+            }
+        }        
+    }//GEN-LAST:event_listVMMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card0;
-    private javax.swing.JPanel card1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JButton jbtnCard0Dalje;
-    private javax.swing.JButton jbtnCard1nazad;
-    private javax.swing.JButton jbtnDodajVM;
     private javax.swing.JButton jbtnInstalacija;
     private javax.swing.JButton jbtnIzaberiPutanjuDoFoldera;
-    private javax.swing.JButton jbtnIzmeniVM;
-    private javax.swing.JButton jbtnObrisiVM;
     private javax.swing.JMenuItem jmnAdmin;
     private javax.swing.JMenuItem jmnIzlaz;
     private javax.swing.JMenuItem jmnMasine;
     private javax.swing.JMenuItem jmnOAplikaciji;
     private javax.swing.JMenuItem jmnONama;
-    private javax.swing.JPanel jpnlAdministracija;
     private javax.swing.JPanel jpnlCheckBoksevi;
     private javax.swing.JPanel jpnlInstalacija;
     private javax.swing.JPanel jpnlPutanja;
     private javax.swing.JPanel jpnlVM;
-    private javax.swing.JTable jtblIzaberiVM;
-    private javax.swing.JTextArea jtxtAreaOpisVM;
-    private javax.swing.JTextField jtxtImeIzabraneVM;
     private javax.swing.JTextArea jtxtOpis;
-    private javax.swing.JTextField jtxtPronadji;
     private javax.swing.JTextField jtxtPutanjaDoFoldera;
     private javax.swing.JList<String> listVM;
     // End of variables declaration//GEN-END:variables
 
-    public void prikaziAdministraciju(boolean b) {
-        jpnlAdministracija.setVisible(b);
-    }
-
-    public javax.swing.JTextField getTxtPronadji() {
-        return jtxtPronadji;
-    }
-
-    public IzaberiVMTableModel getIzaberiVMTableModel() {
-        return (IzaberiVMTableModel) jtblIzaberiVM.getModel();
-    }
-
-    public JTextField getJtxtImeIzabraneVirtuelneMasine() {
-        return jtxtImeIzabraneVM;
-    }
-
-    public void prikaziCard1() {
-        sakrijSvePanele();
-        card1.setVisible(true);
-    }
-
     public void sakrijSvePanele() {
         card0.setVisible(false);
-        card1.setVisible(false);
-    }
-
-    public JTextArea getJTxtOpisVM() {
-        return jtxtAreaOpisVM;
     }
 
     public JPanel getJPanelCheckBoksevi() {

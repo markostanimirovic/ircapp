@@ -254,6 +254,11 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenu3.add(jmnMasine);
 
         jmnIzlaz.setText("Izlaz");
+        jmnIzlaz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnIzlazActionPerformed(evt);
+            }
+        });
         jMenu3.add(jmnIzlaz);
 
         jMenuBar2.add(jMenu3);
@@ -307,6 +312,10 @@ public class GlavnaForma extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_listVMMouseClicked
+
+    private void jmnIzlazActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnIzlazActionPerformed
+        Kontroler.zatvoriAplikaciju();
+    }//GEN-LAST:event_jmnIzlazActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,11 +11,11 @@ package domen;
  */
 public class UserVMs {
     
+    private User user;
     private String naziv;
     private String path;
-    private User user;
     
-    public UserVMs(User user, String naziv, String path) {
+    public UserVMs(User user, String naziv, String pat) {
         this.naziv = naziv;
         this.path = path;
         this.user = user;

@@ -252,7 +252,7 @@ public class Kontroler {
             progresInstalacije.setNewNameForJbtnKonzola("Ok");
             sacuvajVirtuelnuMasinuZaKorisnika();
         } catch (Exception e) {
-            progresInstalacije.setNewNameForJbtnKonzola("Greska");
+            progresInstalacije.setNewNameForJbtnKonzola("Greška");
             e.printStackTrace();
         }
         System.out.println("izasao");
@@ -266,6 +266,10 @@ public class Kontroler {
         } else {
             return false;
         }
+    }
+    
+    public static void setEnabledGlavnaForma(boolean b) {
+        glavnaForma.setEnabled(b);
     }
 
     private static void sacuvajVirtuelnuMasinuZaKorisnika() {

@@ -22,6 +22,8 @@ public class ProgresInstalacije extends javax.swing.JFrame {
     public ProgresInstalacije() {
         initComponents();
         jtxtAreaKonzola.setText("");
+        this.setResizable(false);
+        kontroler.Kontroler.setEnabledGlavnaForma(false);
     }
 
     /**
@@ -40,6 +42,7 @@ public class ProgresInstalacije extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Instalacija");
+        setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -100,15 +103,16 @@ public class ProgresInstalacije extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnPrekiniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPrekiniActionPerformed
-        
-        if (jbtnPrekini.getText().equals("Stop")) {
+
+        if(jbtnPrekini.getText().equalsIgnoreCase("stop")) {
             int izbor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da prekinete proces instalacije?", "Prekid instalacije", JOptionPane.YES_NO_OPTION);
             if(izbor == JOptionPane.YES_OPTION) {           
                 Konzola.prekiniIzvrsavanjeKonzole();
                 Konzola.izbrisiFolder();
             }
         }
-        this.dispose();
+            kontroler.Kontroler.setEnabledGlavnaForma(true);
+            this.dispose();
     }//GEN-LAST:event_jbtnPrekiniActionPerformed
 
     /**
@@ -129,8 +133,6 @@ public class ProgresInstalacije extends javax.swing.JFrame {
     public void setNewNameForJbtnKonzola(String naziv) {
         if (naziv.equalsIgnoreCase("ok")) {
             jbtnPrekini.setText(naziv);
-            jbtnPrekini.setBackground(Color.GREEN);
-            jbtnPrekini.setBorder(null);
         }
     }
 }

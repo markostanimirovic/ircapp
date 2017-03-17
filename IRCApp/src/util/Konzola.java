@@ -16,6 +16,7 @@ import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
+import org.omg.CORBA.Environment;
 
 /**
  *
@@ -44,6 +45,8 @@ public class Konzola {
      */
     private static boolean isWindows;
     private static String imeBoxa;
+
+    private static Process p;
 
     public static void setKonzola(String putanjaDoFoldera, String imeBoksa, List<Program> izabraniProgrami) {
         PUTANJA_DO_FOLDERA = putanjaDoFoldera;
@@ -97,10 +100,28 @@ public class Konzola {
 
     private static void pokreniProcesCMD(String komande) {
         try {
-            Process p = Runtime.getRuntime().exec(komande);
+            p = Runtime.getRuntime().exec(komande);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void prekiniIzvrsavanjeKonzole() {
+        p.destroy();
+    }
+
+    public static void izbrisiFolder() {
+        File f = new File(PUTANJA_DO_FOLDERA);
+        obrisiFajloveIzFoldera(f);
+    }
+
+    private static void obrisiFajloveIzFoldera(File f) {
+        if (f.isDirectory()) {
+            for (File f1 : f.listFiles()) {
+                obrisiFajloveIzFoldera(f1);
+            }
+        }
+        f.delete();
     }
 
 }

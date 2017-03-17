@@ -235,11 +235,15 @@ public class Kontroler {
         try {
             Process p = Runtime.getRuntime().exec(komande);
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String red = reader.readLine();
-            while (red != null) {
+            String red = null;
+            
+            while ((red = reader.readLine()) != null) {
+                if (red.startsWith("\u001B"))
+                    red = red.substring(3);
                 progresInstalacije.setTextJTxtAreaKonzola(red + "\n");
-                red = reader.readLine();
+                System.out.println(red);
             }
+            
             p.waitFor();
             progresInstalacije.setNewNameForJbtnKonzola("Ok");
         } catch (Exception e) {

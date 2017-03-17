@@ -6,16 +6,8 @@
 package util;
 
 import domen.Program;
-import gui.ProgresInstalacije;
-import java.awt.Dimension;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
 
 /**
  *

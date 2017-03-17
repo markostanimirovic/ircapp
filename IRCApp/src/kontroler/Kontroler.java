@@ -64,9 +64,9 @@ public class Kontroler {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                
+
                 proveriKonekcijuSaBazom();
-                
+
                 proveriUsera();
                 glavnaForma = new GlavnaForma();
 
@@ -81,7 +81,7 @@ public class Kontroler {
         });
 
     }
-    
+
     private static void proveriKonekcijuSaBazom() {
         try {
             ConnectionFactory.makeConnection(EnumConnectionType.DRIVER_MANAGER);

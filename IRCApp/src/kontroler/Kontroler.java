@@ -64,9 +64,9 @@ public class Kontroler {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                
+
                 proveriKonekcijuSaBazom();
-                
+
                 proveriUsera();
                 glavnaForma = new GlavnaForma();
 
@@ -81,7 +81,7 @@ public class Kontroler {
         });
 
     }
-    
+
     private static void proveriKonekcijuSaBazom() {
         try {
             ConnectionFactory.makeConnection(EnumConnectionType.DRIVER_MANAGER);
@@ -199,7 +199,7 @@ public class Kontroler {
 
             Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme(), izabraniProgrami);
             Konzola.pokreniKonzolu(izabranaVM.getOperativniSistem());
-
+            
         }
     }
 
@@ -247,6 +247,16 @@ public class Kontroler {
             e.printStackTrace();
         }
         System.out.println("izasao");
+    }
+
+    public static boolean proveriDaLiSeUFolderuNalaziVagrantfile(String putanjaDoFoldera) {
+        File f = new File(putanjaDoFoldera + "\\Vagrantfile");
+        
+        if (f.exists()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

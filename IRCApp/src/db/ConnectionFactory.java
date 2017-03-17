@@ -21,11 +21,11 @@ import util.EnumConnectionType;
  * @author vagrant
  */
 public class ConnectionFactory {
-    
+
     private static Connection connection;
-    
-    public static Connection makeConnection(EnumConnectionType type) throws IOException, SQLException{
-        if(connection != null){
+
+    public static Connection makeConnection(EnumConnectionType type) throws IOException, SQLException {
+        if (connection != null) {
             return connection;
         } else {
             connection = getConnection(type);
@@ -36,13 +36,13 @@ public class ConnectionFactory {
     private static Connection getConnection(EnumConnectionType type) throws IOException, SQLException {
         Properties properties = new Properties();
         properties.load(new FileInputStream("db.config"));
-        
-        switch(type) {
-            
+
+        switch (type) {
+
             case DRIVER_MANAGER:
                 return DriverManager.getConnection(
                         properties.getProperty(Constantes.DB_CONFIG_URL),
-                        properties.getProperty(Constantes.DB_CONFIG_USERNAME), 
+                        properties.getProperty(Constantes.DB_CONFIG_USERNAME),
                         properties.getProperty(Constantes.DB_CONFIG_PASSWORD)
                 );
             case DATASOURCE:
@@ -61,5 +61,5 @@ public class ConnectionFactory {
                 return null;
         }
     }
-      
+
 }

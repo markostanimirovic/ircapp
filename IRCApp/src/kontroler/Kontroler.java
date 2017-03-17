@@ -64,6 +64,9 @@ public class Kontroler {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                
+                proveriKonekcijuSaBazom();
+                
                 proveriUsera();
                 glavnaForma = new GlavnaForma();
 
@@ -77,6 +80,14 @@ public class Kontroler {
 
         });
 
+    }
+    
+    private static void proveriKonekcijuSaBazom() {
+        try {
+            ConnectionFactory.makeConnection(EnumConnectionType.DRIVER_MANAGER);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(glavnaForma, "Problem pri konekciji sa bazom!");
+        }
     }
 
     public static void zatvoriAplikaciju() {
@@ -230,7 +241,6 @@ public class Kontroler {
                 red = reader.readLine();
             }
             p.waitFor();
-            System.out.println("KRAJ");
             progresInstalacije.setNewNameForJbtnKonzola("Ok");
         } catch (Exception e) {
             progresInstalacije.setNewNameForJbtnKonzola("Greska");

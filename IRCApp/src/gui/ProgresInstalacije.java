@@ -45,13 +45,12 @@ public class ProgresInstalacije extends javax.swing.JFrame {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jtxtAreaKonzola.setEditable(false);
-        jtxtAreaKonzola.setBackground(new java.awt.Color(51, 51, 51));
+        jtxtAreaKonzola.setBackground(new java.awt.Color(0, 0, 0));
         jtxtAreaKonzola.setColumns(20);
         jtxtAreaKonzola.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jtxtAreaKonzola.setForeground(new java.awt.Color(153, 255, 153));
         jtxtAreaKonzola.setLineWrap(true);
         jtxtAreaKonzola.setRows(5);
-        jtxtAreaKonzola.setBorder(null);
         jScrollPane1.setViewportView(jtxtAreaKonzola);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -60,7 +59,6 @@ public class ProgresInstalacije extends javax.swing.JFrame {
         jbtnPrekini.setBackground(java.awt.Color.red);
         jbtnPrekini.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jbtnPrekini.setText("Prekini");
-        jbtnPrekini.setBorder(null);
         jbtnPrekini.setBorderPainted(false);
         jbtnPrekini.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,10 +97,10 @@ public class ProgresInstalacije extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnRDP, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(jbtnRDP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jbtnPrekini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jbtnPrekini, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 

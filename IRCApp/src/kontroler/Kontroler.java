@@ -218,7 +218,7 @@ public class Kontroler {
     }
 
     public static void pokreniInstalaciju(String komande) {
-        progresInstalacije = new ProgresInstalacije(glavnaForma, true);
+        progresInstalacije = new ProgresInstalacije();
         progresInstalacije.setLocationRelativeTo(glavnaForma);
         progresInstalacije.setVisible(true);
         try {
@@ -226,13 +226,17 @@ public class Kontroler {
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String red = reader.readLine();
             while (red != null) {
-                progresInstalacije.setTextJTxtAreaKonzola(red);
+                progresInstalacije.setTextJTxtAreaKonzola(red + "\n");
                 red = reader.readLine();
             }
             p.waitFor();
+            System.out.println("KRAJ");
+            progresInstalacije.setNewNameForJbtnKonzola("Ok");
         } catch (Exception e) {
+            progresInstalacije.setNewNameForJbtnKonzola("Greska");
             e.printStackTrace();
         }
+        System.out.println("izasao");
     }
 
 }

@@ -15,7 +15,7 @@ public class UserVMs {
     private String path;
     private User user;
     
-    public UserVMs(String naziv, String path, User user) {
+    public UserVMs(User user, String naziv, String path) {
         this.naziv = naziv;
         this.path = path;
         this.user = user;

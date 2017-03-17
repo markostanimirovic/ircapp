@@ -5,11 +5,16 @@
  */
 package kontroler;
 
+import dao.DaoUser;
+import dao.DaoUserVMs;
 import dao.DaoVM;
+import dao.impl.DaoUserVMsImpl;
 import dao.impl.DaoVMImpl;
 import db.ConnectionFactory;
 import domen.ListaPrograma;
 import domen.Program;
+import domen.User;
+import domen.UserVMs;
 import gui.modeli.SingleRootFileSystemView;
 import domen.VirtuelnaMasina;
 import gui.AdminLog;
@@ -244,8 +249,8 @@ public class Kontroler {
                 System.out.println(red);
             }
             
-            p.waitFor();
             progresInstalacije.setNewNameForJbtnKonzola("Ok");
+            sacuvajVirtuelnuMasinuZaKorisnika();
         } catch (Exception e) {
             progresInstalacije.setNewNameForJbtnKonzola("Greska");
             e.printStackTrace();
@@ -261,6 +266,16 @@ public class Kontroler {
         } else {
             return false;
         }
+    }
+
+    private static void sacuvajVirtuelnuMasinuZaKorisnika() {
+        DaoUserVMs dao = new DaoUserVMsImpl();
+        dao.saveUserVMs(
+                new UserVMs(new User(AKTIVNI_KLIJENT),
+                izabranaVM.getIme(),
+                putanjaDoFoldera)
+        );
+        System.out.println("Proslo cuvanje korisnicke virtuelne masine u bazi.");
     }
 
 }

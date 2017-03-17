@@ -100,22 +100,15 @@ public class ProgresInstalacije extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnPrekiniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPrekiniActionPerformed
-
-        int izbor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da prekinete proces instalacije?", "Prekid instalacije", JOptionPane.YES_NO_OPTION);
-        if(izbor == JOptionPane.YES_OPTION) {           
-            Konzola.prekiniIzvrsavanjeKonzole();
-            Konzola.izbrisiFolder();
-            this.dispose();
-        }
         
-//        if (jbtnPrekini.getText().equalsIgnoreCase("Prekini")) {
-//            // PREKINI INSTALACIJU
-//            // IZBRISI SVE IZ FOLDERA
-//            this.dispose();
-//        } else if (jbtnPrekini.getText().equalsIgnoreCase("Ok")) {
-//            // UGASI DIJALOG
-//            this.dispose();
-//        }
+        if (jbtnPrekini.getText().equals("Stop")) {
+            int izbor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da prekinete proces instalacije?", "Prekid instalacije", JOptionPane.YES_NO_OPTION);
+            if(izbor == JOptionPane.YES_OPTION) {           
+                Konzola.prekiniIzvrsavanjeKonzole();
+                Konzola.izbrisiFolder();
+            }
+        }
+        this.dispose();
     }//GEN-LAST:event_jbtnPrekiniActionPerformed
 
     /**

@@ -61,7 +61,7 @@ public class DaoUserVMsImpl extends DaoUserVMs{
 
     @Override
     public void saveUserVMs(UserVMs user_vms) {
-        String query = "INSERT INTO user_vm(user_username, naziv, path)" 
+        String query = "INSERT INTO user_vm(username, naziv, path)" 
                 + "values(?, ?, ?)";
         PreparedStatement prepared_stat;
         try {
@@ -90,7 +90,7 @@ public class DaoUserVMsImpl extends DaoUserVMs{
         String naziv = rs.getString("naziv");
         String path = rs.getString("path");
         User user = new User(rs.getString("user_username"));
-        return new UserVMs(naziv, path, user);
+        return new UserVMs(user, naziv, path);
     }
     
 }

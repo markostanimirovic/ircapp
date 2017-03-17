@@ -37,7 +37,7 @@ public class DaoUserVMsImpl extends DaoUserVMs{
     @Override
     public List<UserVMs> getAllUsersVMs() {
         List<UserVMs> user_vms = new ArrayList<>();
-        String query = "SELECT * FROM user_vm where user_username = ?";
+        String query = "SELECT * FROM user_vm WHERE username = ?";
         PreparedStatement prepared_stat;
         try {
             prepared_stat = connection.prepareStatement(query);
@@ -61,7 +61,7 @@ public class DaoUserVMsImpl extends DaoUserVMs{
 
     @Override
     public void saveUserVMs(UserVMs user_vms) {
-        String query = "INSERT INTO user_vm(user_username, naziv, path)" 
+        String query = "INSERT INTO user_vm(username, naziv, path)" 
                 + "values(?, ?, ?)";
         PreparedStatement prepared_stat;
         try {
@@ -89,7 +89,7 @@ public class DaoUserVMsImpl extends DaoUserVMs{
     private UserVMs getCurrentRow(ResultSet rs) throws SQLException {
         String naziv = rs.getString("naziv");
         String path = rs.getString("path");
-        User user = new User(rs.getString("user_username"));
+        User user = new User(rs.getString("username"));
         return new UserVMs(naziv, path, user);
     }
     

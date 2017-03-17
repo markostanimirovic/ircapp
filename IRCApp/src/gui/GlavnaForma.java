@@ -286,18 +286,18 @@ public class GlavnaForma extends javax.swing.JFrame {
                     this, "Odaberite virtuelnu mašinu i putanju do foldera u kome želite da je sačuvate!",
                     "Greška", JOptionPane.ERROR_MESSAGE
             );
+        } else if (Kontroler.proveriDaLiSeUFolderuNalaziVagrantfile(jtxtPutanjaDoFoldera.getText())) {
+            JOptionPane.showMessageDialog(
+                    this, "U folderu koji ste izabrali već postoji Vagrantfile. Izaberite neki drugi folder!",
+                    "Greška", JOptionPane.ERROR_MESSAGE
+            );
+
+            jtxtPutanjaDoFoldera.setText("");
         } else {
             Kontroler.instalacija(vm);
         }
 
     }//GEN-LAST:event_jbtnInstalacijaActionPerformed
-
-    private void jbtnIzaberiPutanjuDoFolderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIzaberiPutanjuDoFolderaActionPerformed
-        String putanjaDoFoldera = Kontroler.otvoriProzorZaIzborPutanje();
-
-        Kontroler.namestiPutanjuDoFoldera(putanjaDoFoldera);
-        jtxtPutanjaDoFoldera.setText(putanjaDoFoldera);
-    }//GEN-LAST:event_jbtnIzaberiPutanjuDoFolderaActionPerformed
 
     private void jmnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnAdminActionPerformed
         Kontroler.otvoriAdminLog();
@@ -316,6 +316,13 @@ public class GlavnaForma extends javax.swing.JFrame {
     private void jmnIzlazActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnIzlazActionPerformed
         Kontroler.zatvoriAplikaciju();
     }//GEN-LAST:event_jmnIzlazActionPerformed
+
+    private void jbtnIzaberiPutanjuDoFolderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIzaberiPutanjuDoFolderaActionPerformed
+        String putanjaDoFoldera = Kontroler.otvoriProzorZaIzborPutanje();
+
+        Kontroler.namestiPutanjuDoFoldera(putanjaDoFoldera);
+        jtxtPutanjaDoFoldera.setText(putanjaDoFoldera);
+    }//GEN-LAST:event_jbtnIzaberiPutanjuDoFolderaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

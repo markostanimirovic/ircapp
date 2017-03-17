@@ -199,7 +199,7 @@ public class Kontroler {
 
             Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme(), izabraniProgrami);
             Konzola.pokreniKonzolu(izabranaVM.getOperativniSistem());
-
+            
         }
     }
 
@@ -247,6 +247,16 @@ public class Kontroler {
             e.printStackTrace();
         }
         System.out.println("izasao");
+    }
+
+    public static boolean proveriDaLiSeUFolderuNalaziVagrantfile(String putanjaDoFoldera) {
+        File f = new File(putanjaDoFoldera + "\\Vagrantfile");
+        
+        if (f.exists()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

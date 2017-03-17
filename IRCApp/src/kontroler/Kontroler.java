@@ -5,7 +5,6 @@
  */
 package kontroler;
 
-import dao.DaoUser;
 import dao.DaoUserVMs;
 import dao.DaoVM;
 import dao.impl.DaoUserVMsImpl;
@@ -27,6 +26,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -112,7 +113,35 @@ public class Kontroler {
     }
 
     private static void generisiCheckBokseve() {
-        glavnaForma.generisiCheckBokseve(ListaPrograma.getInstance().getListaPrograma());
+        List<Program> lista = ListaPrograma.getInstance().getListaPrograma();
+        Collections.sort(lista, new Comparator<Program>() {
+            @Override
+            public int compare(Program o1, Program o2) {
+                String s1 = o1.getIme().toLowerCase();
+                String s2 = o2.getIme().toLowerCase();
+                return strcmp(s1, s2);
+            }
+
+        });
+
+        glavnaForma.generisiCheckBokseve(lista);
+    }
+
+    private static int strcmp(String s1, String s2) {
+        int duzina = s1.length() > s2.length() ? s2.length() : s1.length();
+        for (int i = 0; i < duzina; i++) {
+            if (s1.charAt(i) > s2.charAt(i)) {
+                return 1;
+            } else if (s1.charAt(i) < s2.charAt(i)) {
+                return -1;
+            }
+        }
+        if (s1.length() > s2.length()) {
+            return 1;
+        } else {
+            return -1;
+        }
+
     }
 
     public static void otvoriAdminLog() {
@@ -184,9 +213,19 @@ public class Kontroler {
 
     public static List<VirtuelnaMasina> vratiListuVMIzBaze() {
         listaVM = new LinkedList<>();
+
         try {
             DaoVM dao = new DaoVMImpl();
             listaVM = dao.getAllVM();
+
+            Collections.sort(listaVM, new Comparator<VirtuelnaMasina>() {
+                @Override
+                public int compare(VirtuelnaMasina o1, VirtuelnaMasina o2) {
+                    String s1 = o1.getIme().toLowerCase();
+                    String s2 = o2.getIme().toLowerCase();
+                    return strcmp(s1, s2);
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -204,7 +243,7 @@ public class Kontroler {
 
             Konzola.setKonzola(putanjaDoFoldera, izabranaVM.getIme(), izabraniProgrami);
             Konzola.pokreniKonzolu(izabranaVM.getOperativniSistem());
-            
+
         }
     }
 
@@ -241,14 +280,15 @@ public class Kontroler {
             Process p = Runtime.getRuntime().exec(komande);
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String red = null;
-            
+
             while ((red = reader.readLine()) != null) {
-                if (red.startsWith("\u001B"))
+                if (red.startsWith("\u001B")) {
                     red = red.substring(3);
+                }
                 progresInstalacije.setTextJTxtAreaKonzola(red + "\n");
                 System.out.println(red);
             }
-            
+
             progresInstalacije.setNewNameForJbtnKonzola("Ok");
             sacuvajVirtuelnuMasinuZaKorisnika();
         } catch (Exception e) {
@@ -260,26 +300,21 @@ public class Kontroler {
 
     public static boolean proveriDaLiSeUFolderuNalaziVagrantfile(String putanjaDoFoldera) {
         File f = new File(putanjaDoFoldera + "\\Vagrantfile");
-        
+
         if (f.exists()) {
             return true;
         } else {
             return false;
         }
     }
-    
+
     public static void setEnabledGlavnaForma(boolean b) {
         glavnaForma.setEnabled(b);
     }
 
     private static void sacuvajVirtuelnuMasinuZaKorisnika() {
         DaoUserVMs dao = new DaoUserVMsImpl();
-        dao.saveUserVMs(
-                new UserVMs(new User(AKTIVNI_KLIJENT),
-                izabranaVM.getIme(),
-                putanjaDoFoldera)
-        );
-        System.out.println("Proslo cuvanje korisnicke virtuelne masine u bazi.");
+        dao.saveUserVMs(new UserVMs(new User(AKTIVNI_KLIJENT), izabranaVM.getIme(), putanjaDoFoldera));
     }
 
 }

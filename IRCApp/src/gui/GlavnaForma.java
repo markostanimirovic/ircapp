@@ -392,6 +392,7 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         List<VirtuelnaMasina> listaSvihVM = new LinkedList<>();
         listaSvihVM = Kontroler.vratiListuVMIzBaze();
+        
         for (VirtuelnaMasina virtuelnaMasina : listaSvihVM) {
             dlm.addElement(virtuelnaMasina.getIme());
         }

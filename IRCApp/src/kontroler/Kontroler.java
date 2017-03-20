@@ -343,6 +343,13 @@ public class Kontroler {
             );
         }
     }
+    
+    public static List<UserVMs> vratiKorisnikoveVirtuelneMasine() {
+        listaKorisnikovihMasina = new LinkedList<>();
+        DaoUserVMs dao = new DaoUserVMsImpl();
+        listaKorisnikovihMasina = dao.getAllUsersVMs();
+        return listaKorisnikovihMasina;
+    }
 
     public static void zatvoriMojeMasine() {
         mojeMasine.dispose();

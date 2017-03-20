@@ -18,6 +18,7 @@ import gui.modeli.SingleRootFileSystemView;
 import domen.VirtuelnaMasina;
 import gui.AdminLog;
 import gui.GlavnaForma;
+import gui.MojeMasine;
 import gui.ProgresInstalacije;
 import java.awt.EventQueue;
 import java.io.BufferedReader;
@@ -55,6 +56,7 @@ public class Kontroler {
     public static final String AKTIVNI_KLIJENT;
     public static ProgresInstalacije progresInstalacije;
     public static Process p;
+    public static MojeMasine mojeMasine;
     
     static {
         listaCheckBoksevaProgrami = new ArrayList<>();
@@ -317,6 +319,16 @@ public class Kontroler {
     private static void sacuvajVirtuelnuMasinuZaKorisnika() {
         DaoUserVMs dao = new DaoUserVMsImpl();
         dao.saveUserVMs(new UserVMs(new User(AKTIVNI_KLIJENT), izabranaVM.getIme(), putanjaDoFoldera));
+    }
+
+    public static void napuniMojeMasine() {
+        //
+    }
+
+    public static void pokreniMojeMasineProzor() {
+        mojeMasine = new MojeMasine();
+        mojeMasine.setVisible(true);
+        mojeMasine.setLocationRelativeTo(null);
     }
 
 }

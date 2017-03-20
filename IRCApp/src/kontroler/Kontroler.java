@@ -322,19 +322,15 @@ public class Kontroler {
         dao.saveUserVMs(new UserVMs(new User(AKTIVNI_KLIJENT), izabranaVM.getIme(), putanjaDoFoldera));
     }
 
-    public static void napuniMojeMasine() {
-        //
-    }
-
     public static void pokreniMojeMasineProzor() {
         mojeMasine = new MojeMasine();
         mojeMasine.setVisible(true);
         mojeMasine.setLocationRelativeTo(null);
         
-        ucitajMasine();
+        ucitajMojeMasine();
     }
 
-    public static void ucitajMasine() {
+    public static void ucitajMojeMasine() {
         DaoUserVMs dao = new DaoUserVMsImpl();
         listaKorisnikovihMasina = dao.getAllUsersVMs();
         if (listaKorisnikovihMasina != null) {

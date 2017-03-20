@@ -171,7 +171,7 @@ public class MojeMasine extends javax.swing.JFrame {
     
     public void ucitajMasine(List<UserVMs> listaKorisnikovihMasina) {
         for (UserVMs masina : listaKorisnikovihMasina) {
-            dlm.addElement(masina.getNaziv());
+            dlm.addElement(masina.getNaziv() + " " + masina.getPath());
         }
     }
 }

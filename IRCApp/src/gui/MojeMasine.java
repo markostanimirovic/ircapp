@@ -5,7 +5,12 @@
  */
 package gui;
 
+import domen.UserVMs;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import kontroler.Kontroler;
 
 /**
@@ -19,8 +24,12 @@ public class MojeMasine extends javax.swing.JFrame {
      */
     public MojeMasine() {
         initComponents();
-        this.setResizable(false);
-        Kontroler.napuniMojeMasine();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Kontroler.zatvoriMojeMasine();
+            }
+        });
     }
 
     /**
@@ -38,8 +47,9 @@ public class MojeMasine extends javax.swing.JFrame {
         jbtnZaustavi = new javax.swing.JButton();
         jbtnObrisi = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Moje mašine");
+        setResizable(false);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -53,15 +63,30 @@ public class MojeMasine extends javax.swing.JFrame {
         jbtnPokreni.setMaximumSize(new java.awt.Dimension(84, 29));
         jbtnPokreni.setMinimumSize(new java.awt.Dimension(84, 29));
         jbtnPokreni.setPreferredSize(new java.awt.Dimension(84, 29));
+        jbtnPokreni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnPokreniActionPerformed(evt);
+            }
+        });
 
         jbtnZaustavi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnZaustavi.setText("Zaustavi");
         jbtnZaustavi.setPreferredSize(new java.awt.Dimension(84, 29));
+        jbtnZaustavi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnZaustaviActionPerformed(evt);
+            }
+        });
 
         jbtnObrisi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnObrisi.setText("Obriši");
         jbtnObrisi.setMaximumSize(new java.awt.Dimension(84, 29));
         jbtnObrisi.setPreferredSize(new java.awt.Dimension(84, 29));
+        jbtnObrisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnObrisiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,6 +122,39 @@ public class MojeMasine extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbtnPokreniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPokreniActionPerformed
+        String izabranaVM = jlMojeMasine.getSelectedValue();
+        if (izabranaVM == null) {
+            JOptionPane.showMessageDialog(
+                    this, "Morate da odaberete masinu za pokretanje!",
+                    "Upozorenje", JOptionPane.WARNING_MESSAGE);
+        } else {
+            Kontroler.pokreniMasinuMojeMasine(izabranaVM);
+        }
+    }//GEN-LAST:event_jbtnPokreniActionPerformed
+
+    private void jbtnZaustaviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnZaustaviActionPerformed
+        String izabranaVM = jlMojeMasine.getSelectedValue();
+        if (izabranaVM == null) {
+            JOptionPane.showMessageDialog(
+                    this, "Morate da odaberete masinu koju zelite da zaustavite!",
+                    "Upozorenje", JOptionPane.WARNING_MESSAGE);
+        } else {
+            Kontroler.zaustaviMasinuMojeMasine(izabranaVM);
+        }
+    }//GEN-LAST:event_jbtnZaustaviActionPerformed
+
+    private void jbtnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnObrisiActionPerformed
+        String izabranaVM = jlMojeMasine.getSelectedValue();
+        if (izabranaVM == null) {
+            JOptionPane.showMessageDialog(
+                    this, "Morate da odaberete masinu koju zelite da obrisete!",
+                    "Upozorenje", JOptionPane.WARNING_MESSAGE);
+        } else {
+            Kontroler.obrisiMasinuMojeMasine(izabranaVM);
+        }
+    }//GEN-LAST:event_jbtnObrisiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -109,4 +167,11 @@ public class MojeMasine extends javax.swing.JFrame {
     private javax.swing.JButton jbtnZaustavi;
     private javax.swing.JList<String> jlMojeMasine;
     // End of variables declaration//GEN-END:variables
+
+    
+    public void ucitajMasine(List<UserVMs> listaKorisnikovihMasina) {
+        for (UserVMs masina : listaKorisnikovihMasina) {
+            dlm.addElement(masina.getNaziv());
+        }
+    }
 }

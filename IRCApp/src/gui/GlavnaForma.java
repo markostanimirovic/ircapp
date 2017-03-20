@@ -330,7 +330,7 @@ public class GlavnaForma extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnIzaberiPutanjuDoFolderaActionPerformed
 
     private void jmnMasineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnMasineActionPerformed
-        Kontroler.pokreniMojeMasineProzor();
+        Kontroler.pokreniMojeMasineProzor();    
     }//GEN-LAST:event_jmnMasineActionPerformed
 
 

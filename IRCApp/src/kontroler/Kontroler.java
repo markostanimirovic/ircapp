@@ -53,6 +53,7 @@ public class Kontroler {
     private static VirtuelnaMasina izabranaVM;
     public static List<JCheckBox> listaCheckBoksevaProgrami;
     public static List<VirtuelnaMasina> listaVM;
+    public static List<UserVMs> listaKorisnikovihMasina;
     public static final String AKTIVNI_KLIJENT;
     public static ProgresInstalacije progresInstalacije;
     public static Process p;
@@ -329,6 +330,37 @@ public class Kontroler {
         mojeMasine = new MojeMasine();
         mojeMasine.setVisible(true);
         mojeMasine.setLocationRelativeTo(null);
+        
+        ucitajMasine();
     }
 
+    public static void ucitajMasine() {
+        DaoUserVMs dao = new DaoUserVMsImpl();
+        listaKorisnikovihMasina = dao.getAllUsersVMs();
+        if (listaKorisnikovihMasina != null) {
+            mojeMasine.ucitajMasine(listaKorisnikovihMasina);
+        } else {
+            JOptionPane.showMessageDialog(
+                    null, "Trenutno nemate ni jednu virtuelnu masinu.",
+                    "Upozorenje", JOptionPane.WARNING_MESSAGE
+            );
+        }
+    }
+
+    public static void zatvoriMojeMasine() {
+        mojeMasine.dispose();
+    }
+
+    public static void pokreniMasinuMojeMasine(String izabranaVM) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public static void zaustaviMasinuMojeMasine(String izabranaVM) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void obrisiMasinuMojeMasine(String izabranaVM) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

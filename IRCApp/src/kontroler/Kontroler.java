@@ -165,6 +165,7 @@ public class Kontroler {
         if (text.equals("vagrant") && password.equals("vagrant")) {
             //dodaj kod
             zatvoriAdminLog();
+            glavnaForma.prikaziCardAdministracija();
         } else {
             JOptionPane.showMessageDialog(adminLog, "Uneli ste pogrešne vrednosti! Pokušajte ponovo.", "Greška", JOptionPane.ERROR_MESSAGE);
             adminLog.praznaPolja();

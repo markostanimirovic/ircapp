@@ -135,4 +135,8 @@ public class ProgresInstalacije extends javax.swing.JFrame {
             jbtnPrekini.setText(naziv);
         }
     }
+
+    public void setNewnameForJLabelInstalacija(String text) {
+        jLabel1.setText(text);
+    }
 }

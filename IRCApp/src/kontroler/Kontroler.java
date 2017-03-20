@@ -54,7 +54,8 @@ public class Kontroler {
     public static List<VirtuelnaMasina> listaVM;
     public static final String AKTIVNI_KLIJENT;
     public static ProgresInstalacije progresInstalacije;
-
+    public static Process p;
+    
     static {
         listaCheckBoksevaProgrami = new ArrayList<>();
         AKTIVNI_KLIJENT = System.getProperty("user.name");
@@ -277,9 +278,9 @@ public class Kontroler {
         progresInstalacije.setLocationRelativeTo(glavnaForma);
         progresInstalacije.setVisible(true);
         try {
-            Process p = Runtime.getRuntime().exec(komande);
+            p = Runtime.getRuntime().exec(komande);
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String red = null;
+            String red;
 
             while ((red = reader.readLine()) != null) {
                 if (red.startsWith("\u001B")) {
@@ -290,6 +291,7 @@ public class Kontroler {
             }
 
             progresInstalacije.setNewNameForJbtnKonzola("Ok");
+            progresInstalacije.setNewnameForJLabelInstalacija("Instalacija završena!");
             sacuvajVirtuelnuMasinuZaKorisnika();
         } catch (Exception e) {
             progresInstalacije.setNewNameForJbtnKonzola("Greška");

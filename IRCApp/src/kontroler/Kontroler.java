@@ -180,7 +180,6 @@ public class Kontroler {
             // korisnik je uneo ispravno korisnicko ime i sifru
             zatvoriAdminLog();
             glavnaForma.prikaziCardAdministracija();
-            glavnaForma.jlblPodaciOAdministratoruSetText(admin.getIme() + " " + admin.getPrezime());
         }
     }
 
@@ -315,6 +314,7 @@ public class Kontroler {
                 System.out.println(red);
             }
             progresInstalacije.setNewNameForJbtnKonzola("Ok");
+
             if (poruka.equalsIgnoreCase("instalacija je u toku..")) {
                 progresInstalacije.setNewnameForJLabelInstalacija("Instalacija završena!");
                 sacuvajVirtuelnuMasinuZaKorisnika();
@@ -323,6 +323,7 @@ public class Kontroler {
             } else if (poruka.equalsIgnoreCase("Gasenje virtualne masine..")) {
                 progresInstalacije.setNewnameForJLabelInstalacija("Virtualna masina je uspjesno ugasena!");
             }
+
         } catch (Exception e) {
             progresInstalacije.setNewNameForJbtnKonzola("Greška");
             e.printStackTrace();
@@ -344,7 +345,7 @@ public class Kontroler {
         glavnaForma.setEnabled(b);
     }
 
-    private static void sacuvajVirtuelnuMasinuZaKorisnika() {
+    public static void sacuvajVirtuelnuMasinuZaKorisnika() {
         DaoUserVMs dao = new DaoUserVMsImpl();
         dao.saveUserVMs(new UserVMs(new User(AKTIVNI_KLIJENT), izabranaVM.getIme(), putanjaDoFoldera, korisnikovNazivVM));
     }

@@ -5,8 +5,6 @@
  */
 package gui;
 
-import java.awt.Color;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import kontroler.Kontroler;
 import util.Konzola;
@@ -112,6 +110,11 @@ public class ProgresInstalacije extends javax.swing.JFrame {
                 Kontroler.izbrisiFolder(Konzola.PUTANJA_DO_FOLDERA);
             }
         }
+        
+        if (jbtnPrekini.getText().equalsIgnoreCase("ok")) {
+            Kontroler.sacuvajVirtuelnuMasinuZaKorisnika();
+        }
+        
         kontroler.Kontroler.setEnabledGlavnaForma(true);
         this.dispose();
     }//GEN-LAST:event_jbtnPrekiniActionPerformed

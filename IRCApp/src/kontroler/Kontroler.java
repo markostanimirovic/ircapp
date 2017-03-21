@@ -5,11 +5,14 @@
  */
 package kontroler;
 
+import dao.DaoAdministrator;
 import dao.DaoUserVMs;
 import dao.DaoVM;
+import dao.impl.DaoAdministratorImpl;
 import dao.impl.DaoUserVMsImpl;
 import dao.impl.DaoVMImpl;
 import db.ConnectionFactory;
+import domen.Administrator;
 import domen.ListaPrograma;
 import domen.Program;
 import domen.User;
@@ -58,7 +61,7 @@ public class Kontroler {
     public static ProgresInstalacije progresInstalacije;
     public static Process p;
     public static MojeMasine mojeMasine;
-    
+
     static {
         listaCheckBoksevaProgrami = new ArrayList<>();
         AKTIVNI_KLIJENT = System.getProperty("user.name");
@@ -145,7 +148,6 @@ public class Kontroler {
         } else {
             return -1;
         }
-
     }
 
     public static void otvoriAdminLog() {
@@ -161,14 +163,21 @@ public class Kontroler {
         adminLog = null;
     }
 
-    public static void autentifikacija(String text, String password) {
-        if (text.equals("vagrant") && password.equals("vagrant")) {
-            //dodaj kod
+    public static void autentifikacija(String text, String password) throws Exception {
+
+        Administrator admin = null;
+        try {
+            DaoAdministrator daoAdministrator = new DaoAdministratorImpl();
+            admin = daoAdministrator.find(text, password);
+        } catch (Exception e) {
+            throw e;
+        }
+
+        if (admin != null) {
+            // korisnik je uneo ispravno korisnicko ime i sifru
             zatvoriAdminLog();
             glavnaForma.prikaziCardAdministracija();
-        } else {
-            JOptionPane.showMessageDialog(adminLog, "Uneli ste pogrešne vrednosti! Pokušajte ponovo.", "Greška", JOptionPane.ERROR_MESSAGE);
-            adminLog.praznaPolja();
+            glavnaForma.jlblPodaciOAdministratoruSetText(admin.getIme() + " " + admin.getPrezime());
         }
     }
 
@@ -327,7 +336,7 @@ public class Kontroler {
         mojeMasine = new MojeMasine();
         mojeMasine.setVisible(true);
         mojeMasine.setLocationRelativeTo(null);
-        
+
         ucitajMojeMasine();
     }
 
@@ -343,7 +352,7 @@ public class Kontroler {
             );
         }
     }
-    
+
     public static List<UserVMs> vratiKorisnikoveVirtuelneMasine() {
         listaKorisnikovihMasina = new LinkedList<>();
         DaoUserVMs dao = new DaoUserVMsImpl();
@@ -358,7 +367,7 @@ public class Kontroler {
     public static void pokreniMasinuMojeMasine(String izabranaVM) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     public static void zaustaviMasinuMojeMasine(String izabranaVM) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -366,5 +375,5 @@ public class Kontroler {
     public static void obrisiMasinuMojeMasine(String izabranaVM) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

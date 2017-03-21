@@ -18,7 +18,7 @@ public abstract class DaoAdministrator {
     protected final String tableName = "administrators";
     
     public abstract List<Administrator> getAll();
-    public abstract Administrator find(String username, String password);
+    public abstract Administrator find(String username, String password) throws Exception;
     public abstract void save(Administrator admin);
     public abstract void delete(Administrator admin);
     public abstract void update(Administrator admin);

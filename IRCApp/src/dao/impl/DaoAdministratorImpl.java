@@ -56,12 +56,9 @@ public class DaoAdministratorImpl extends DaoAdministrator {
     }
     
     @Override
-    public Administrator find(String username, String password) {
+    public Administrator find(String username, String password) throws Exception {
         
         String query = "SELECT username, password, ime, prezime FROM " + tableName + " WHERE username='"+username.trim()+"' AND password='"+password.trim()+"'";
-        
-        
-        Administrator admin = new Administrator();
         
         try {
             Statement stmt = conn.createStatement();
@@ -70,15 +67,20 @@ public class DaoAdministratorImpl extends DaoAdministrator {
             int brojRedova = 0;
             
             while (rs.next()) {                
-                // TODO: adassd
+                brojRedova++;
+            }
+            if (brojRedova == 0) {
+                throw new Exception("Uneli ste nepostojeće korisničko ime ili šifru!");
+            } else if (brojRedova == 1) {
+                rs.absolute(1);
+                return new Administrator(rs.getString("ime"), rs.getString("prezime"), rs.getString("username"), rs.getString("password"));
+            } else {
+                throw new Exception("Postoji više administratora sa zadatim korisničkim imenom ili šifrom!");
             }
             
-        } catch (SQLException ex) {
-            return null;
+        } catch (SQLException e) {
+            throw e;
         }
-        
-        return admin;
-        
     }
 
     @Override

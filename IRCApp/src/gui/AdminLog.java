@@ -8,6 +8,8 @@ package gui;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -172,7 +174,11 @@ public class AdminLog extends javax.swing.JDialog {
             for (int i = 0; i < jpassPass.getPassword().length; i++) {
                 pass += jpassPass.getPassword()[i];
             }
-            kontroler.Kontroler.autentifikacija(jtxtUser.getText(), pass);
+            try {
+                kontroler.Kontroler.autentifikacija(jtxtUser.getText(), pass);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Greška", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }

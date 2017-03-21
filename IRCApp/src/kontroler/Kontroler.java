@@ -315,7 +315,7 @@ public class Kontroler {
 
             progresInstalacije.setNewNameForJbtnKonzola("Ok");
             progresInstalacije.setNewnameForJLabelInstalacija("Instalacija završena!");
-            sacuvajVirtuelnuMasinuZaKorisnika();
+            
         } catch (Exception e) {
             progresInstalacije.setNewNameForJbtnKonzola("Greška");
             e.printStackTrace();
@@ -337,7 +337,7 @@ public class Kontroler {
         glavnaForma.setEnabled(b);
     }
 
-    private static void sacuvajVirtuelnuMasinuZaKorisnika() {
+    public static void sacuvajVirtuelnuMasinuZaKorisnika() {
         DaoUserVMs dao = new DaoUserVMsImpl();
         dao.saveUserVMs(new UserVMs(new User(AKTIVNI_KLIJENT), izabranaVM.getIme(), putanjaDoFoldera, korisnikovNazivVM));
     }

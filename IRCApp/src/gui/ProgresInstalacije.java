@@ -5,9 +5,8 @@
  */
 package gui;
 
-import java.awt.Color;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import kontroler.Kontroler;
 import util.Konzola;
 
 /**
@@ -104,15 +103,20 @@ public class ProgresInstalacije extends javax.swing.JFrame {
 
     private void jbtnPrekiniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPrekiniActionPerformed
 
-        if(jbtnPrekini.getText().equalsIgnoreCase("stop")) {
+        if (jbtnPrekini.getText().equalsIgnoreCase("stop")) {
             int izbor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da prekinete proces instalacije?", "Prekid instalacije", JOptionPane.YES_NO_OPTION);
-            if(izbor == JOptionPane.YES_OPTION) {           
+            if (izbor == JOptionPane.YES_OPTION) {
                 Konzola.prekiniIzvrsavanjeKonzole();
                 Konzola.izbrisiFolder();
             }
         }
-            kontroler.Kontroler.setEnabledGlavnaForma(true);
-            this.dispose();
+        
+        if (jbtnPrekini.getText().equalsIgnoreCase("ok")) {
+            Kontroler.sacuvajVirtuelnuMasinuZaKorisnika();
+        }
+        
+        kontroler.Kontroler.setEnabledGlavnaForma(true);
+        this.dispose();
     }//GEN-LAST:event_jbtnPrekiniActionPerformed
 
     /**

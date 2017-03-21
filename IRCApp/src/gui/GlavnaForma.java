@@ -56,6 +56,8 @@ public class GlavnaForma extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jtxtPutanjaDoFoldera = new javax.swing.JTextField();
         jbtnIzaberiPutanjuDoFoldera = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jtxtKorisnikovNazivVM = new javax.swing.JTextField();
         jpnlVM = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -101,15 +103,30 @@ public class GlavnaForma extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setText("Naziv virtualne masine:");
+
+        jtxtKorisnikovNazivVM.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtxtKorisnikovNazivVM.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jtxtKorisnikovNazivVM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtKorisnikovNazivVMActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpnlPutanjaLayout = new javax.swing.GroupLayout(jpnlPutanja);
         jpnlPutanja.setLayout(jpnlPutanjaLayout);
         jpnlPutanjaLayout.setHorizontalGroup(
             jpnlPutanjaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnlPutanjaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtxtPutanjaDoFoldera, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE)
+                .addGroup(jpnlPutanjaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpnlPutanjaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtxtPutanjaDoFoldera)
+                    .addComponent(jtxtKorisnikovNazivVM))
                 .addGap(18, 18, 18)
                 .addComponent(jbtnIzaberiPutanjuDoFoldera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -118,14 +135,16 @@ public class GlavnaForma extends javax.swing.JFrame {
             jpnlPutanjaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnlPutanjaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpnlPutanjaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpnlPutanjaLayout.createSequentialGroup()
-                        .addGroup(jpnlPutanjaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtxtPutanjaDoFoldera, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jpnlPutanjaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jpnlPutanjaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtxtPutanjaDoFoldera, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jbtnIzaberiPutanjuDoFoldera, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpnlPutanjaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtKorisnikovNazivVM, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -198,7 +217,7 @@ public class GlavnaForma extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpnlVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
                     .addComponent(jScrollPane5)
                     .addComponent(jScrollPane3)))
         );
@@ -286,6 +305,7 @@ public class GlavnaForma extends javax.swing.JFrame {
 
     private void jbtnInstalacijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnInstalacijaActionPerformed
         String vm = listVM.getSelectedValue();
+        String korisnikovoImeVM = jtxtKorisnikovNazivVM.getText();
         if (vm == null || jtxtPutanjaDoFoldera.getText().equals("")) {
             JOptionPane.showMessageDialog(
                     this, "Odaberite virtuelnu mašinu i putanju do foldera u kome želite da je sačuvate!",
@@ -298,8 +318,13 @@ public class GlavnaForma extends javax.swing.JFrame {
             );
 
             jtxtPutanjaDoFoldera.setText("");
-        } else {
-            Kontroler.instalacija(vm);
+        } else if (korisnikovoImeVM.equals("") || korisnikovoImeVM.length() < 3){
+            JOptionPane.showMessageDialog(
+                    this, "Naziv Vase virtualne masine mora imati bar tri karaktera.",
+                    "Greška", JOptionPane.ERROR_MESSAGE
+            );
+        }else {
+            Kontroler.instalacija(vm, korisnikovoImeVM);
         }
 
     }//GEN-LAST:event_jbtnInstalacijaActionPerformed
@@ -333,9 +358,14 @@ public class GlavnaForma extends javax.swing.JFrame {
         Kontroler.pokreniMojeMasineProzor();    
     }//GEN-LAST:event_jmnMasineActionPerformed
 
+    private void jtxtKorisnikovNazivVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtKorisnikovNazivVMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtKorisnikovNazivVMActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card0;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -357,6 +387,7 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JPanel jpnlInstalacija;
     private javax.swing.JPanel jpnlPutanja;
     private javax.swing.JPanel jpnlVM;
+    private javax.swing.JTextField jtxtKorisnikovNazivVM;
     private javax.swing.JTextArea jtxtOpis;
     private javax.swing.JTextField jtxtPutanjaDoFoldera;
     private javax.swing.JList<String> listVM;

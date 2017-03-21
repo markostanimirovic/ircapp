@@ -10,19 +10,29 @@ package domen;
  * @author filip
  */
 public class UserVMs {
-    
+
     private User user;
     private String naziv;
+    private String userNaziv;
     private String path;
-    
-    public UserVMs(User user, String naziv, String path) {
+
+    public UserVMs(User user, String naziv, String path, String userNaziv) {
         this.naziv = naziv;
         this.path = path;
         this.user = user;
+        this.userNaziv = userNaziv;
     }
-    
-    public UserVMs(){
-    
+
+    public UserVMs() {
+
+    }
+
+    public String getUserNaziv() {
+        return userNaziv;
+    }
+
+    public void setUserNaziv(String userNaziv) {
+        this.userNaziv = userNaziv;
     }
 
     public User getUser() {
@@ -32,7 +42,7 @@ public class UserVMs {
     public void setUser(User user) {
         this.user = user;
     }
-    
+
     public String getNaziv() {
         return naziv;
     }
@@ -51,7 +61,7 @@ public class UserVMs {
 
     @Override
     public String toString() {
-        return "\nNaziv: "+getNaziv() + " \nPutanja: "+getPath()+ " \nUsername: "+getUser().getUsername();
+        return "\nNaziv: " + getNaziv() + " \nPutanja: " + getPath() + " \nUsername: " + getUser().getUsername();
     }
-    
+
 }

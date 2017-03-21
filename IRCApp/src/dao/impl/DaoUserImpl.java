@@ -56,12 +56,31 @@ public class DaoUserImpl extends DaoUser{
 
     @Override
     public void deleteUser(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "DELETE FROM users WHERE username = ?";
+        PreparedStatement prepared_stat;
+        try {
+            prepared_stat = connection.prepareStatement(query);
+            prepared_stat.setString(1, user.getUsername());
+            prepared_stat.execute();
+            prepared_stat.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override
     public void updateUser(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // Nepotrebno zasad
+        /*String query = "UPDATE users SET username = ? WHERE username = ?";
+        PreparedStatement prepared_stat;
+        try {
+            prepared_stat = connection.prepareStatement(query);
+            prepared_stat.setString(1, user.getUsername());
+            prepared_stat.execute();
+            prepared_stat.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }*/
     }
 
     @Override

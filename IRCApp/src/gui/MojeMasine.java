@@ -6,6 +6,7 @@
 package gui;
 
 import domen.UserVMs;
+import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.LinkedList;
@@ -168,7 +169,7 @@ public class MojeMasine extends javax.swing.JFrame {
                     this, "Morate da odaberete masinu za pokretanje!",
                     "Upozorenje", JOptionPane.WARNING_MESSAGE);
         } else {
-            Kontroler.pokreniMasinuMojeMasine(izabranaVM);
+            Kontroler.pokreniMasinuMojeMasine(jtxtPutanja.getText());
         }
     }//GEN-LAST:event_jbtnPokreniActionPerformed
 
@@ -179,7 +180,7 @@ public class MojeMasine extends javax.swing.JFrame {
                     this, "Morate da odaberete masinu koju zelite da zaustavite!",
                     "Upozorenje", JOptionPane.WARNING_MESSAGE);
         } else {
-            Kontroler.zaustaviMasinuMojeMasine(izabranaVM);
+            Kontroler.zaustaviMasinuMojeMasine(jtxtPutanja.getText());
         }
     }//GEN-LAST:event_jbtnZaustaviActionPerformed
 
@@ -190,7 +191,7 @@ public class MojeMasine extends javax.swing.JFrame {
                     this, "Morate da odaberete masinu koju zelite da obrisete!",
                     "Upozorenje", JOptionPane.WARNING_MESSAGE);
         } else {
-            Kontroler.obrisiMasinuMojeMasine(izabranaVM);
+            Kontroler.obrisiMasinuMojeMasine(jtxtPutanja.getText());
         }
     }//GEN-LAST:event_jbtnObrisiActionPerformed
 

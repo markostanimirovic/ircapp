@@ -16,6 +16,6 @@ public abstract class DaoUserVMs {
     public abstract List<UserVMs> getAllUsersVMs();
     public abstract UserVMs getUserVMs();
     public abstract void saveUserVMs(UserVMs user_vms);
-    public abstract void deleteUserVMs(UserVMs user_vms);
+    public abstract void deleteUserVMs(String path);
     public abstract void updateUserVMs(UserVMs user_vms, String new_path);
 }

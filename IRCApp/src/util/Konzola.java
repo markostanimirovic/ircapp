@@ -8,6 +8,7 @@ package util;
 import domen.Program;
 import java.io.File;
 import java.util.List;
+import kontroler.Kontroler;
 
 
 
@@ -23,7 +24,7 @@ public class Konzola {
 
     private static final String TASK_KILL = " && taskkill /f /im cmd.exe";
     private static final String VMREPO = "";
-    private static String PUTANJA_DO_FOLDERA;
+    public static String PUTANJA_DO_FOLDERA;
     private static final String VAGRANT_UP = "vagrant up";
     private static final String VAGRANT_INIT = "vagrant init ";
     private static final String CMD_START = "cmd /c \"";
@@ -86,12 +87,12 @@ public class Konzola {
         while (!file.exists())
                 ;
 
-        Runnable runnable = new InstallationThread(komande);
+        Runnable runnable = new InstallationThread(komande, "Instalacija je u toku..");
         Thread thread = new Thread(runnable);
         thread.start();
     }
 
-    private static void pokreniProcesCMD(String komande) {
+    public static void pokreniProcesCMD(String komande) {
         try {
             p = Runtime.getRuntime().exec(komande);
         } catch (Exception e) {
@@ -100,22 +101,9 @@ public class Konzola {
     }
 
     public static void prekiniIzvrsavanjeKonzole() {
+        System.out.println("prvi: "+p + " drugi: "+ Kontroler.p);
         p.destroy();
         kontroler.Kontroler.p.destroy();
-    }
-
-    public static void izbrisiFolder() {
-        File f = new File(PUTANJA_DO_FOLDERA);
-        obrisiFajloveIzFoldera(f);
-    }
-
-    private static void obrisiFajloveIzFoldera(File f) {
-        if (f.isDirectory()) {
-            for (File f1 : f.listFiles()) {
-                obrisiFajloveIzFoldera(f1);
-            }
-        }
-        f.delete();
     }
 
 }

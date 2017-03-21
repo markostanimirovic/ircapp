@@ -12,14 +12,16 @@ package util;
 public class InstallationThread implements Runnable {
 
     private String komande;
+    private String poruka;
 
-    public InstallationThread(String komande) {
+    public InstallationThread(String komande, String poruka) {
         this.komande = komande;
+        this.poruka = poruka;
     }
 
     @Override
     public void run() {
-        kontroler.Kontroler.pokreniInstalaciju(komande);
+        kontroler.Kontroler.pokreniInstalaciju(komande, poruka);
     }
 
 }

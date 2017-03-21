@@ -8,6 +8,7 @@ package gui;
 import java.awt.Color;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import kontroler.Kontroler;
 import util.Konzola;
 
 /**
@@ -35,18 +36,16 @@ public class ProgresInstalacije extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jbtnPrekini = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtxtAreaKonzola = new javax.swing.JTextArea();
+        jPanel1 = new javax.swing.JPanel();
+        jTxtPoruka = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Instalacija");
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Instalacija je u toku...");
 
         jbtnPrekini.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnPrekini.setText("Stop");
@@ -69,28 +68,30 @@ public class ProgresInstalacije extends javax.swing.JFrame {
         jtxtAreaKonzola.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jScrollPane1.setViewportView(jtxtAreaKonzola);
 
+        jTxtPoruka.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtPoruka.setText("Instalacija je u toku...");
+        jPanel1.add(jTxtPoruka);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(238, 238, 238)
                 .addComponent(jbtnPrekini, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(238, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -104,15 +105,15 @@ public class ProgresInstalacije extends javax.swing.JFrame {
 
     private void jbtnPrekiniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPrekiniActionPerformed
 
-        if(jbtnPrekini.getText().equalsIgnoreCase("stop")) {
+        if (jbtnPrekini.getText().equalsIgnoreCase("stop")) {
             int izbor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da prekinete proces instalacije?", "Prekid instalacije", JOptionPane.YES_NO_OPTION);
-            if(izbor == JOptionPane.YES_OPTION) {           
+            if (izbor == JOptionPane.YES_OPTION) {
                 Konzola.prekiniIzvrsavanjeKonzole();
-                Konzola.izbrisiFolder();
+                Kontroler.izbrisiFolder(Konzola.PUTANJA_DO_FOLDERA);
             }
         }
-            kontroler.Kontroler.setEnabledGlavnaForma(true);
-            this.dispose();
+        kontroler.Kontroler.setEnabledGlavnaForma(true);
+        this.dispose();
     }//GEN-LAST:event_jbtnPrekiniActionPerformed
 
     /**
@@ -123,9 +124,14 @@ public class ProgresInstalacije extends javax.swing.JFrame {
         jtxtAreaKonzola.setCaretPosition(jtxtAreaKonzola.getText().length());
     }
 
+    public void setTextJTxtPoruka(String poruka) {
+        jTxtPoruka.setText(poruka);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jTxtPoruka;
     private javax.swing.JButton jbtnPrekini;
     private javax.swing.JTextArea jtxtAreaKonzola;
     // End of variables declaration//GEN-END:variables
@@ -137,6 +143,6 @@ public class ProgresInstalacije extends javax.swing.JFrame {
     }
 
     public void setNewnameForJLabelInstalacija(String text) {
-        jLabel1.setText(text);
+        jTxtPoruka.setText(text);
     }
 }

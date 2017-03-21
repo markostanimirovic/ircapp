@@ -42,6 +42,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import util.EnumConnectionType;
 import util.FileIO;
+import util.InstallationThread;
 import util.Konzola;
 
 /**
@@ -62,7 +63,8 @@ public class Kontroler {
     public static Process p;
     public static MojeMasine mojeMasine;
     private static String korisnikovNazivVM;
-    
+    public static Thread thread;
+
     static {
         listaCheckBoksevaProgrami = new ArrayList<>();
         AKTIVNI_KLIJENT = System.getProperty("user.name");
@@ -249,7 +251,7 @@ public class Kontroler {
 
     public static void instalacija(String imeVirtuelneMasime, String korisnikov_Naziv_VM) {
         DaoUserVMsImpl dao = new DaoUserVMsImpl();
-        if(dao.user_vm_name_exist(korisnikov_Naziv_VM)) {
+        if (dao.user_vm_name_exist(korisnikov_Naziv_VM)) {
             JOptionPane.showMessageDialog(
                     glavnaForma, "Naziv virtualne masine vec postoji. Odaberite novi naziv.",
                     "Greška", JOptionPane.ERROR_MESSAGE
@@ -258,7 +260,7 @@ public class Kontroler {
         }
         korisnikovNazivVM = korisnikov_Naziv_VM;
         izabranaVM = pronadjiVMNaOsnovuImena(imeVirtuelneMasime);
-        
+
         int izbor = JOptionPane.showConfirmDialog(glavnaForma,
                 "Potvrdite pokretanje virtuelne mašine.", "Potvrda", JOptionPane.YES_NO_OPTION);
 
@@ -296,15 +298,15 @@ public class Kontroler {
         }
     }
 
-    public static void pokreniInstalaciju(String komande) {
+    public static void pokreniInstalaciju(String komande, String poruka) {
         progresInstalacije = new ProgresInstalacije();
-        progresInstalacije.setLocationRelativeTo(glavnaForma);
+        progresInstalacije.setLocationRelativeTo(null);
+        progresInstalacije.setTextJTxtPoruka(poruka);
         progresInstalacije.setVisible(true);
         try {
             p = Runtime.getRuntime().exec(komande);
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String red;
-
             while ((red = reader.readLine()) != null) {
                 if (red.startsWith("\u001B")) {
                     red = red.substring(3);
@@ -312,10 +314,15 @@ public class Kontroler {
                 progresInstalacije.setTextJTxtAreaKonzola(red + "\n");
                 System.out.println(red);
             }
-
             progresInstalacije.setNewNameForJbtnKonzola("Ok");
-            progresInstalacije.setNewnameForJLabelInstalacija("Instalacija završena!");
-            sacuvajVirtuelnuMasinuZaKorisnika();
+            if (poruka.equalsIgnoreCase("instalacija je u toku..")) {
+                progresInstalacije.setNewnameForJLabelInstalacija("Instalacija završena!");
+                sacuvajVirtuelnuMasinuZaKorisnika();
+            } else if (poruka.equalsIgnoreCase("Pokretanje virtualne masine..")) {
+                progresInstalacije.setNewnameForJLabelInstalacija("Virtualna masina je uspjesno pokrenuta!");
+            } else if (poruka.equalsIgnoreCase("Gasenje virtualne masine..")) {
+                progresInstalacije.setNewnameForJLabelInstalacija("Virtualna masina je uspjesno ugasena!");
+            }
         } catch (Exception e) {
             progresInstalacije.setNewNameForJbtnKonzola("Greška");
             e.printStackTrace();
@@ -374,16 +381,47 @@ public class Kontroler {
         mojeMasine.dispose();
     }
 
-    public static void pokreniMasinuMojeMasine(String izabranaVM) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static void pokreniMasinuMojeMasine(String putanjaDoVM) {
+        String komande = "cmd /c \"" + " cd " + putanjaDoVM + " && " + "vagrant up" + " && taskkill /f /im cmd.exe" + "\" ";
+        Runnable runnable = new InstallationThread(komande, "Pokretanje virtualne masine..");
+        thread = new Thread(runnable);
+        thread.start();
     }
 
-    public static void zaustaviMasinuMojeMasine(String izabranaVM) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static void zaustaviMasinuMojeMasine(String putanjaDoVM) {
+        String komande = "cmd /c \"" + " cd " + putanjaDoVM + " && " + "vagrant halt" + " && taskkill /f /im cmd.exe" + "\" ";
+        Runnable runnable = new InstallationThread(komande, "Gasenje virtualne masine..");
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
-    public static void obrisiMasinuMojeMasine(String izabranaVM) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static void obrisiMasinuMojeMasine(String putanjaDoVM) {
+        System.out.println("poceo");
+        try {
+            p = Runtime.getRuntime().exec("cmd /c \"" + " cd " + putanjaDoVM + " && " + "vagrant halt" + " && taskkill /f /im cmd.exe" + "\" ");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("putanja: " + putanjaDoVM);
+        DaoUserVMs dao = new DaoUserVMsImpl();
+        dao.deleteUserVMs(putanjaDoVM);
+        izbrisiFolder(putanjaDoVM);
+        System.out.println("zavrsio");
+    }
+
+    public static void izbrisiFolder(String putanja) {
+        File f = new File(putanja);
+        obrisiFajloveIzFoldera(f);
+    }
+
+    private static void obrisiFajloveIzFoldera(File f) {
+        if (f.isDirectory()) {
+            for (File f1 : f.listFiles()) {
+                obrisiFajloveIzFoldera(f1);
+            }
+        }
+        f.delete();
+        System.out.println("kraj");
     }
 
 }

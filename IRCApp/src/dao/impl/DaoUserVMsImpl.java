@@ -98,14 +98,15 @@ public class DaoUserVMsImpl extends DaoUserVMs{
     }
 
     @Override
-    public void deleteUserVMs(UserVMs user_vms) {
+    public void deleteUserVMs(String path) {
         String query = "DELETE FROM user_vm WHERE path = ?";
         PreparedStatement prepared_stat;
         try {
             prepared_stat = connection.prepareStatement(query);
-            prepared_stat.setString(1, user_vms.getPath());
+            prepared_stat.setString(1, path);
             prepared_stat.execute();
             prepared_stat.close();
+            System.out.println("obrisao");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

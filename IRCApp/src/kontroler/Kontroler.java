@@ -178,7 +178,6 @@ public class Kontroler {
             // korisnik je uneo ispravno korisnicko ime i sifru
             zatvoriAdminLog();
             glavnaForma.prikaziCardAdministracija();
-            glavnaForma.jlblPodaciOAdministratoruSetText(admin.getIme() + " " + admin.getPrezime());
         }
     }
 

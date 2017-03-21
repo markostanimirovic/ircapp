@@ -54,6 +54,25 @@ public class DaoUserVMsImpl extends DaoUserVMs{
             return null;
         }
     }
+    
+    public boolean user_vm_name_exist(String userNaziv){
+        String query = "SELECT * FROM user_vm WHERE username = ?";
+        PreparedStatement prepared_stat;
+        try {
+            prepared_stat = connection.prepareStatement(query);
+            prepared_stat.setString(1, kontroler.Kontroler.AKTIVNI_KLIJENT);
+            ResultSet rs = prepared_stat.executeQuery();
+            while(rs.next()){
+                if(rs.getString("userNaziv").equals(userNaziv)){
+                    return true;
+                }
+            }
+            return false;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
 
     @Override
     public UserVMs getUserVMs() {
@@ -62,14 +81,15 @@ public class DaoUserVMsImpl extends DaoUserVMs{
 
     @Override
     public void saveUserVMs(UserVMs user_vms) {
-        String query = "INSERT INTO user_vm(username, naziv, path)" 
-                + "values(?, ?, ?)";
+        String query = "INSERT INTO user_vm(username, naziv, userNaziv, path)" 
+                + "values(?, ?, ?, ?)";
         PreparedStatement prepared_stat;
         try {
             prepared_stat = connection.prepareStatement(query);
             prepared_stat.setString(1, user_vms.getUser().getUsername());
             prepared_stat.setString(2, user_vms.getNaziv());
-            prepared_stat.setString(3, user_vms.getPath());
+            prepared_stat.setString(3, user_vms.getUserNaziv());
+            prepared_stat.setString(4, user_vms.getPath());
             prepared_stat.execute();
             prepared_stat.close();
         } catch (SQLException ex) {
@@ -79,19 +99,39 @@ public class DaoUserVMsImpl extends DaoUserVMs{
 
     @Override
     public void deleteUserVMs(UserVMs user_vms) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "DELETE FROM user_vm WHERE path = ?";
+        PreparedStatement prepared_stat;
+        try {
+            prepared_stat = connection.prepareStatement(query);
+            prepared_stat.setString(1, user_vms.getPath());
+            prepared_stat.execute();
+            prepared_stat.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override
-    public void updateUserVMs(UserVMs user_vms) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateUserVMs(UserVMs user_vms, String new_path ) {
+        String query = "UPDATE user_vm SET path = ? WHERE path = ?";
+        PreparedStatement prepared_stat;
+        try {
+            prepared_stat = connection.prepareStatement(query);
+            prepared_stat.setString(1, new_path);
+            prepared_stat.setString(2, user_vms.getPath());
+            prepared_stat.execute();
+            prepared_stat.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     private UserVMs getCurrentRow(ResultSet rs) throws SQLException {
         String naziv = rs.getString("naziv");
         String path = rs.getString("path");
+        String userNaziv = rs.getString("userNaziv");
         User user = new User(rs.getString("username"));
-        return new UserVMs(user, naziv, path);
+        return new UserVMs(user, naziv, path, userNaziv);
 
     }
     

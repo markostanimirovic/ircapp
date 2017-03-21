@@ -198,7 +198,7 @@ public class MojeMasine extends javax.swing.JFrame {
         List<UserVMs> l = new LinkedList<>();
         l = Kontroler.vratiKorisnikoveVirtuelneMasine();
         for (UserVMs userVMs : l) {
-            if(userVMs.getNaziv().equals(jlMojeMasine.getSelectedValue())) {
+            if(userVMs.getUserNaziv().equals(jlMojeMasine.getSelectedValue())) {
                 jtxtPutanja.setText(userVMs.getPath());
             }
         }
@@ -235,7 +235,7 @@ public class MojeMasine extends javax.swing.JFrame {
     
     public void ucitajMasine(List<UserVMs> listaKorisnikovihMasina) {
         for (UserVMs masina : listaKorisnikovihMasina) {
-            dlm.addElement(masina.getNaziv());
+            dlm.addElement(masina.getUserNaziv());
         }
     }
 }

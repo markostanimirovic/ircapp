@@ -61,7 +61,8 @@ public class Kontroler {
     public static ProgresInstalacije progresInstalacije;
     public static Process p;
     public static MojeMasine mojeMasine;
-
+    private static String korisnikovNazivVM;
+    
     static {
         listaCheckBoksevaProgrami = new ArrayList<>();
         AKTIVNI_KLIJENT = System.getProperty("user.name");
@@ -246,9 +247,18 @@ public class Kontroler {
         return listaVM;
     }
 
-    public static void instalacija(String imeVirtuelneMasime) {
+    public static void instalacija(String imeVirtuelneMasime, String korisnikov_Naziv_VM) {
+        DaoUserVMsImpl dao = new DaoUserVMsImpl();
+        if(dao.user_vm_name_exist(korisnikov_Naziv_VM)) {
+            JOptionPane.showMessageDialog(
+                    glavnaForma, "Naziv virtualne masine vec postoji. Odaberite novi naziv.",
+                    "Greška", JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
+        korisnikovNazivVM = korisnikov_Naziv_VM;
         izabranaVM = pronadjiVMNaOsnovuImena(imeVirtuelneMasime);
-
+        
         int izbor = JOptionPane.showConfirmDialog(glavnaForma,
                 "Potvrdite pokretanje virtuelne mašine.", "Potvrda", JOptionPane.YES_NO_OPTION);
 
@@ -329,7 +339,7 @@ public class Kontroler {
 
     private static void sacuvajVirtuelnuMasinuZaKorisnika() {
         DaoUserVMs dao = new DaoUserVMsImpl();
-        dao.saveUserVMs(new UserVMs(new User(AKTIVNI_KLIJENT), izabranaVM.getIme(), putanjaDoFoldera));
+        dao.saveUserVMs(new UserVMs(new User(AKTIVNI_KLIJENT), izabranaVM.getIme(), putanjaDoFoldera, korisnikovNazivVM));
     }
 
     public static void pokreniMojeMasineProzor() {

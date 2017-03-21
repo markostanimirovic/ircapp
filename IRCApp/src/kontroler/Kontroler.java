@@ -217,7 +217,7 @@ public class Kontroler {
 
         String putanja = "";
 
-        if (opcija == JFileChooser.APPROVE_OPTION) {
+        if (opcija == JFileChooser.APPROVE_OPTION && !fc.getSelectedFile().getName().endsWith("Documents") && !fc.getSelectedFile().getName().endsWith("IRC")) {
             putanja = fc.getSelectedFile().getAbsolutePath();
         } else {
             putanja = "";

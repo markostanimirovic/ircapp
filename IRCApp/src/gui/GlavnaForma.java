@@ -112,6 +112,11 @@ public class GlavnaForma extends javax.swing.JFrame {
         jtxtPutanjaDoFoldera.setEditable(false);
         jtxtPutanjaDoFoldera.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jtxtPutanjaDoFoldera.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jtxtPutanjaDoFoldera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtPutanjaDoFolderaActionPerformed(evt);
+            }
+        });
 
         jbtnIzaberiPutanjuDoFoldera.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnIzaberiPutanjuDoFoldera.setText("...");
@@ -533,6 +538,10 @@ public class GlavnaForma extends javax.swing.JFrame {
     private void jmitemAdminLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmitemAdminLogOutActionPerformed
         prikaziCard0();
     }//GEN-LAST:event_jmitemAdminLogOutActionPerformed
+
+    private void jtxtPutanjaDoFolderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtPutanjaDoFolderaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtPutanjaDoFolderaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

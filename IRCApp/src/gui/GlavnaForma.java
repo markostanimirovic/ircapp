@@ -70,6 +70,20 @@ public class GlavnaForma extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jpnlInstalacija = new javax.swing.JPanel();
         jbtnInstalacija = new javax.swing.JButton();
+        cardAdministracija = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jpnlDodavanjeVM = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jtxtDodavanjeVMNazivVM = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jmnAdmin = new javax.swing.JMenuItem();
@@ -259,6 +273,118 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         getContentPane().add(card0, "card2");
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Naziv VM");
+
+        jtxtDodavanjeVMNazivVM.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Opis VM");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Tip OS");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "windows", "linux", "mac" }));
+
+        jButton1.setText("Dodaj VM");
+
+        jButton2.setText("Odustani");
+
+        javax.swing.GroupLayout jpnlDodavanjeVMLayout = new javax.swing.GroupLayout(jpnlDodavanjeVM);
+        jpnlDodavanjeVM.setLayout(jpnlDodavanjeVMLayout);
+        jpnlDodavanjeVMLayout.setHorizontalGroup(
+            jpnlDodavanjeVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnlDodavanjeVMLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpnlDodavanjeVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jpnlDodavanjeVMLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnlDodavanjeVMLayout.createSequentialGroup()
+                        .addGroup(jpnlDodavanjeVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpnlDodavanjeVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtxtDodavanjeVMNazivVM)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 871, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        jpnlDodavanjeVMLayout.setVerticalGroup(
+            jpnlDodavanjeVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnlDodavanjeVMLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jpnlDodavanjeVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jtxtDodavanjeVMNazivVM, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jpnlDodavanjeVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpnlDodavanjeVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnlDodavanjeVMLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpnlDodavanjeVMLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                .addGroup(jpnlDodavanjeVMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Dodavanje VM", jpnlDodavanjeVM);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 968, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 562, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab2", jPanel2);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 968, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 562, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Brisanje VM", jPanel3);
+
+        javax.swing.GroupLayout cardAdministracijaLayout = new javax.swing.GroupLayout(cardAdministracija);
+        cardAdministracija.setLayout(cardAdministracijaLayout);
+        cardAdministracijaLayout.setHorizontalGroup(
+            cardAdministracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1)
+        );
+        cardAdministracijaLayout.setVerticalGroup(
+            cardAdministracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1)
+        );
+
+        getContentPane().add(cardAdministracija, "card3");
+
         jMenu3.setText("File");
 
         jmnAdmin.setText("Administrator");
@@ -366,6 +492,13 @@ public class GlavnaForma extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card0;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JPanel cardAdministracija;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -373,9 +506,14 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbtnInstalacija;
     private javax.swing.JButton jbtnIzaberiPutanjuDoFoldera;
     private javax.swing.JMenuItem jmnAdmin;
@@ -384,10 +522,12 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmnOAplikaciji;
     private javax.swing.JMenuItem jmnONama;
     private javax.swing.JPanel jpnlCheckBoksevi;
+    private javax.swing.JPanel jpnlDodavanjeVM;
     private javax.swing.JPanel jpnlInstalacija;
     private javax.swing.JPanel jpnlPutanja;
     private javax.swing.JPanel jpnlVM;
     private javax.swing.JTextField jtxtKorisnikovNazivVM;
+    private javax.swing.JTextField jtxtDodavanjeVMNazivVM;
     private javax.swing.JTextArea jtxtOpis;
     private javax.swing.JTextField jtxtPutanjaDoFoldera;
     private javax.swing.JList<String> listVM;
@@ -395,6 +535,7 @@ public class GlavnaForma extends javax.swing.JFrame {
 
     public void sakrijSvePanele() {
         card0.setVisible(false);
+        cardAdministracija.setVisible(false);
     }
 
     public JPanel getJPanelCheckBoksevi() {
@@ -404,6 +545,12 @@ public class GlavnaForma extends javax.swing.JFrame {
     private void prikaziCard0() {
         sakrijSvePanele();
         card0.setVisible(true);
+    }
+    
+    
+    public void prikaziCardAdministracija() {
+        sakrijSvePanele();
+        cardAdministracija.setVisible(true);
     }
 
     public JTextField getTxtPutanjaDoFoldera() {

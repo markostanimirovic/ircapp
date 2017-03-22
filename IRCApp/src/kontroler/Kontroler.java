@@ -300,40 +300,32 @@ public class Kontroler {
     public static void pokreniInstalaciju(String komande, String poruka) {
         progresInstalacije = new ProgresInstalacije();
         progresInstalacije.setLocationRelativeTo(null);
-        progresInstalacije.setTextJTxtPoruka(poruka);
         progresInstalacije.setVisible(true);
         if (!poruka.equalsIgnoreCase("instalacija je u toku..."))
                 progresInstalacije.setSTOPFalse();
         try {
             p = Runtime.getRuntime().exec(komande);
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String red;
-            while ((red = reader.readLine()) != null) {
+            String red = "\n" + reader.readLine();
+            while (red != null) {
+                System.out.println(red);
                 if (red.startsWith("\u001B")) {
                     red = red.substring(3);
                 }
                 progresInstalacije.setTextJTxtAreaKonzola(red + "\n");
-                System.out.println(red);
+                red = reader.readLine();
             }
-            System.out.println("Prosao while za ucitavanje iz konzole!");
-            progresInstalacije.setNewNameForJbtnKonzola("Ok");
-
-            if (poruka.equalsIgnoreCase("instalacija je u toku...")) {
-                System.out.println("Uso u prvi if!");
-                progresInstalacije.setNewnameForJLabelInstalacija("Instalacija završena!");
+            if (poruka.equalsIgnoreCase("Instalacija je u toku...")) {
                 sacuvajVirtuelnuMasinuZaKorisnika();
             } else if (poruka.equalsIgnoreCase("Pokretanje virtuelne masine...")) {
-                System.out.println("Uso u pokretanje!");
-                progresInstalacije.setNewnameForJLabelInstalacija("Virtuelna masina je uspesno pokrenuta!");
 //                proveriti da li se u bazi nalazi true u rdp koloni
                 if (true) {
                     p = Runtime.getRuntime().exec("cmd /c \"" + " cd " + putanjaDoFoldera + "&& vagrant rdp" + " && taskkill /f /im cmd.exe" + "\" ");
                 }
             } else if (poruka.equalsIgnoreCase("Gasenje virtuelne masine...")) {
-                progresInstalacije.setNewnameForJLabelInstalacija("Virtuelna masina je uspesno ugasena!");
             }
-            progresInstalacije.dispose();
             glavnaForma.setEnabled(true);
+            progresInstalacije.dispose();
         } catch (Exception e) {
             progresInstalacije.setNewNameForJbtnKonzola("Greška");
             e.printStackTrace();

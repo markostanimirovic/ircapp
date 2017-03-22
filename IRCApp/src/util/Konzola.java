@@ -87,7 +87,7 @@ public class Konzola {
         while (!file.exists())
                 ;
 
-        Runnable runnable = new InstallationThread(komande, "Instalacija je u toku..");
+        Runnable runnable = new InstallationThread(komande, "Instalacija je u toku...");
         Thread thread = new Thread(runnable);
         thread.start();
     }

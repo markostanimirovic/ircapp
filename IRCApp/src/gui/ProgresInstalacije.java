@@ -5,7 +5,11 @@
  */
 package gui;
 
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.TitledBorder;
 import kontroler.Kontroler;
 import util.Konzola;
 
@@ -37,8 +41,6 @@ public class ProgresInstalacije extends javax.swing.JFrame {
         jbtnPrekini = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtxtAreaKonzola = new javax.swing.JTextArea();
-        jPanel1 = new javax.swing.JPanel();
-        jTxtPoruka = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Instalacija");
@@ -54,20 +56,15 @@ public class ProgresInstalacije extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setBorder(null);
-
         jtxtAreaKonzola.setEditable(false);
-        jtxtAreaKonzola.setBackground(new java.awt.Color(0, 0, 0));
         jtxtAreaKonzola.setColumns(20);
         jtxtAreaKonzola.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        jtxtAreaKonzola.setForeground(new java.awt.Color(51, 255, 51));
+        jtxtAreaKonzola.setForeground(new java.awt.Color(102, 102, 102));
         jtxtAreaKonzola.setLineWrap(true);
         jtxtAreaKonzola.setRows(5);
-        jtxtAreaKonzola.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jtxtAreaKonzola.setBorder(null);
         jScrollPane1.setViewportView(jtxtAreaKonzola);
-
-        jTxtPoruka.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(jTxtPoruka);
+        jtxtAreaKonzola.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,19 +76,15 @@ public class ProgresInstalacije extends javax.swing.JFrame {
                 .addContainerGap(238, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jbtnPrekini, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -122,14 +115,8 @@ public class ProgresInstalacije extends javax.swing.JFrame {
         jtxtAreaKonzola.setCaretPosition(jtxtAreaKonzola.getText().length());
     }
 
-    public void setTextJTxtPoruka(String poruka) {
-        jTxtPoruka.setText(poruka);
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel jTxtPoruka;
     private javax.swing.JButton jbtnPrekini;
     private javax.swing.JTextArea jtxtAreaKonzola;
     // End of variables declaration//GEN-END:variables
@@ -138,10 +125,6 @@ public class ProgresInstalacije extends javax.swing.JFrame {
         if (naziv.equalsIgnoreCase("ok")) {
             jbtnPrekini.setText(naziv);
         }
-    }
-
-    public void setNewnameForJLabelInstalacija(String text) {
-        jTxtPoruka.setText(text);
     }
     
     public void setSTOPFalse() {

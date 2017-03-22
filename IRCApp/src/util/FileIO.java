@@ -49,8 +49,10 @@ public class FileIO {
         try {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file)));
 
-            out.println("iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))");
-            out.println("chocolatey feature enable -n allowGlobalConfirmation");
+            if (listaIzabranihPrograma != null && listaIzabranihPrograma.size() > 0) {
+                out.println("iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))");
+                out.println("chocolatey feature enable -n allowGlobalConfirmation");
+            }
 
             for (Program p : listaIzabranihPrograma) {
                 out.println(p.getKomanda_widnows());
@@ -67,7 +69,9 @@ public class FileIO {
         try {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file)));
 
-            out.println("sudo apt-get update -y");
+            if (listaIzabranihPrograma != null && listaIzabranihPrograma.size() > 0) {
+                out.println("sudo apt-get update -y");
+            }
 
             for (Program p : listaIzabranihPrograma) {
                 out.println(p.getKomanda_linux());

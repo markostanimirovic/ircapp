@@ -67,7 +67,6 @@ public class ProgresInstalacije extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtxtAreaKonzola);
 
         jTxtPoruka.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTxtPoruka.setText("Instalacija je u toku...");
         jPanel1.add(jTxtPoruka);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -91,8 +90,8 @@ public class ProgresInstalacije extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addComponent(jbtnPrekini, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -109,10 +108,6 @@ public class ProgresInstalacije extends javax.swing.JFrame {
                 Konzola.prekiniIzvrsavanjeKonzole();
                 Kontroler.izbrisiFolder(Konzola.PUTANJA_DO_FOLDERA);
             }
-        }
-        
-        if (jbtnPrekini.getText().equalsIgnoreCase("ok")) {
-            Kontroler.sacuvajVirtuelnuMasinuZaKorisnika();
         }
         
         kontroler.Kontroler.setEnabledGlavnaForma(true);
@@ -147,5 +142,9 @@ public class ProgresInstalacije extends javax.swing.JFrame {
 
     public void setNewnameForJLabelInstalacija(String text) {
         jTxtPoruka.setText(text);
+    }
+    
+    public void setSTOPFalse() {
+        jbtnPrekini.setVisible(false);
     }
 }

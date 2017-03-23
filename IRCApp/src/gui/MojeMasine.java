@@ -164,7 +164,7 @@ public class MojeMasine extends javax.swing.JFrame {
 
     private void jbtnPokreniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPokreniActionPerformed
         String izabranaVM = jlMojeMasine.getSelectedValue();
-        if (izabranaVM == null) {
+        if (izabranaVM == null || jtxtPutanja.getText().isEmpty()) {
             JOptionPane.showMessageDialog(
                     this, "Morate da odaberete masinu za pokretanje!",
                     "Upozorenje", JOptionPane.WARNING_MESSAGE);

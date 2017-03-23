@@ -582,7 +582,9 @@ public class GlavnaForma extends javax.swing.JFrame {
     private void jbtnInstalacijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnInstalacijaActionPerformed
         String vm = listVM.getSelectedValue();
         String korisnikovoImeVM = jtxtKorisnikovNazivVM.getText();
-        if (vm == null || jtxtPutanjaDoFoldera.getText().equals("")) {
+        String putanjaSaJTXTFieldaDoFoldera = jtxtPutanjaDoFoldera.getText();
+        
+        if (vm == null || putanjaSaJTXTFieldaDoFoldera.equals("") || putanjaSaJTXTFieldaDoFoldera == null) {
             JOptionPane.showMessageDialog(
                     this, "Odaberite virtuelnu mašinu i putanju do foldera u kome želite da je sačuvate!",
                     "Greška", JOptionPane.ERROR_MESSAGE

@@ -51,7 +51,17 @@ public class DaoUserImpl extends DaoUser{
 
     @Override
     public void saveUser(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "INSERT INTO users(username)" 
+                + "values(?)";
+        PreparedStatement prepared_stat;
+        try {
+            prepared_stat = connection.prepareStatement(query);
+            prepared_stat.setString(1, user.getUsername());
+            prepared_stat.execute();
+            prepared_stat.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override
@@ -92,12 +102,13 @@ public class DaoUserImpl extends DaoUser{
             prepared_stat.setString(1, kontroler.Kontroler.AKTIVNI_KLIJENT);
             ResultSet rs = prepared_stat.executeQuery();
             boolean find = rs.next();
-            if(find) {
+            if (find) {
                 return new User(rs.getString("username"));
             } else {
                 return null;
             }
         } catch (SQLException ex) {
+            ex.printStackTrace();
             System.out.println(ex.getMessage());
             return null;
         }

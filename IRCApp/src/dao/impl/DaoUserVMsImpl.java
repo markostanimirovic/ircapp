@@ -5,6 +5,7 @@
  */
 package dao.impl;
 
+import dao.DaoUser;
 import dao.DaoUserVMs;
 import db.ConnectionFactory;
 import domen.User;
@@ -13,7 +14,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import kontroler.Kontroler;
@@ -23,10 +23,10 @@ import util.EnumConnectionType;
  *
  * @author filip
  */
-public class DaoUserVMsImpl extends DaoUserVMs{
-    
+public class DaoUserVMsImpl extends DaoUserVMs {
+
     Connection connection;
-    
+
     public DaoUserVMsImpl() {
         try {
             connection = ConnectionFactory.makeConnection(EnumConnectionType.DRIVER_MANAGER);
@@ -34,7 +34,7 @@ public class DaoUserVMsImpl extends DaoUserVMs{
             System.out.println(e.getMessage());
         }
     }
-    
+
     @Override
     public List<UserVMs> getAllUsersVMs() {
         List<UserVMs> user_vms = new ArrayList<>();
@@ -44,7 +44,7 @@ public class DaoUserVMsImpl extends DaoUserVMs{
             prepared_stat = connection.prepareStatement(query);
             prepared_stat.setString(1, kontroler.Kontroler.AKTIVNI_KLIJENT);
             ResultSet rs = prepared_stat.executeQuery();
-            while(rs.next()){                
+            while (rs.next()) {
                 UserVMs vms = getCurrentRow(rs);
                 user_vms.add(vms);
             }
@@ -54,16 +54,16 @@ public class DaoUserVMsImpl extends DaoUserVMs{
             return null;
         }
     }
-    
-    public boolean user_vm_name_exist(String userNaziv){
+
+    public boolean user_vm_name_exist(String userNaziv) {
         String query = "SELECT * FROM user_vm WHERE username = ?";
         PreparedStatement prepared_stat;
         try {
             prepared_stat = connection.prepareStatement(query);
             prepared_stat.setString(1, kontroler.Kontroler.AKTIVNI_KLIJENT);
             ResultSet rs = prepared_stat.executeQuery();
-            while(rs.next()){
-                if(rs.getString("userNaziv").equals(userNaziv)){
+            while (rs.next()) {
+                if (rs.getString("userNaziv").equals(userNaziv)) {
                     return true;
                 }
             }
@@ -81,10 +81,17 @@ public class DaoUserVMsImpl extends DaoUserVMs{
 
     @Override
     public void saveUserVMs(UserVMs user_vms) {
-        String query = "INSERT INTO user_vm(username, naziv, userNaziv, path)" 
+        String query = "INSERT INTO user_vm(username, naziv, userNaziv, path)"
                 + "values(?, ?, ?, ?)";
         PreparedStatement prepared_stat;
         try {
+            DaoUser dao = new DaoUserImpl();
+            User user = dao.getUser();
+            if (user == null) {
+                user = new User(Kontroler.AKTIVNI_KLIJENT);
+                dao.saveUser(user);
+            }
+            
             prepared_stat = connection.prepareStatement(query);
             prepared_stat.setString(1, user_vms.getUser().getUsername());
             prepared_stat.setString(2, user_vms.getNaziv());
@@ -92,7 +99,7 @@ public class DaoUserVMsImpl extends DaoUserVMs{
             prepared_stat.setString(4, user_vms.getPath());
             prepared_stat.execute();
             prepared_stat.close();
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
@@ -113,7 +120,7 @@ public class DaoUserVMsImpl extends DaoUserVMs{
     }
 
     @Override
-    public void updateUserVMs(UserVMs user_vms, String new_path ) {
+    public void updateUserVMs(UserVMs user_vms, String new_path) {
         String query = "UPDATE user_vm SET path = ? WHERE path = ?";
         PreparedStatement prepared_stat;
         try {
@@ -135,5 +142,5 @@ public class DaoUserVMsImpl extends DaoUserVMs{
         return new UserVMs(user, naziv, path, userNaziv);
 
     }
-    
+
 }

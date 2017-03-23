@@ -320,7 +320,7 @@ public class Kontroler {
             } else if (poruka.equalsIgnoreCase("Pokretanje virtuelne masine...")) {
 //                proveriti da li se u bazi nalazi true u rdp koloni
                 if (true) {
-                    p = Runtime.getRuntime().exec("cmd /c \"" + " cd " + putanjaDoFoldera + "&& vagrant rdp" + " && taskkill /f /im cmd.exe" + "\" ");
+                    p = Runtime.getRuntime().exec("cmd /c \"" + " cd " + putanjaDoFoldera + " && vagrant rdp" + " && taskkill /f /im cmd.exe" + "\" ");
                 }
             } else if (poruka.equalsIgnoreCase("Gasenje virtuelne masine...")) {
             }

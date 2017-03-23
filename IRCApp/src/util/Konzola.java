@@ -22,13 +22,13 @@ public class Konzola {
     private static final String OS_WINDOWS = "windows";
     private static final String OS_MAC = "mac";
 
-    private static final String TASK_KILL = " && taskkill /f /im cmd.exe";
-    private static final String VMREPO = "";
+    public static final String TASK_KILL = " && taskkill /f /im cmd.exe";
+    public static final String VMREPO = "";
     public static String PUTANJA_DO_FOLDERA;
-    private static final String VAGRANT_UP = "vagrant up";
-    private static final String VAGRANT_INIT = "vagrant init ";
-    private static final String CMD_START = "cmd /c \"";
-    private static final String CMD_END = "\" ";
+    public static final String VAGRANT_UP = "vagrant up";
+    public static final String VAGRANT_INIT = "vagrant init ";
+    public static final String CMD_START = "cmd /c \"";
+    public static final String CMD_END = "\" ";
     /**
      * programi koje je korisnik izabrao za instalaciju
      */

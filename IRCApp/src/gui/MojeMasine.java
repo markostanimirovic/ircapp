@@ -75,9 +75,6 @@ public class MojeMasine extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlMojeMasineMouseClicked(evt);
             }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jlMojeMasineMouseReleased(evt);
-            }
         });
         jScrollPane1.setViewportView(jlMojeMasine);
 
@@ -202,6 +199,7 @@ public class MojeMasine extends javax.swing.JFrame {
         for (UserVMs userVMs : l) {
             if(userVMs.getUserNaziv().equals(jlMojeMasine.getSelectedValue())) {
                 jtxtPutanja.setText(userVMs.getPath());
+                break;
             }
         }
     }//GEN-LAST:event_jlMojeMasineMouseClicked
@@ -210,12 +208,6 @@ public class MojeMasine extends javax.swing.JFrame {
         dlm.clear();
         Kontroler.ucitajMojeMasine();
     }//GEN-LAST:event_jmnRefreshActionPerformed
-
-    private void jlMojeMasineMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMojeMasineMouseReleased
-        if(evt.isPopupTrigger()) {
-            jPopupMenu1.show(this, evt.getX(), evt.getY());
-        }
-    }//GEN-LAST:event_jlMojeMasineMouseReleased
 
     /**
      * @param args the command line arguments

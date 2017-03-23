@@ -323,10 +323,6 @@ public class Kontroler {
                 if (true) {
                     p = Runtime.getRuntime().exec("cmd /c \"" + " cd " + putanjaDoFoldera + " && vagrant rdp" + " && taskkill /f /im cmd.exe" + "\" ");
                 }
-                JOptionPane.showMessageDialog(
-                        null, "Sacekajte par sekundi da se podigne graficki interfejs virtuelne masine...", 
-                        "Uspesno startovanje virtuelne masine!", JOptionPane.PLAIN_MESSAGE
-                );
                 
             } else if (aktivnost == EnumTipAktivnosti.GASENJE) {
                     JOptionPane.showMessageDialog(
@@ -336,10 +332,16 @@ public class Kontroler {
             }
             glavnaForma.setEnabled(true);
             progresInstalacije.dispose();
+            
             if (aktivnost == EnumTipAktivnosti.INSTALACIJA) {
                 JOptionPane.showMessageDialog(
                         null, "Uspesno instalirana VM", "Uspesna instalacija!",
                         JOptionPane.PLAIN_MESSAGE
+                );
+            } else if (aktivnost == EnumTipAktivnosti.POKRETANJE) {
+                JOptionPane.showMessageDialog(
+                        null, "Sacekajte par sekundi da se podigne graficki interfejs virtuelne masine...", 
+                        "Uspesno startovanje virtuelne masine!", JOptionPane.PLAIN_MESSAGE
                 );
             }
         } catch (Exception e) {

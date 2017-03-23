@@ -87,7 +87,7 @@ public class Konzola {
         while (!file.exists())
                 ;
 
-        Runnable runnable = new InstallationThread(komande, "Instalacija je u toku...");
+        Runnable runnable = new InstallationThread(komande, EnumTipAktivnosti.INSTALACIJA);
         Thread thread = new Thread(runnable);
         thread.start();
     }
@@ -103,7 +103,7 @@ public class Konzola {
     public static void prekiniIzvrsavanjeKonzole() {
         System.out.println("prvi: "+p + " drugi: "+ Kontroler.p);
         p.destroy();
-        kontroler.Kontroler.p.destroy();
+        Kontroler.p.destroy();
     }
 
 }

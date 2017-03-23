@@ -175,18 +175,19 @@ public class MojeMasine extends javax.swing.JFrame {
 
     private void jbtnZaustaviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnZaustaviActionPerformed
         String izabranaVM = jlMojeMasine.getSelectedValue();
-        if (izabranaVM == null) {
+        if (izabranaVM == null || jtxtPutanja.getText().isEmpty()) {
             JOptionPane.showMessageDialog(
                     this, "Morate da odaberete masinu koju zelite da zaustavite!",
                     "Upozorenje", JOptionPane.WARNING_MESSAGE);
         } else {
             Kontroler.zaustaviMasinuMojeMasine(jtxtPutanja.getText());
+            
         }
     }//GEN-LAST:event_jbtnZaustaviActionPerformed
 
     private void jbtnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnObrisiActionPerformed
         String izabranaVM = jlMojeMasine.getSelectedValue();
-        if (izabranaVM == null) {
+        if (izabranaVM == null || jtxtPutanja.getText().isEmpty()) {
             JOptionPane.showMessageDialog(
                     this, "Morate da odaberete masinu koju zelite da obrisete!",
                     "Upozorenje", JOptionPane.WARNING_MESSAGE);

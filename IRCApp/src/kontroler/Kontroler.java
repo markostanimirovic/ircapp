@@ -324,11 +324,6 @@ public class Kontroler {
                     p = Runtime.getRuntime().exec("cmd /c \"" + " cd " + putanjaDoFoldera + " && vagrant rdp" + " && taskkill /f /im cmd.exe" + "\" ");
                 }
                 
-            } else if (aktivnost == EnumTipAktivnosti.GASENJE) {
-                    JOptionPane.showMessageDialog(
-                        null, "uspesno ugasena virtuelna masina!", "Gasenje",
-                        JOptionPane.PLAIN_MESSAGE
-                    );
             }
             glavnaForma.setEnabled(true);
             progresInstalacije.dispose();
@@ -343,6 +338,11 @@ public class Kontroler {
                         null, "Sacekajte par sekundi da se podigne graficki interfejs virtuelne masine...", 
                         "Uspesno startovanje virtuelne masine!", JOptionPane.PLAIN_MESSAGE
                 );
+            } else if (aktivnost == EnumTipAktivnosti.GASENJE) {
+                    JOptionPane.showMessageDialog(
+                        null, "uspesno ugasena virtuelna masina!", "Gasenje",
+                        JOptionPane.PLAIN_MESSAGE
+                    );
             }
         } catch (Exception e) {
             progresInstalacije.setNewNameForJbtnKonzola("Greška");

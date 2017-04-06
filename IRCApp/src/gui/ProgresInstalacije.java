@@ -130,4 +130,12 @@ public class ProgresInstalacije extends javax.swing.JFrame {
     public void setSTOPFalse() {
         jbtnPrekini.setVisible(false);
     }
+
+    @Override
+    public void setTitle(String string) {
+        super.setTitle(string);
+    }
+    
+    
+    
 }

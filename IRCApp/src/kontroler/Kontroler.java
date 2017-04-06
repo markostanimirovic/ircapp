@@ -5,9 +5,7 @@
  */
 package kontroler;
 
-import dao.DaoAdministrator;
-import dao.DaoUserVMs;
-import dao.DaoVM;
+import dao.*;
 import dao.impl.DaoAdministratorImpl;
 import dao.impl.DaoUserVMsImpl;
 import dao.impl.DaoVMImpl;
@@ -38,7 +36,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import util.EnumConnectionType;
@@ -322,12 +319,19 @@ public class Kontroler {
             p = Runtime.getRuntime().exec(komande);
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String red;
+            int brojReda = 0;
+            
             while ((red = in.readLine()) != null) {
-                System.out.println(red);
-                if (red.startsWith("\u001B")) {
-                    red = red.substring(3);
+                
+                if (brojReda < 20) {
+                    if (red.startsWith("\u001B")) {
+                        red = red.substring(3);
+                    }
                 }
+                
                 progresInstalacije.setTextJTxtAreaKonzola(red + "\n");
+                brojReda++;
+                System.out.println(brojReda);
             }
             if (aktivnost == EnumTipAktivnosti.INSTALACIJA) {
                 sacuvajVirtuelnuMasinuZaKorisnika();

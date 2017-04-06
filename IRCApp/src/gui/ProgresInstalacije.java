@@ -100,11 +100,12 @@ public class ProgresInstalacije extends javax.swing.JFrame {
             if (izbor == JOptionPane.YES_OPTION) {
                 Konzola.prekiniIzvrsavanjeKonzole();
                 Kontroler.izbrisiFolder(Konzola.PUTANJA_DO_FOLDERA);
+                this.dispose();
+                kontroler.Kontroler.setEnabledGlavnaForma(true);
             }
         }
         
-        kontroler.Kontroler.setEnabledGlavnaForma(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jbtnPrekiniActionPerformed
 
     /**

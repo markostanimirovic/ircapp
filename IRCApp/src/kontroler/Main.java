@@ -24,12 +24,15 @@ public class Main {
     public static void main(String[] args) {
         try {
            DaoVM dao = new DaoVMImpl();
-            System.out.println(dao.has_rdp("ubuntuu"));
+            System.out.println(dao.has_rdp("test 2 w10"));
             //dao.DaoUserVMs out = new DaoUserVMsImpl();
             //out.saveUserVMs(new UserVMs(new User("furtula.filip"), "Test200", "C:\\putanja"));
             //out.deleteUserVMs(new UserVMs(new User("furtula.filip"), "Test200", "C:\\putanja"));
             //out.updateUserVMs(new UserVMs(new User("furtula.filip"), "Test200", "C:\\putanja"), "C:\\Nova_Putanja");
             //out.saveUserVMs(new UserVMs(new User("sarda.edis"), "Test300", "C:\\mirko\\putanja\\sws", "JavaSoft"));
+            
+            
+            
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

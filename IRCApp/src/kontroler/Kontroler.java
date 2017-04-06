@@ -10,11 +10,7 @@ import dao.impl.DaoAdministratorImpl;
 import dao.impl.DaoUserVMsImpl;
 import dao.impl.DaoVMImpl;
 import db.ConnectionFactory;
-import domen.Administrator;
-import domen.ListaPrograma;
-import domen.Program;
-import domen.User;
-import domen.UserVMs;
+import domen.*;
 import gui.modeli.SingleRootFileSystemView;
 import domen.VirtuelnaMasina;
 import gui.AdminLog;
@@ -84,11 +80,11 @@ public class Kontroler {
 
                 proveriUsera();
                 glavnaForma = new GlavnaForma();
-
+                
                 generisiCheckBokseve();
 
                 glavnaForma.setVisible(true);
-
+                
                 napraviIRCFoler();
 
             }
@@ -179,6 +175,8 @@ public class Kontroler {
             // korisnik je uneo ispravno korisnicko ime i sifru
             zatvoriAdminLog();
             glavnaForma.prikaziCardAdministracija();
+            glavnaForma.getJmitemAdminLogOut().setVisible(true);
+            glavnaForma.getJmnAdmin().setVisible(false);
         }
     }
 
@@ -301,18 +299,8 @@ public class Kontroler {
         progresInstalacije = new ProgresInstalacije();
         progresInstalacije.setLocationRelativeTo(null);
         
+        aktivnostCheck(aktivnost);
         
-        if (aktivnost == EnumTipAktivnosti.POKRETANJE) {
-            progresInstalacije.setTitle("Pokretanje virtuelne mašine");
-            progresInstalacije.setAlwaysOnTop(false);
-        } else if (aktivnost == EnumTipAktivnosti.GASENJE) {
-            progresInstalacije.setTitle("Gašenje virtuelne mašine");
-            progresInstalacije.setAlwaysOnTop(false);
-        }
-        
-        if (!(aktivnost == EnumTipAktivnosti.INSTALACIJA)) {
-            progresInstalacije.setSTOPFalse();
-        }
         
         progresInstalacije.setVisible(true);
         
@@ -332,22 +320,30 @@ public class Kontroler {
                 
                 progresInstalacije.setTextJTxtAreaKonzola(red + "\n");
                 brojReda++;
-                System.out.println(brojReda);
             }
+            
+            
+            DaoVM dao = new DaoVMImpl();
+            
+            
+            System.out.println(pokretanje + " iznad ifa");
+            
             if (aktivnost == EnumTipAktivnosti.INSTALACIJA) {
                 sacuvajVirtuelnuMasinuZaKorisnika();
-            } else if (aktivnost == EnumTipAktivnosti.POKRETANJE) {
-                DaoVM dao = new DaoVMImpl();
+                
                 pokretanje = dao.has_rdp(korisnikovNazivVM);
-                System.out.println("Masina koja se pokrece: "+korisnikovNazivVM);
-                System.out.println(pokretanje);
+                if (pokretanje) {
+                    p = Runtime.getRuntime().exec("cmd /c \"" + " cd " + putanjaDoFoldera + " && vagrant rdp" + " && taskkill /f /im cmd.exe" + "\" ");
+                }
+            } else if (aktivnost == EnumTipAktivnosti.POKRETANJE) {
+                pokretanje = dao.has_rdp(korisnikovNazivVM);
                 if (pokretanje) {
                     p = Runtime.getRuntime().exec("cmd /c \"" + " cd " + putanjaDoFoldera + " && vagrant rdp" + " && taskkill /f /im cmd.exe" + "\" ");
                 }
 
             } else if (aktivnost == EnumTipAktivnosti.GASENJE) {
                 JOptionPane.showMessageDialog(
-                        null, "uspesno ugasena virtuelna masina!", "Gasenje",
+                        null, "Uspešno ugašena virtuelna mašina!", "Gašenje",
                         JOptionPane.PLAIN_MESSAGE
                 );
             }
@@ -356,17 +352,17 @@ public class Kontroler {
 
             if (aktivnost == EnumTipAktivnosti.INSTALACIJA) {
                 JOptionPane.showMessageDialog(
-                        null, "Uspesno instalirana VM", "Uspesna instalacija!",
+                        null, "Uspešno instalirana VM", "Uspešna instalacija!",
                         JOptionPane.PLAIN_MESSAGE
                 );
             } else if (aktivnost == EnumTipAktivnosti.POKRETANJE && pokretanje == true) {
                 JOptionPane.showMessageDialog(
-                        null, "Sacekajte par sekundi da se podigne graficki interfejs virtuelne masine...",
-                        "Uspesno startovanje virtuelne masine!", JOptionPane.PLAIN_MESSAGE
+                        null, "Sačekajte par sekundi da se podigne grafički interfejs virtuelne mašine...",
+                        "Uspešno startovanje virtuelne mašine!", JOptionPane.PLAIN_MESSAGE
                 );
             } else if (aktivnost == EnumTipAktivnosti.GASENJE) {
                     JOptionPane.showMessageDialog(
-                        null, "uspesno ugasena virtuelna masina!", "Gasenje",
+                        null, "Uspešno ugašena virtuelna mašina!", "Gašenje",
                         JOptionPane.PLAIN_MESSAGE
                     );
             }
@@ -374,7 +370,6 @@ public class Kontroler {
             progresInstalacije.setNewNameForJbtnKonzola("Greška");
             e.printStackTrace();
         }
-        System.out.println("izasao");
     }
 
     public static boolean proveriDaLiSeUFolderuNalaziVagrantfile(String putanjaDoFoldera) {
@@ -471,6 +466,20 @@ public class Kontroler {
         }
         f.delete();
         System.out.println("kraj");
+    }
+
+    private static void aktivnostCheck(EnumTipAktivnosti aktivnost) {
+        if (aktivnost == EnumTipAktivnosti.POKRETANJE) {
+            progresInstalacije.setTitle("Pokretanje virtuelne mašine");
+            progresInstalacije.setAlwaysOnTop(false);
+        } else if (aktivnost == EnumTipAktivnosti.GASENJE) {
+            progresInstalacije.setTitle("Gašenje virtuelne mašine");
+            progresInstalacije.setAlwaysOnTop(false);
+        }
+        
+        if (!(aktivnost == EnumTipAktivnosti.INSTALACIJA)) {
+            progresInstalacije.setSTOPFalse();
+        }
     }
 
 }

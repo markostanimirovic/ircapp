@@ -76,6 +76,9 @@ public class MojeMasine extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlMojeMasineMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jlMojeMasineMousePressed(evt);
+            }
         });
         jScrollPane1.setViewportView(jlMojeMasine);
 
@@ -188,7 +191,7 @@ public class MojeMasine extends javax.swing.JFrame {
         String izabranaVM = jlMojeMasine.getSelectedValue();
         if (izabranaVM == null || jtxtPutanja.getText().isEmpty()) {
             JOptionPane.showMessageDialog(
-                    this, "Morate da odaberete masinu koju zelite da zaustavite!",
+                    this, "Morate da odaberete mašinu koju želite da zaustavite!",
                     "Upozorenje", JOptionPane.WARNING_MESSAGE);
         } else {
             Kontroler.zaustaviMasinuMojeMasine(jtxtPutanja.getText());
@@ -200,7 +203,7 @@ public class MojeMasine extends javax.swing.JFrame {
         String izabranaVM = jlMojeMasine.getSelectedValue();
         if (izabranaVM == null || jtxtPutanja.getText().isEmpty()) {
             JOptionPane.showMessageDialog(
-                    this, "Morate da odaberete masinu koju zelite da obrisete!",
+                    this, "Morate da odaberete mašinu koju želite da obrisete!",
                     "Upozorenje", JOptionPane.WARNING_MESSAGE);
         } else {
             Kontroler.obrisiMasinuMojeMasine(jtxtPutanja.getText());
@@ -226,6 +229,10 @@ public class MojeMasine extends javax.swing.JFrame {
         dlm.clear();
         Kontroler.ucitajMojeMasine();
     }//GEN-LAST:event_jbtnOsveziActionPerformed
+
+    private void jlMojeMasineMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMojeMasineMousePressed
+        jlMojeMasineMouseClicked(evt);
+    }//GEN-LAST:event_jlMojeMasineMousePressed
 
     /**
      * @param args the command line arguments

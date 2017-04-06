@@ -7,13 +7,18 @@ package gui;
 
 import domen.Program;
 import domen.VirtuelnaMasina;
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
 import javax.swing.JCheckBox;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -113,6 +118,7 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("VirtualIRC");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
         setMinimumSize(new java.awt.Dimension(1000, 0));
         setPreferredSize(new java.awt.Dimension(600, 974));
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -216,6 +222,8 @@ public class GlavnaForma extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Izaberite programe:");
 
+        jtxtPretragaPrograma.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jtxtPretragaPrograma.setForeground(new java.awt.Color(153, 153, 153));
         jtxtPretragaPrograma.setText("Pretraga...");
         jtxtPretragaPrograma.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -540,7 +548,7 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         getContentPane().add(cardAdministracija, "card3");
 
-        jMenu3.setText("File");
+        jMenu3.setText("Korisnik");
 
         jmnMasine.setText("Moje mašine");
         jmnMasine.addActionListener(new java.awt.event.ActionListener() {
@@ -560,9 +568,9 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu3);
 
-        jMenu1.setText("Administracija");
+        jMenu1.setText("Administrator");
 
-        jmnAdmin.setText("Prijavi se kao administrator");
+        jmnAdmin.setText("Prijavi se");
         jmnAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmnAdminActionPerformed(evt);
@@ -577,10 +585,11 @@ public class GlavnaForma extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jmitemAdminLogOut);
+        jmitemAdminLogOut.setVisible(false);
 
         jMenuBar2.add(jMenu1);
 
-        jMenu4.setText("?");
+        jMenu4.setText("Pomoć");
 
         jmnOAplikaciji.setText("O aplikaciji");
         jMenu4.add(jmnOAplikaciji);
@@ -655,6 +664,8 @@ public class GlavnaForma extends javax.swing.JFrame {
 
     private void jmitemAdminLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmitemAdminLogOutActionPerformed
         prikaziCard0();
+        jmitemAdminLogOut.setVisible(false);
+        jmnAdmin.setVisible(true);
     }//GEN-LAST:event_jmitemAdminLogOutActionPerformed
 
     private void jtxtPretragaProgramaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxtPretragaProgramaFocusGained
@@ -786,9 +797,21 @@ public class GlavnaForma extends javax.swing.JFrame {
     private void namestiPlaceholderPretragePrograma() {
         if (jtxtPretragaPrograma.getText().equals("Pretraga...")) {
             jtxtPretragaPrograma.setText("");
+            jtxtPretragaPrograma.setForeground(Color.black);
         } else if (jtxtPretragaPrograma.getText().equals("")) {
             jtxtPretragaPrograma.setText("Pretraga...");
+            jtxtPretragaPrograma.setForeground(Color.gray);
         }
     }
+
+    public JMenuItem getJmitemAdminLogOut() {
+        return jmitemAdminLogOut;
+    }
+
+    public JMenuItem getJmnAdmin() {
+        return jmnAdmin;
+    }
+    
+    
 
 }

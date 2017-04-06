@@ -180,7 +180,7 @@ public class MojeMasine extends javax.swing.JFrame {
                     this, "Morate da odaberete masinu za pokretanje!",
                     "Upozorenje", JOptionPane.WARNING_MESSAGE);
         } else {
-            Kontroler.pokreniMasinuMojeMasine(jtxtPutanja.getText());
+            Kontroler.pokreniMasinuMojeMasine(jtxtPutanja.getText(), izabranaVM);
         }
     }//GEN-LAST:event_jbtnPokreniActionPerformed
 

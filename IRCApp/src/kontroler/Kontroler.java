@@ -299,6 +299,7 @@ public class Kontroler {
     }
 
     public static void pokreniInstalaciju(String komande, EnumTipAktivnosti aktivnost) {
+        boolean pokretanje = false;
         progresInstalacije = new ProgresInstalacije();
         progresInstalacije.setLocationRelativeTo(null);
         progresInstalacije.setVisible(true);
@@ -319,8 +320,11 @@ public class Kontroler {
             if (aktivnost == EnumTipAktivnosti.INSTALACIJA) {
                 sacuvajVirtuelnuMasinuZaKorisnika();
             } else if (aktivnost == EnumTipAktivnosti.POKRETANJE) {
-//                proveriti da li se u bazi nalazi true u rdp koloni
-                if (true) {
+                DaoVM dao = new DaoVMImpl();
+                pokretanje = dao.has_rdp(korisnikovNazivVM);
+                System.out.println("Masina koja se pokrece: "+korisnikovNazivVM);
+                System.out.println(pokretanje);
+                if (pokretanje) {
                     p = Runtime.getRuntime().exec("cmd /c \"" + " cd " + putanjaDoFoldera + " && vagrant rdp" + " && taskkill /f /im cmd.exe" + "\" ");
                 }
                 
@@ -333,7 +337,7 @@ public class Kontroler {
                         null, "Uspesno instalirana VM", "Uspesna instalacija!",
                         JOptionPane.PLAIN_MESSAGE
                 );
-            } else if (aktivnost == EnumTipAktivnosti.POKRETANJE) {
+            } else if (aktivnost == EnumTipAktivnosti.POKRETANJE && pokretanje == true) {
                 JOptionPane.showMessageDialog(
                         null, "Sacekajte par sekundi da se podigne graficki interfejs virtuelne masine...", 
                         "Uspesno startovanje virtuelne masine!", JOptionPane.PLAIN_MESSAGE
@@ -402,8 +406,9 @@ public class Kontroler {
         mojeMasine.dispose();
     }
 
-    public static void pokreniMasinuMojeMasine(String putanjaDoVM) {
+    public static void pokreniMasinuMojeMasine(String putanjaDoVM, String naziv_vm) {
         putanjaDoFoldera = putanjaDoVM;
+        korisnikovNazivVM = naziv_vm;
         String komande = "cmd /c \"" + " cd " + putanjaDoVM + " && " + "vagrant up" + " && taskkill /f /im cmd.exe" + "\" ";
         Runnable runnable = new InstallationThread(komande, EnumTipAktivnosti.POKRETANJE);
         thread = new Thread(runnable);

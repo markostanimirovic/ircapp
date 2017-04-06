@@ -17,4 +17,5 @@ public abstract class DaoVM {
     public abstract void saveVM(VirtuelnaMasina vm);
     public abstract void deleteVM(VirtuelnaMasina vm);
     public abstract void updateVM(VirtuelnaMasina vm);
+    public abstract boolean has_rdp(String vm_name) throws Exception;
 }

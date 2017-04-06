@@ -38,6 +38,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import util.EnumConnectionType;
@@ -302,10 +303,22 @@ public class Kontroler {
         boolean pokretanje = false;
         progresInstalacije = new ProgresInstalacije();
         progresInstalacije.setLocationRelativeTo(null);
-        progresInstalacije.setVisible(true);
+        
+        
+        if (aktivnost == EnumTipAktivnosti.POKRETANJE) {
+            progresInstalacije.setTitle("Pokretanje virtuelne mašine");
+            progresInstalacije.setAlwaysOnTop(false);
+        } else if (aktivnost == EnumTipAktivnosti.GASENJE) {
+            progresInstalacije.setTitle("Gašenje virtuelne mašine");
+            progresInstalacije.setAlwaysOnTop(false);
+        }
+        
         if (!(aktivnost == EnumTipAktivnosti.INSTALACIJA)) {
             progresInstalacije.setSTOPFalse();
         }
+        
+        progresInstalacije.setVisible(true);
+        
         try {
             p = Runtime.getRuntime().exec(komande);
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -327,11 +340,16 @@ public class Kontroler {
                 if (pokretanje) {
                     p = Runtime.getRuntime().exec("cmd /c \"" + " cd " + putanjaDoFoldera + " && vagrant rdp" + " && taskkill /f /im cmd.exe" + "\" ");
                 }
-                
+
+            } else if (aktivnost == EnumTipAktivnosti.GASENJE) {
+                JOptionPane.showMessageDialog(
+                        null, "uspesno ugasena virtuelna masina!", "Gasenje",
+                        JOptionPane.PLAIN_MESSAGE
+                );
             }
             glavnaForma.setEnabled(true);
             progresInstalacije.dispose();
-            
+
             if (aktivnost == EnumTipAktivnosti.INSTALACIJA) {
                 JOptionPane.showMessageDialog(
                         null, "Uspesno instalirana VM", "Uspesna instalacija!",
@@ -339,7 +357,7 @@ public class Kontroler {
                 );
             } else if (aktivnost == EnumTipAktivnosti.POKRETANJE && pokretanje == true) {
                 JOptionPane.showMessageDialog(
-                        null, "Sacekajte par sekundi da se podigne graficki interfejs virtuelne masine...", 
+                        null, "Sacekajte par sekundi da se podigne graficki interfejs virtuelne masine...",
                         "Uspesno startovanje virtuelne masine!", JOptionPane.PLAIN_MESSAGE
                 );
             } else if (aktivnost == EnumTipAktivnosti.GASENJE) {

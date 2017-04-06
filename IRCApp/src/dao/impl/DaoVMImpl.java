@@ -102,5 +102,18 @@ public class DaoVMImpl extends DaoVM{
         String operativniSistem = rs.getString("tip_os");
         return new VirtuelnaMasina(ime, opis, operativniSistem);
     }
+
+    @Override
+    public boolean has_rdp(String vm_name) throws Exception{
+        String query = "SELECT * FROM user_vm INNER JOIN virtual_machines ON user_vm.naziv = virtual_machines.naziv WHERE userNaziv = '" + vm_name + "' AND virtual_machines.rdp = 1";
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            return rs.next();
+        } catch(SQLException ex) {
+            throw new Exception(ex.getMessage());
+        }
+    }
     
 }

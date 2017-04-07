@@ -15,6 +15,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.LinkedList;
 import java.util.List;
+import javafx.scene.control.CheckBox;
+import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.JCheckBox;
@@ -231,6 +233,17 @@ public class GlavnaForma extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jtxtPretragaProgramaFocusLost(evt);
+            }
+        });
+        jtxtPretragaPrograma.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtxtPretragaProgramaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtxtPretragaProgramaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtxtPretragaProgramaKeyTyped(evt);
             }
         });
 
@@ -488,6 +501,11 @@ public class GlavnaForma extends javax.swing.JFrame {
         jLabel13.setText("Dodavanje novog programa u bazu");
 
         jbtnDodajNoviProgram.setText("Dodaj program");
+        jbtnDodajNoviProgram.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnDodajNoviProgramActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Odustani");
 
@@ -680,6 +698,24 @@ public class GlavnaForma extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbtnDodajNovuVMActionPerformed
 
+    private void jtxtPretragaProgramaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtPretragaProgramaKeyTyped
+        String imePrograma = jtxtPretragaPrograma.getText();
+        Kontroler.pretraziPrograme(imePrograma);
+    }//GEN-LAST:event_jtxtPretragaProgramaKeyTyped
+
+    private void jtxtPretragaProgramaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtPretragaProgramaKeyPressed
+        jtxtPretragaProgramaKeyTyped(evt);
+    }//GEN-LAST:event_jtxtPretragaProgramaKeyPressed
+
+    private void jtxtPretragaProgramaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtPretragaProgramaKeyReleased
+        jtxtPretragaProgramaKeyPressed(evt);
+    }//GEN-LAST:event_jtxtPretragaProgramaKeyReleased
+
+    private void jbtnDodajNoviProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDodajNoviProgramActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Program " + jtxtNazivPrograma.getText() + " je uspešno dodat u bazu.", "Program je dodat u bazu", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jbtnDodajNoviProgramActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel card0;
@@ -776,6 +812,15 @@ public class GlavnaForma extends javax.swing.JFrame {
         }
     }
 
+    public void generisiCheckBoksevePretraga(List<Program> listaPrograma) {
+        Font font = new Font("Segoe UI", Font.PLAIN, 14);
+        for (Program p : listaPrograma) {
+            JCheckBox jcb = new JCheckBox(p.getIme());
+            jcb.setFont(font);
+            jpnlCheckBoksevi.add(jcb);
+        }
+    }
+    
     public JPanel getJpnlCheckBoksevi() {
         return jpnlCheckBoksevi;
     }
@@ -811,6 +856,13 @@ public class GlavnaForma extends javax.swing.JFrame {
     public JMenuItem getJmnAdmin() {
         return jmnAdmin;
     }
+
+    public void obrisiCheckBokseve() {
+        jpnlCheckBoksevi.removeAll();
+        jpnlCheckBoksevi.setLayout(new javax.swing.BoxLayout(jpnlCheckBoksevi, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane3.setViewportView(jpnlCheckBoksevi);
+    }
+
     
     
 

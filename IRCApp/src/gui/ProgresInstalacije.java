@@ -5,11 +5,8 @@
  */
 package gui;
 
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.BorderFactory;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
-import javax.swing.border.TitledBorder;
 import kontroler.Kontroler;
 import util.Konzola;
 
@@ -46,6 +43,7 @@ public class ProgresInstalacije extends javax.swing.JFrame {
         setTitle("Instalacija");
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
 
         jbtnPrekini.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnPrekini.setText("Stop");

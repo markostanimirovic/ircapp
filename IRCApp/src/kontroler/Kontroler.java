@@ -5,6 +5,7 @@
  */
 package kontroler;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import dao.*;
 import dao.impl.DaoAdministratorImpl;
 import dao.impl.DaoUserVMsImpl;
@@ -80,11 +81,11 @@ public class Kontroler {
 
                 proveriUsera();
                 glavnaForma = new GlavnaForma();
-                
+
                 generisiCheckBokseve();
 
                 glavnaForma.setVisible(true);
-                
+
                 napraviIRCFoler();
 
             }
@@ -298,39 +299,36 @@ public class Kontroler {
         boolean pokretanje = false;
         progresInstalacije = new ProgresInstalacije();
         progresInstalacije.setLocationRelativeTo(null);
-        
+
         aktivnostCheck(aktivnost);
-        
-        
+
         progresInstalacije.setVisible(true);
-        
+
         try {
             p = Runtime.getRuntime().exec(komande);
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String red;
             int brojReda = 0;
-            
+
             while ((red = in.readLine()) != null) {
-                
+
                 if (brojReda < 20) {
                     if (red.startsWith("\u001B")) {
                         red = red.substring(3);
                     }
                 }
-                
+
                 progresInstalacije.setTextJTxtAreaKonzola(red + "\n");
                 brojReda++;
             }
-            
-            
+
             DaoVM dao = new DaoVMImpl();
-            
-            
+
             System.out.println(pokretanje + " iznad ifa");
-            
+
             if (aktivnost == EnumTipAktivnosti.INSTALACIJA) {
                 sacuvajVirtuelnuMasinuZaKorisnika();
-                
+
                 pokretanje = dao.has_rdp(korisnikovNazivVM);
                 if (pokretanje) {
                     p = Runtime.getRuntime().exec("cmd /c \"" + " cd " + putanjaDoFoldera + " && vagrant rdp" + " && taskkill /f /im cmd.exe" + "\" ");
@@ -361,10 +359,10 @@ public class Kontroler {
                         "Uspešno startovanje virtuelne mašine!", JOptionPane.PLAIN_MESSAGE
                 );
             } else if (aktivnost == EnumTipAktivnosti.GASENJE) {
-                    JOptionPane.showMessageDialog(
+                JOptionPane.showMessageDialog(
                         null, "Uspešno ugašena virtuelna mašina!", "Gašenje",
                         JOptionPane.PLAIN_MESSAGE
-                    );
+                );
             }
         } catch (Exception e) {
             progresInstalacije.setNewNameForJbtnKonzola("Greška");
@@ -476,10 +474,31 @@ public class Kontroler {
             progresInstalacije.setTitle("Gašenje virtuelne mašine");
             progresInstalacije.setAlwaysOnTop(false);
         }
-        
+
         if (!(aktivnost == EnumTipAktivnosti.INSTALACIJA)) {
             progresInstalacije.setSTOPFalse();
         }
+    }
+
+    public static void pretraziPrograme(String imePrograma) {
+        List<Program> novaLista = new ArrayList<>();
+
+        imePrograma = imePrograma.toLowerCase();
+
+        if (imePrograma.trim().equals("")) {
+            for (Program p : ListaPrograma.getInstance().getListaPrograma()) {
+                novaLista.add(p);
+            }
+        }
+
+        for (Program p : ListaPrograma.getInstance().getListaPrograma()) {
+            if (p.getIme().toLowerCase().contains(imePrograma)) {
+                novaLista.add(p);
+            }
+        }
+
+        glavnaForma.obrisiCheckBokseve();
+        glavnaForma.generisiCheckBoksevePretraga(novaLista);
     }
 
 }

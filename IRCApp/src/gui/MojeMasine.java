@@ -6,7 +6,7 @@
 package gui;
 
 import domen.UserVMs;
-import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.LinkedList;
@@ -64,6 +64,7 @@ public class MojeMasine extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Moje mašine");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
         setResizable(false);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
